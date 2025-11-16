@@ -396,11 +396,15 @@ void CWeaponAR2::DelayedAttack( void )
 	Vector impactPoint = vecSrc + ( vecAiming * MAX_TRACE_LENGTH );
 
 	// Fire the bullets
+// ########## EDIT: Increase speed of Combine Ball to x2 ##########
+/*
 #ifdef EZ1
 	Vector vecVelocity = vecAiming * 1500.0f; // Breadman was 1000
 #else
 	Vector vecVelocity = vecAiming * 1000.0f;
 #endif
+*/
+	Vector vecVelocity = vecAiming * 2000.0f;
 
 	// Fire the combine ball
 	CreateCombineBall(	vecSrc, 
