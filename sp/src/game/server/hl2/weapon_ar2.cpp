@@ -595,10 +595,16 @@ void CWeaponAR2::Operator_HandleAnimEvent( animevent_t *pEvent, CBaseCombatChara
 //-----------------------------------------------------------------------------
 void CWeaponAR2::AddViewKick( void )
 {
+// ########## EDIT: Reduce view punch ##########
+/*
 	#define	EASY_DAMPEN			0.5f
 	#define	MAX_VERTICAL_KICK	8.0f	//Degrees
 	#define	SLIDE_LIMIT			5.0f	//Seconds
-	
+*/
+	#define EASY_DAMPEN 0.5f
+	#define MAX_VERTICAL_KICK 4.0f
+	#define SLIDE_LIMIT 1.0f
+
 	//Get the view kick
 	CBasePlayer *pPlayer = ToBasePlayer( GetOwner() );
 
