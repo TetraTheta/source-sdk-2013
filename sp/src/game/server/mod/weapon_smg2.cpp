@@ -288,10 +288,16 @@ bool CWeaponSMG2::Reload( void )
 //-----------------------------------------------------------------------------
 void CWeaponSMG2::AddViewKick( void )
 {
+// ########## EDIT: Reduce view punch ##########
+/*
 	#define	EASY_DAMPEN			2.5f	// BREADMAN
 	#define	MAX_VERTICAL_KICK	22.0f	//Degrees - was 1.0
 	#define	SLIDE_LIMIT			4.0f	//Seconds - was 2.0
-	
+*/
+	#define EASY_DAMPEN 0.5f
+	#define MAX_VERTICAL_KICK 1.0f
+	#define SLIDE_LIMIT 1.0f
+
 	//Get the view kick
 	CBasePlayer *pPlayer = ToBasePlayer( GetOwner() );
 
