@@ -1,4 +1,4 @@
-//======= Copyright © 2022, Obsidian Conflict Team, All rights reserved. =======//
+//======= Copyright (c) 2022, Obsidian Conflict Team, All rights reserved. =======//
 //
 // Purpose: Mortar Synth NPC
 //
