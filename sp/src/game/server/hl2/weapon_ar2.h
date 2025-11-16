@@ -58,7 +58,9 @@ public:
 	{
 		static Vector cone;
 		
-		cone = VECTOR_CONE_3DEGREES;
+		// ########## EDIT: Reduce bullet spread ##########
+		//cone = VECTOR_CONE_3DEGREES;
+		cone = VECTOR_CONE_1DEGREES;
 
 		return cone;
 	}
