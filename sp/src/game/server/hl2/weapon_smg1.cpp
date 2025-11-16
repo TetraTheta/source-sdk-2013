@@ -61,6 +61,8 @@ public:
 
 	virtual const Vector& GetBulletSpread( void )
 	{
+// ########## EDIT: Reduce bullet spread ##########
+/*
 #ifdef EZ1
 		static const Vector cone = VECTOR_CONE_2DEGREES;
 		return cone;
@@ -69,6 +71,9 @@ public:
 		static const Vector cone = VECTOR_CONE_5DEGREES;
 		return weapon_smg1_use_ez1_accuracy.GetBool() ? coneEZ1 : cone;
 #endif
+*/
+		static const Vector cone = VECTOR_CONE_1DEGREES;
+		return cone;
 	}
 
 	const WeaponProficiencyInfo_t *GetProficiencyValues();
@@ -424,6 +429,8 @@ bool CWeaponSMG1::Reload( void )
 //-----------------------------------------------------------------------------
 void CWeaponSMG1::AddViewKick( void )
 {
+// ########## EDIT: Reduce view punch ##########
+/*
 #ifdef EZ
 	#define	EASY_DAMPEN			2.5f	// Breadman
 	#define	MAX_VERTICAL_KICK	11.0f	//Degrees - was 1.0
@@ -433,6 +440,10 @@ void CWeaponSMG1::AddViewKick( void )
 	#define	MAX_VERTICAL_KICK	1.0f	//Degrees
 	#define	SLIDE_LIMIT			2.0f	//Seconds
 #endif
+*/
+	#define EASY_DAMPEN 0.5f
+	#define MAX_VERTICAL_KICK 1.0f
+	#define SLIDE_LIMIT 1.0f
 
 	//Get the view kick
 	CBasePlayer *pPlayer = ToBasePlayer( GetOwner() );
