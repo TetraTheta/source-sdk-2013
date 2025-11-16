@@ -858,6 +858,10 @@ CWeaponShotgun::CWeaponShotgun( void )
 	m_fMaxRange1		= 500;
 	m_fMinRange2		= 0.0;
 	m_fMaxRange2		= 200;
+
+	// ########## EDIT: Fire weapon under water ##########
+	m_bFiresUnderwater = true;
+	m_bAltFiresUnderwater = true;
 }
 
 //-----------------------------------------------------------------------------

@@ -214,7 +214,10 @@ CWeaponAR2::CWeaponAR2( )
 	m_nShotsFired	= 0;
 	m_nVentPose		= -1;
 
-	m_bAltFiresUnderwater = false;
+	// ########## EDIT: Fire weapon under water (1) ##########
+	// m_bAltFiresUnderwater = false;
+	m_bFiresUnderwater = true;
+	m_bAltFiresUnderwater = true;
 }
 
 void CWeaponAR2::Precache( void )
@@ -368,6 +371,8 @@ void CWeaponAR2::SecondaryAttack( void )
 	if ( m_bShotDelayed )
 		return;
 
+	// ########## EDIT: Fire weapon under water (2) ##########
+	/*
 	// Cannot fire underwater
 	if ( GetOwner() && GetOwner()->GetWaterLevel() == 3 )
 	{
@@ -376,6 +381,7 @@ void CWeaponAR2::SecondaryAttack( void )
 		m_flNextSecondaryAttack = gpGlobals->curtime + 0.5f;
 		return;
 	}
+	*/
 
 	m_bShotDelayed = true;
 	m_flNextPrimaryAttack = m_flNextSecondaryAttack = m_flDelayedFire = gpGlobals->curtime + 0.5f;

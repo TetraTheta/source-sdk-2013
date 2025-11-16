@@ -244,7 +244,9 @@ int Get357ActtableCount()
 CWeapon357::CWeapon357( void )
 {
 	m_bReloadsSingly	= false;
-	m_bFiresUnderwater	= false;
+	// ########## EDIT: Fire weapon under water ##########
+	// m_bFiresUnderwater	= false;
+	m_bFiresUnderwater = true;
 
 #ifdef MAPBASE
 	m_fMinRange1		= 24;
