@@ -1,4 +1,4 @@
-//========= Copyright © 1996-2005, Valve Corporation, All rights reserved. ============//
+//========= Copyright (c) 1996-2005, Valve Corporation, All rights reserved. ============//
 //
 // Purpose:		Gonome. Big scary-ass headcrab zombie, based heavily on the Bullsquid.+
 //				+++Repurposed into the Zombie Assassin
