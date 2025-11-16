@@ -165,7 +165,10 @@ CWeaponSMG2::CWeaponSMG2( )
 	m_iClip2 = -1;
 	m_flSpreadComponent = MIN_SPREAD_COMPONENT;
 
-	m_bAltFiresUnderwater = false;
+	// ########## EDIT: Fire weapon under water ##########
+	//m_bAltFiresUnderwater = false;
+	m_bFiresUnderwater = true;
+	m_bAltFiresUnderwater = true;
 }
 
 //-----------------------------------------------------------------------------

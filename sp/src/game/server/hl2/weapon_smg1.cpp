@@ -206,7 +206,10 @@ CWeaponSMG1::CWeaponSMG1( )
 	m_fMinRange1		= 0;// No minimum range. 
 	m_fMaxRange1		= 1400;
 
-	m_bAltFiresUnderwater = false;
+	// ########## EDIT: Fire weapon under water (1) ##########
+	//m_bAltFiresUnderwater = false;
+	m_bFiresUnderwater = true;
+	m_bAltFiresUnderwater = true;
 }
 
 //-----------------------------------------------------------------------------
@@ -466,7 +469,9 @@ void CWeaponSMG1::SecondaryAttack( void )
 		return;
 
 	//Must have ammo
-	if ( ( pPlayer->GetAmmoCount( m_iSecondaryAmmoType ) <= 0 ) || ( pPlayer->GetWaterLevel() == 3 ) )
+	// ########## EDIT: Fire weapon under water (2) ##########
+	//if ( ( pPlayer->GetAmmoCount( m_iSecondaryAmmoType ) <= 0 ) || ( pPlayer->GetWaterLevel() == 3 ) )
+	if ( ( pPlayer->GetAmmoCount( m_iSecondaryAmmoType ) <= 0 ) )
 	{
 		SendWeaponAnim( ACT_VM_DRYFIRE );
 		BaseClass::WeaponSound( EMPTY );
