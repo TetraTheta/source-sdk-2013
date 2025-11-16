@@ -698,6 +698,8 @@ void CWeaponAR2::Operator_HandleAnimEvent( animevent_t *pEvent, CBaseCombatChara
 //-----------------------------------------------------------------------------
 void CWeaponAR2::AddViewKick( void )
 {
+// ########## EDIT: Reduce view punch ##########
+/*
 	#define	EASY_DAMPEN			0.5f
 #ifdef EZ1
 	#define	MAX_VERTICAL_KICK	12.0f	//Degrees - was 9.0
@@ -709,7 +711,11 @@ void CWeaponAR2::AddViewKick( void )
 	#define	MAX_VERTICAL_KICK	8.0f	//Degrees
 	#define	SLIDE_LIMIT			5.0f	//Seconds
 #endif
-	
+*/
+	#define EASY_DAMPEN 0.5f
+	#define MAX_VERTICAL_KICK 4.0f
+	#define SLIDE_LIMIT 1.0f
+
 	//Get the view kick
 	CBasePlayer *pPlayer = ToBasePlayer( GetOwner() );
 
@@ -1095,10 +1101,16 @@ void CWeaponAR2Proto::FireNPCSecondaryAttack( CBaseCombatCharacter *pOperator, b
 //-----------------------------------------------------------------------------
 void CWeaponAR2Proto::AddViewKick( void )
 {
+// ########## EDIT: Reduce view punch ##########
+/*
 	#define	PROTO_EASY_DAMPEN			0.5f
 	#define	PROTO_MAX_VERTICAL_KICK	12.0f	//Degrees - was 9.0
 	#define	PROTO_SLIDE_LIMIT			1.0f	//Seconds - was 5.0
-	
+*/
+	#define PROTO_EASY_DAMPEN 0.5f
+	#define PROTO_MAX_VERTICAL_KICK 4.0f
+	#define PROTO_SLIDE_LIMIT 1.0f
+
 	//Get the view kick
 	CBasePlayer *pPlayer = ToBasePlayer( GetOwner() );
 

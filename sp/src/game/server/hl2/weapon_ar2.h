@@ -73,7 +73,8 @@ public:
 	{
 		static Vector cone;
 		
-#ifdef EZ2
+// ########## EDIT: Reduce bullet spread ##########
+//#ifdef EZ2
 		// Bad Cop has nearly perfect accuracy with the AR2 to give players
 		// the advantage of a Combine elite
 		if (this->GetOwner() &&  this->GetOwner()->IsPlayer())
@@ -81,7 +82,7 @@ public:
 			cone = VECTOR_CONE_1DEGREES;
 			return cone;
 		}
-#endif
+//#endif
 
 #ifdef EZ1
 		cone = VECTOR_CONE_10DEGREES;
@@ -134,7 +135,9 @@ public:
 	{
 		static Vector cone;
 
-		cone = VECTOR_CONE_10DEGREES;
+		// ########## EDIT: Reduce bullet spread ##########
+		//cone = VECTOR_CONE_10DEGREES;
+		cone = VECTOR_CONE_1DEGREES;
 
 		return cone;
 	}
