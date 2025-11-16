@@ -1,4 +1,4 @@
-//========= Copyright © 1996-2008, Valve Corporation, All rights reserved. ============//
+//========= Copyright (c) 1996-2008, Valve Corporation, All rights reserved. ============//
 //
 // Purpose:		Client handler implementations for instruction players how to play
 //
@@ -24,7 +24,7 @@
 #include "tier0/memdbgon.h"
 
 //=========================================================
-// Configuración
+// Configuration
 //=========================================================
 
 #define LESSON_PRIORITY_MAX 1000
