@@ -323,7 +323,9 @@ void CWeaponAR2::DelayedAttack( void )
 	Vector impactPoint = vecSrc + ( vecAiming * MAX_TRACE_LENGTH );
 
 	// Fire the bullets
-	Vector vecVelocity = vecAiming * 1000.0f;
+	// ########## EDIT: Increase speed of Combine Ball to x2 ##########
+	//Vector vecVelocity = vecAiming * 1000.0f;
+	Vector vecVelocity = vecAiming * 2000.0f;
 
 	// Fire the combine ball
 	CreateCombineBall(	vecSrc, 
