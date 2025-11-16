@@ -925,6 +925,10 @@ CWeaponShotgun::CWeaponShotgun( void )
 #else
 	m_fMaxRange2		= 1400; // BREADMAN
 #endif
+
+	// ########## EDIT: Fire weapon under water ##########
+	m_bFiresUnderwater = true;
+	m_bAltFiresUnderwater = true;
 }
 
 //-----------------------------------------------------------------------------
