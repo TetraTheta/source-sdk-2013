@@ -66,6 +66,10 @@ $Project
 		$File	"depthoffield_dx9.cpp"
 		
 		$File	"core_dx9.cpp"
+		
+		// Resolution fix
+		$File	"DefaultResolutionFix.cpp"
+		$File "$SRCDIR\public\registry.cpp"
 	}
 
 	//$Shaders	"mapbase_dx9_20b.txt"
