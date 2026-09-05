@@ -31,3 +31,6 @@ git fetch --no-tags "$MAPBASE_REMOTE_NAME" +refs/heads/master:refs/heads/upstrea
 echo "Fetched and updated:"
 echo "  - upstream/ez2  <= $EZ2_REMOTE_NAME/ez2/mapbase"
 echo "  - upstream/mapbase <= $MAPBASE_REMOTE_NAME/master"
+
+read -r -n 1 -s -p "Press any key to continue..."
+echo
