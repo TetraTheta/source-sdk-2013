@@ -1544,6 +1544,8 @@ int CBasePlayer::OnTakeDamage( const CTakeDamageInfo &inputInfo )
 
 	float flPunch = -2;
 
+	// ########## EDIT: Reduce view punch when being hit ##########
+	/*
 	if( hl2_episodic.GetBool() && info.GetAttacker() && !FInViewCone( info.GetAttacker() ) )
 	{
 		if( info.GetDamage() > 10.0f )
@@ -1551,6 +1553,7 @@ int CBasePlayer::OnTakeDamage( const CTakeDamageInfo &inputInfo )
 		else
 			flPunch = RandomFloat( -5, -7 );
 	}
+	*/
 
 	m_Local.m_vecPunchAngle.SetX( flPunch );
 
