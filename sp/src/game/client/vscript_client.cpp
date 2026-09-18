@@ -6,6 +6,7 @@
 
 #include "cbase.h"
 #include "vscript_client.h"
+#include "iconsole.h"
 #include "icommandline.h"
 #include "tier1/utlbuffer.h"
 #include "tier1/fmtstr.h"
@@ -536,7 +537,7 @@ static float FrameTime()
 
 static bool Con_IsVisible()
 {
-	return engine->Con_IsVisible();
+	return engine->Con_IsVisible() || console->IsVisible();
 }
 
 static bool IsWindowedMode()

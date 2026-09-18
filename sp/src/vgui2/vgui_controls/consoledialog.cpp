@@ -21,6 +21,7 @@
 #include "vgui_controls/RichText.h"
 #include "tier1/convar.h"
 #include "tier1/convar_serverbounded.h"
+#include "tier1/utlstring.h"
 #include "icvar.h"
 #include "filesystem.h"
 
@@ -106,6 +107,113 @@ public:
 
 private:
 	VPANEL m_pCompletionList;
+};
+
+
+class CConsoleHistory : public RichText
+{
+	DECLARE_CLASS_SIMPLE( CConsoleHistory, RichText );
+
+public:
+	CConsoleHistory( Panel *pParent, const char *pName )
+		: BaseClass( pParent, pName ),
+		m_nPreviousLineEnd( 0 ),
+		m_nRepeatCount( 1 )
+	{
+	}
+
+	void InsertConsoleText( const Color &color, const char *pText )
+	{
+		const char *pLineStart = pText;
+		for ( const char *p = pText; ; ++p )
+		{
+			if ( *p != '\n' && *p != '\0' )
+				continue;
+
+			CUtlString text;
+			text.SetDirect( pLineStart, p - pLineStart + ( *p == '\n' ) );
+			InsertColorChange( color );
+			InsertString( text );
+
+			for ( const char *pCharacter = pLineStart; pCharacter < p; ++pCharacter )
+			{
+				if ( *pCharacter != '\r' )
+				{
+					m_CurrentLine += *pCharacter;
+					m_CurrentColors.AddToTail( color );
+				}
+			}
+
+			if ( *p == '\0' )
+				break;
+
+			FinishLine();
+			pLineStart = p + 1;
+		}
+	}
+
+	virtual void SetText( const char *pText )
+	{
+		BaseClass::SetText( pText );
+		ResetRepeatState();
+	}
+
+private:
+	bool IsRepeatedLine() const
+	{
+		if ( m_CurrentLine.IsEmpty() || m_CurrentLine != m_PreviousLine ||
+			m_CurrentColors.Count() != m_PreviousColors.Count() )
+		{
+			return false;
+		}
+
+		for ( int i = 0; i < m_CurrentColors.Count(); ++i )
+		{
+			if ( m_CurrentColors[i] != m_PreviousColors[i] )
+				return false;
+		}
+
+		return true;
+	}
+
+	void FinishLine()
+	{
+		if ( IsRepeatedLine() )
+		{
+			char postfix[32];
+			Q_snprintf( postfix, sizeof( postfix ), " (x%d)\n", ++m_nRepeatCount );
+			TruncateText( m_nPreviousLineEnd );
+			InsertColorChange( m_CurrentColors.Tail() );
+			InsertString( postfix );
+		}
+		else
+		{
+			m_PreviousLine = m_CurrentLine;
+			m_PreviousColors.CopyArray( m_CurrentColors.Base(), m_CurrentColors.Count() );
+			m_nPreviousLineEnd = GetTextLength() - 1;
+			m_nRepeatCount = 1;
+		}
+
+		m_CurrentLine.Clear();
+		m_CurrentColors.RemoveAll();
+	}
+
+	void ResetRepeatState()
+	{
+		m_CurrentLine.Clear();
+		m_CurrentColors.RemoveAll();
+		m_PreviousLine.Clear();
+		m_PreviousColors.RemoveAll();
+		m_nPreviousLineEnd = 0;
+		m_nRepeatCount = 1;
+	}
+
+	CUtlString m_CurrentLine;
+	CUtlVector<Color> m_CurrentColors;
+	CUtlString m_PreviousLine;
+	CUtlVector<Color> m_PreviousColors;
+	int m_nPreviousLineEnd;
+	int m_nRepeatCount;
 };
 
 
@@ -303,7 +411,7 @@ CConsolePanel::CConsolePanel( vgui::Panel *pParent, const char *pName, bool bSta
 	}
 
 	// create controls
-	m_pHistory = new RichText(this, "ConsoleHistory");
+	m_pHistory = m_bStatusVersion ? new RichText(this, "ConsoleHistory") : new CConsoleHistory(this, "ConsoleHistory");
 	m_pHistory->SetAllowKeyBindingChainToParent( false );
 	SETUP_PANEL( m_pHistory );
 	m_pHistory->SetVerticalScrollbar( !m_bStatusVersion );
@@ -389,8 +497,14 @@ void CConsolePanel::ColorPrint( const Color& clr, const char *msg )
 		Clear();
 	}
 
-	m_pHistory->InsertColorChange( clr );
-	m_pHistory->InsertString( msg );
+	if ( m_bStatusVersion )
+	{
+		m_pHistory->InsertColorChange( clr );
+		m_pHistory->InsertString( msg );
+		return;
+	}
+
+	static_cast<CConsoleHistory *>( m_pHistory )->InsertConsoleText( clr, msg );
 }
 
 

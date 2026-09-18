@@ -6,6 +6,7 @@
 //===========================================================================//
 #include "cbase.h"
 #include "c_baseentity.h"
+#include "iconsole.h"
 #include "prediction.h"
 #include "model_types.h"
 #include "iviewrender_beams.h"
@@ -3248,7 +3249,7 @@ void C_BaseEntity::CheckInterpolatedVarParanoidMeasurement()
 			continue;
 		
 		// Player angles always generates this error when the console is up.
-		if ( pEnt->entindex() == 1 && engine->Con_IsVisible() )
+		if ( pEnt->entindex() == 1 && ( engine->Con_IsVisible() || console->IsVisible() ) )
 			continue;
 			
 		// View models tend to screw up this test unnecesarily because they modify origin,

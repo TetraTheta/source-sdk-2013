@@ -6,6 +6,7 @@
 
 #include "cbase.h"
 #include "c_vguiscreen.h"
+#include "iconsole.h"
 #include "vgui_controls/Label.h"
 #include "vgui_bitmappanel.h"
 #include <vgui/IVGui.h>
@@ -269,7 +270,7 @@ void CMovieDisplayScreen::UpdateMovie( void )
 	bool bScreenActive = IsActive();
 
 	// Pause if the game has paused
-	if ( engine->IsPaused() || engine->Con_IsVisible() )
+	if ( engine->IsPaused() || engine->Con_IsVisible() || console->IsVisible() )
 	{
 		bScreenActive = false;
 	}

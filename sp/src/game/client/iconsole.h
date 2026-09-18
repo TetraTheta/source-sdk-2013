@@ -26,8 +26,10 @@ namespace vgui
 abstract_class IConsole
 {
 public:
+	virtual void		StartListening( void ) = 0;
 	virtual void		Create( vgui::VPANEL parent ) = 0;
 	virtual void		Destroy( void ) = 0;
+	virtual bool		IsVisible( void ) = 0;
 };
 
 extern IConsole *console;

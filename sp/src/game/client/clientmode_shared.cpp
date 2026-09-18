@@ -10,6 +10,7 @@
 
 #include "cbase.h"
 #include "clientmode_shared.h"
+#include "iconsole.h"
 #include "iinput.h"
 #include "view_shared.h"
 #include "iviewrender.h"
@@ -689,7 +690,7 @@ void ClientModeShared::ProcessInput(bool bActive)
 //-----------------------------------------------------------------------------
 int	ClientModeShared::KeyInput( int down, ButtonCode_t keynum, const char *pszCurrentBinding )
 {
-	if ( engine->Con_IsVisible() )
+	if ( engine->Con_IsVisible() || console->IsVisible() )
 		return 1;
 	
 	// Should we start typing a message?

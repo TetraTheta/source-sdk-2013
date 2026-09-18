@@ -11,6 +11,7 @@
 #include "vguicenterprint.h"
 #include "iloadingdisc.h"
 #include "ifpspanel.h"
+#include "iconsole.h"
 #include "imessagechars.h"
 #include "inetgraphpanel.h"
 #include "idebugoverlaypanel.h"
@@ -201,6 +202,7 @@ void VGui_CreateGlobalPanels( void )
 	VPANEL gameDLLPanel = enginevgui->GetPanel( PANEL_GAMEDLL );
 #endif
 	// Part of game
+	console->Create( gameToolParent );
 	internalCenterPrint->Create( gameToolParent );
 	loadingdisc->Create( gameToolParent );
 	messagechars->Create( gameToolParent );
@@ -224,6 +226,7 @@ void VGui_CreateGlobalPanels( void )
 
 void VGui_Shutdown()
 {
+	console->Destroy();
 	VGUI_DestroyClientDLLRootPanel();
 
 #ifndef _X360

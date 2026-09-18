@@ -44,6 +44,8 @@ public:
 	void InsertChar(wchar_t ch);
 	void InsertString(const char *text);
 	void InsertString(const wchar_t *wszText);
+	int GetTextLength() const;
+	void TruncateText(int textLength);
 	
 	// selection
 	void SelectNone();
