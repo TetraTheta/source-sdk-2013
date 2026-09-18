@@ -2075,6 +2075,38 @@ void RichText::InsertString(const wchar_t *wszText)
 }
 
 //-----------------------------------------------------------------------------
+// Purpose: Returns the number of characters in the text stream
+//-----------------------------------------------------------------------------
+int RichText::GetTextLength() const
+{
+	return m_TextStream.Count();
+}
+
+//-----------------------------------------------------------------------------
+// Purpose: Removes text and formatting after the requested position
+//-----------------------------------------------------------------------------
+void RichText::TruncateText(int textLength)
+{
+	textLength = clamp(textLength, 0, m_TextStream.Count());
+	if (textLength == m_TextStream.Count())
+		return;
+
+	m_TextStream.SetCount(textLength);
+	while (m_FormatStream.Count() > 1 && m_FormatStream.Tail().textStreamIndex >= textLength)
+	{
+		m_FormatStream.Remove(m_FormatStream.Count() - 1);
+	}
+
+	GotoTextEnd();
+	SelectNone();
+	InvalidateLineBreakStream();
+	InvalidateLayout();
+	m_bRecalcLineBreaks = true;
+	_recalcSavedRenderState = true;
+	Repaint();
+}
+
+//-----------------------------------------------------------------------------
 // Purpose: Declare a selection empty
 //-----------------------------------------------------------------------------
 void RichText::SelectNone()

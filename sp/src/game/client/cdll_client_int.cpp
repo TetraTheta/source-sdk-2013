@@ -7,6 +7,7 @@
 #include "cbase.h"
 #include <crtmemdebug.h>
 #include "vgui_int.h"
+#include "iconsole.h"
 #include "clientmode.h"
 #include "iinput.h"
 #include "iviewrender.h"
@@ -1048,9 +1049,12 @@ int CHLClient::Init( CreateInterfaceFn appSystemFactory, CreateInterfaceFn physi
 	factories.physicsFactory = physicsFactory;
 	FactoryList_Store( factories );
 
+	console->StartListening();
+
 	// Yes, both the client and game .dlls will try to Connect, the soundemittersystem.dll will handle this gracefully
 	if ( !soundemitterbase->Connect( appSystemFactory ) )
 	{
+		console->Destroy();
 		return false;
 	}
 
@@ -1064,7 +1068,10 @@ int CHLClient::Init( CreateInterfaceFn appSystemFactory, CreateInterfaceFn physi
 	materials_stub = (IMaterialSystemStub*)appSystemFactory( MATERIAL_SYSTEM_STUB_INTERFACE_VERSION, NULL );
 
 	if( !g_pMaterialSystemHardwareConfig )
+	{
+		console->Destroy();
 		return false;
+	}
 
 	// Hook up the gaussian random number generator
 	s_GaussianRandomStream.AttachToStream( random );
@@ -1075,14 +1082,23 @@ int CHLClient::Init( CreateInterfaceFn appSystemFactory, CreateInterfaceFn physi
 	g_pcv_ThreadMode = g_pCVar->FindVar( "host_thread_mode" );
 
 	if (!Initializer::InitializeAllObjects())
+	{
+		console->Destroy();
 		return false;
+	}
 
 	if (!ParticleMgr()->Init(MAX_TOTAL_PARTICLES, materials))
+	{
+		console->Destroy();
 		return false;
+	}
 
 
 	if (!VGui_Startup( appSystemFactory ))
+	{
+		console->Destroy();
 		return false;
+	}
 
 	vgui::VGui_InitMatSysInterfacesList( "ClientDLL", &appSystemFactory, 1 );
 
@@ -1128,7 +1144,10 @@ int CHLClient::Init( CreateInterfaceFn appSystemFactory, CreateInterfaceFn physi
 	g_pClientMode->Init();
 
 	if ( !IGameSystem::InitAllSystems() )
+	{
+		console->Destroy();
 		return false;
+	}
 
 	g_pClientMode->Enable();
 
