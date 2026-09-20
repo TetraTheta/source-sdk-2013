@@ -60,6 +60,8 @@ LINK_ENTITY_TO_CLASS( player, C_BaseHLPlayer );
 //-----------------------------------------------------------------------------
 // Purpose: Drops player's primary weapon
 //-----------------------------------------------------------------------------
+// Disabled because DropPrimary drops every weapon in slot 2, not the active weapon.
+/*
 void CC_DropPrimary( void )
 {
 	C_BasePlayer *pPlayer = (C_BasePlayer *) C_BasePlayer::GetLocalPlayer();
@@ -71,6 +73,7 @@ void CC_DropPrimary( void )
 }
 
 static ConCommand dropprimary("dropprimary", CC_DropPrimary, "dropprimary: Drops the primary weapon of the player.");
+*/
 
 //-----------------------------------------------------------------------------
 // Constructor
