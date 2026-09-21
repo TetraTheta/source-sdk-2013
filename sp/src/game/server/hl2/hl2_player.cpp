@@ -120,9 +120,9 @@ ConVar player_showpredictedposition_timestep( "player_showpredictedposition_time
 ConVar player_squad_transient_commands( "player_squad_transient_commands", "1", FCVAR_REPLICATED );
 ConVar player_squad_double_tap_time( "player_squad_double_tap_time", "0.25" );
 #ifdef EZ1
-ConVar sv_infinite_aux_power( "sv_infinite_aux_power", "1", FCVAR_CHEAT );
+ConVar sv_infinite_aux_power( "sv_infinite_aux_power", "1", FCVAR_NONE );
 #else
-ConVar sv_infinite_aux_power("sv_infinite_aux_power", "0", FCVAR_CHEAT);
+ConVar sv_infinite_aux_power("sv_infinite_aux_power", "0", FCVAR_NONE);
 #endif
 
 #ifdef EZ
@@ -155,9 +155,9 @@ enum
 	INFINITE_SPRINT_TRUE,		// Only sprinting is affected, other suit devices continue to drain power
 };
 
-ConVar sv_infinite_sprint_power( "sv_infinite_sprint_power", "1", FCVAR_CHEAT );
+ConVar sv_infinite_sprint_power( "sv_infinite_sprint_power", "1", FCVAR_NONE );
 
-ConVar sv_infinite_flashlight_power( "sv_infinite_flashlight_power", "0", FCVAR_CHEAT );
+ConVar sv_infinite_flashlight_power( "sv_infinite_flashlight_power", "0", FCVAR_NONE );
 ConVar sv_player_death_smell( "sv_player_death_smell", "1", FCVAR_REPLICATED );
 ConVar sv_player_kick_attack_enabled( "sv_player_kick_attack_enabled", "1", FCVAR_REPLICATED );
 ConVar sv_player_kick_attack_ragdolls("sv_player_kick_attack_ragdolls", "0", FCVAR_REPLICATED);
