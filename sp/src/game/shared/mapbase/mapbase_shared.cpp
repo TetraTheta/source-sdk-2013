@@ -55,7 +55,7 @@ const char *g_MapName;
 
 extern ISoundEmitterSystemBase *soundemitterbase;
 
-ConVar mapbase_load_default_manifest("mapbase_load_default_manifest", "1", FCVAR_ARCHIVE, "Should we automatically load our default manifest file? (\"maps/%mapname%_manifest.txt\")");
+ConVar mapbase_load_default_manifest("mapbase_load_default_manifest", "1", FCVAR_ARCHIVE | FCVAR_REPLICATED, "Should we automatically load our default manifest file? (\"maps/%mapname%_manifest.txt\")"); // FIX: 'Parent cvar in server.dll not allowed'
 
 #ifdef GAME_DLL
 // This constant should change with each Mapbase update
@@ -146,7 +146,7 @@ enum
 
 struct ManifestType_t
 {
-	ManifestType_t( const char *_string, const char *cvarname, const char *cvardesc ) : cvar( cvarname, "1", FCVAR_ARCHIVE, cvardesc )
+	ManifestType_t( const char *_string, const char *cvarname, const char *cvardesc, int flags = FCVAR_ARCHIVE ) : cvar( cvarname, "1", flags, cvardesc )
 	{
 		string = _string;
 	}
@@ -160,11 +160,11 @@ struct ManifestType_t
 
 // KEEP THS IN SYNC WITH THE ENUM!
 static const ManifestType_t gm_szManifestFileStrings[MANIFEST_NUM_TYPES] = {
-	{ "soundscripts",	"mapbase_load_soundscripts",	"Should we load map-specific soundscripts? e.g. \"maps/<mapname>_level_sounds.txt\"" },
+	{ "soundscripts",	"mapbase_load_soundscripts",	"Should we load map-specific soundscripts? e.g. \"maps/<mapname>_level_sounds.txt\"", FCVAR_ARCHIVE | FCVAR_REPLICATED }, // FIX: 'Parent cvar in server.dll not allowed'
 	//{ "propdata",		"mapbase_load_propdata",		"Should we load map-specific soundscripts? e.g. \"maps/<mapname>_level_sounds.txt\"" },
 	//{ "soundscapes",	"mapbase_load_soundscapes",		"Should we load map-specific soundscapes? e.g. \"maps/<mapname>_soundscapes.txt\"" },
-	{ "localization",	"mapbase_load_localization",	"Should we load map-specific localized text files? e.g. \"maps/<mapname>_english.txt\"" },
-	{ "surfaceprops",	"mapbase_load_surfaceprops",	"Should we load map-specific surfaceproperties files? e.g. \"maps/<mapname>_surfaceproperties.txt\"" },
+	{ "localization",	"mapbase_load_localization",	"Should we load map-specific localized text files? e.g. \"maps/<mapname>_english.txt\"", FCVAR_ARCHIVE | FCVAR_REPLICATED }, // FIX: 'Parent cvar in server.dll not allowed'
+	{ "surfaceprops",	"mapbase_load_surfaceprops",	"Should we load map-specific surfaceproperties files? e.g. \"maps/<mapname>_surfaceproperties.txt\"", FCVAR_ARCHIVE | FCVAR_REPLICATED }, // FIX: 'Parent cvar in server.dll not allowed'
 #ifdef CLIENT_DLL
 	{ "closecaption",	"mapbase_load_closecaption",	"Should we load map-specific closed captioning? e.g. \"maps/<mapname>_closecaption_english.txt\" and \"maps/<mapname>_closecaption_english.dat\"" },
 	{ "vgui",			"mapbase_load_vgui",			"Should we load map-specific VGUI screens? e.g. \"maps/<mapname>_screens.txt\"" },
@@ -180,10 +180,10 @@ static const ManifestType_t gm_szManifestFileStrings[MANIFEST_NUM_TYPES] = {
 #endif
 #endif
 #ifdef MAPBASE_VSCRIPT
-	{ "vscript",		"mapbase_load_vscript",			"Should we load map-specific VScript map spawn files? e.g. \"maps/<mapname>_mapspawn.nut\"" },
+	{ "vscript",		"mapbase_load_vscript",			"Should we load map-specific VScript map spawn files? e.g. \"maps/<mapname>_mapspawn.nut\"", FCVAR_ARCHIVE | FCVAR_REPLICATED }, // FIX: 'Parent cvar in server.dll not allowed'
 #endif
 #if defined(HL2_DLL) || defined(HL2_CLIENT_DLL)
-	{ "protagonists",	"mapbase_load_protagonists",	"Should we load map-specific protagonist files? e.g. \"maps/<mapname>_protagonists.txt\"" },
+	{ "protagonists",	"mapbase_load_protagonists",	"Should we load map-specific protagonist files? e.g. \"maps/<mapname>_protagonists.txt\"", FCVAR_ARCHIVE | FCVAR_REPLICATED }, // FIX: 'Parent cvar in server.dll not allowed'
 #endif
 };
 
