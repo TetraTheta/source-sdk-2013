@@ -46,8 +46,8 @@
 extern ConVar metropolice_move_and_melee;
 
 #ifdef MAPBASE
-ConVar    sk_plr_dmg_stunstick	( "sk_plr_dmg_stunstick","0");
-ConVar    sk_npc_dmg_stunstick	( "sk_npc_dmg_stunstick","0");
+ConVar    sk_plr_dmg_stunstick	( "sk_plr_dmg_stunstick", "0", FCVAR_REPLICATED ); // FIX: 'Parent cvar in server.dll not allowed'
+ConVar    sk_npc_dmg_stunstick	( "sk_npc_dmg_stunstick", "0", FCVAR_REPLICATED ); // FIX: 'Parent cvar in server.dll not allowed'
 #endif
 
 //-----------------------------------------------------------------------------
@@ -1094,7 +1094,7 @@ void C_WeaponStunStick::ViewModelDrawn( C_BaseViewModel *pBaseViewModel )
 #ifdef EZ
 
 ConVar    cl_stunstick_flashlight			( "cl_stunstick_flashlight", "1" );
-ConVar    cl_stunstick_flashlight_distance	( "cl_stunstick_flashlight", "512" );
+ConVar    cl_stunstick_flashlight_distance	( "cl_stunstick_flashlight_distance", "512", FCVAR_REPLICATED ); // FIX: 'Parent cvar in server.dll not allowed'
 ConVar    cl_stunstick_flashlight_intensity	( "cl_stunstick_flashlight_intensity", "0.1" );
 
 //// Not using actual muzzle flashes for now

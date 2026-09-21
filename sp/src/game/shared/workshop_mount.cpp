@@ -19,7 +19,7 @@
 
 #define WORKSHOP_MANIFEST_NAME "addoninfo.txt"
 
-ConVar workshop_mount_vpks( "workshop_mount_vpks", "1" );
+ConVar workshop_mount_vpks( "workshop_mount_vpks", "1", FCVAR_REPLICATED ); // FIX: 'Parent cvar in server.dll not allowed'
 ConVar workshop_game_override( "workshop_game_override", "", FCVAR_CHEAT | FCVAR_REPLICATED, "If a value is specified, then the workshop mounting system will pretend this is the name of the current mod. Use * to mount addons from any game." );
 
 //=============================================================================

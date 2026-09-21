@@ -56,7 +56,7 @@ ConVar player_limit_jump_speed( "player_limit_jump_speed", "1", FCVAR_REPLICATED
 ConVar option_duck_method("option_duck_method", "1", FCVAR_REPLICATED|FCVAR_ARCHIVE );// 0 = HOLD to duck, 1 = Duck is a toggle
 
 #ifdef MAPBASE
-ConVar player_crouch_multiplier( "player_crouch_multiplier", "0.33333333", FCVAR_NONE );
+ConVar player_crouch_multiplier( "player_crouch_multiplier", "0.33333333", FCVAR_REPLICATED ); // FIX: 'Parent cvar in server.dll not allowed'
 #endif
 
 #ifdef STAGING_ONLY
@@ -66,8 +66,8 @@ ConVar debug_latch_reset_onduck( "debug_latch_reset_onduck", "1", FCVAR_CHEAT );
 #endif
 
 #ifdef STEAM_INPUT
-ConVar player_x360_crouch_friction( "player_x360_crouch_friction", "0" );
-ConVar player_x360_crouch_hints( "player_x360_crouch_hints", "0" );
+ConVar player_x360_crouch_friction( "player_x360_crouch_friction", "0", FCVAR_REPLICATED ); // FIX: 'Parent cvar in server.dll not allowed'
+ConVar player_x360_crouch_hints( "player_x360_crouch_hints", "0", FCVAR_REPLICATED ); // FIX: 'Parent cvar in server.dll not allowed'
 #endif
 
 // [MD] I'll remove this eventually. For now, I want the ability to A/B the optimizations.
