@@ -1159,6 +1159,8 @@ bool CAchievementMgr::CheckAchievementsEnabled()
 	return true;
 #endif
 
+	// EDIT: Enable Achievements when cheats are on
+	/*
 	if ( IsPC() )
 	{
 		// Don't award achievements if cheats are turned on.  
@@ -1175,6 +1177,7 @@ bool CAchievementMgr::CheckAchievementsEnabled()
 #endif
 		}
 	}
+	*/
 
 	return true;
 }
