@@ -692,11 +692,13 @@ void CAI_ScriptedSequence::StartScript( void )
 	if ( pTarget )
 	{
 #ifdef EZ
-		// If this target has been displaced, cancel the sequence
+		// A displaced target cannot run the sequence yet. Retry after it returns.
 		if ( pTarget->GetSleepState() == AISS_IGNORE_INPUT )
 		{
-			DevMsg( "Scripted sequence killed by displaced target!\n" );
+			DevMsg( "Scripted sequence deferred by displaced target!\n" );
 			DevMsg( "Sequence: %s\tTarget: %s\n", GetDebugName(), pTarget->GetDebugName() );
+			StartThink();
+			SetNextThink( gpGlobals->curtime + 1.0f );
 			return;
 		}
 
