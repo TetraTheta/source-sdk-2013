@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-# Rebase 'gm/ez2' onto 'upstream/ez2' and 'gm/mapbase' onto 'upstream/mapbase'.
+# Rebase each 'gm/*' branch onto its corresponding 'upstream/*' branch.
 # This rewrites the 'gm/*' branches so their commits appear on top of the upstreams.
 # If a conflict occurs the script will stop so you can resolve it manually.
 
@@ -10,6 +10,7 @@ cd "$(git rev-parse --show-toplevel)"
 declare -A MAP
 MAP["gm/ez2"]="upstream/ez2"
 MAP["gm/mapbase"]="upstream/mapbase"
+MAP["gm/maplabs"]="upstream/maplabs"
 
 for gbranch in "${!MAP[@]}"; do
   upstream="${MAP[$gbranch]}"

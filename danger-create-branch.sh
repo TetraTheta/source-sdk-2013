@@ -6,8 +6,8 @@ set -euo pipefail
 
 cd "$(git rev-parse --show-toplevel)"
 echo "WARNING: This script will DELETE ALL LOCAL BRANCHES except 'main'."
-echo "It will then fetch specified upstream branches into local 'upstream/ez2' and 'upstream/mapbase'."
-echo "After that, it will create 'gm/ez2' and 'gm/mapbase' from them."
+echo "It will then fetch specified upstream branches into local 'upstream/ez2', 'upstream/mapbase', and 'upstream/maplabs'."
+echo "After that, it will create 'gm/ez2', 'gm/mapbase', and 'gm/maplabs' from them."
 echo
 read -r -p "Type 'CONFIRM' to proceed: " CONFIRM
 if [ "$CONFIRM" != "CONFIRM" ]; then
@@ -41,6 +41,8 @@ EZ2_REMOTE_NAME="remote-ez2"
 EZ2_REMOTE_URL="https://github.com/entropy-zero/source-sdk-2013.git"
 MAPBASE_REMOTE_NAME="remote-mapbase"
 MAPBASE_REMOTE_URL="https://github.com/mapbase-source/source-sdk-2013.git"
+MAPLABS_REMOTE_NAME="remote-maplabs"
+MAPLABS_REMOTE_URL="https://github.com/map-labs-source/Map-Labs.git"
 
 if git remote get-url "$EZ2_REMOTE_NAME" >/dev/null 2>&1; then
   git remote set-url "$EZ2_REMOTE_NAME" "$EZ2_REMOTE_URL"
@@ -54,10 +56,18 @@ else
   git remote add "$MAPBASE_REMOTE_NAME" "$MAPBASE_REMOTE_URL"
 fi
 
+if git remote get-url "$MAPLABS_REMOTE_NAME" >/dev/null 2>&1; then
+  git remote set-url "$MAPLABS_REMOTE_NAME" "$MAPLABS_REMOTE_URL"
+else
+  git remote add "$MAPLABS_REMOTE_NAME" "$MAPLABS_REMOTE_URL"
+fi
+
 echo "Cloning 'upstream/ez2'..."
 git fetch --no-tags "$EZ2_REMOTE_NAME" +refs/heads/ez2/mapbase:refs/heads/upstream/ez2
 echo "Cloning 'upstream/mapbase'..."
 git fetch --no-tags "$MAPBASE_REMOTE_NAME" +refs/heads/master:refs/heads/upstream/mapbase
+echo "Cloning 'upstream/maplabs'..."
+git fetch --no-tags "$MAPLABS_REMOTE_NAME" +refs/heads/master:refs/heads/upstream/maplabs
 
 echo "Creating 'gm/ez2' from 'upstream/ez2'..."
 if git show-ref --verify --quiet refs/heads/upstream/ez2; then
@@ -75,12 +85,20 @@ else
   exit 2
 fi
 
+echo "Creating 'gm/maplabs' from 'upstream/maplabs'..."
+if git show-ref --verify --quiet refs/heads/upstream/maplabs; then
+  git branch --force gm/maplabs upstream/maplabs
+else
+  echo "'upstream/maplabs' does not exist locally. aborting."
+  exit 2
+fi
+
 git switch main
 
 echo "Initialization complete. Current local branches:"
 git branch --sort=-committerdate --format="  - %(refname:short)"
 echo
 echo "Notes:"
-echo "- 'upstream/ez2' and 'upstream/mapbase' are now local branches matching the remotes."
-echo "- 'gm/ez2' and 'gm/mapbase' are created from those upstream branches."
+echo "- 'upstream/ez2', 'upstream/mapbase', and 'upstream/maplabs' are now local branches matching the remotes."
+echo "- 'gm/ez2', 'gm/mapbase', and 'gm/maplabs' are created from those upstream branches."
 echo "- Remote branches on 'origin' (or other remotes) were NOT changed by this script."
