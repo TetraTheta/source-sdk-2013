@@ -77,6 +77,11 @@ $Configuration
 
 $Project
 {
+  $Folder "Gunmaster"
+  {
+    $File "$SRCDIR\game\gunmaster\sc_remove.cpp"
+  }
+
 	$Folder "Replay"
 	{
 		$File	"gamedll_replay.cpp"
