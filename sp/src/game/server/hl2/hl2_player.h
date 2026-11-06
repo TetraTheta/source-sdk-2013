@@ -102,6 +102,7 @@ public:
 #endif
 
 	CHL2_Player();
+	bool m_bHasGGFreezeModule = false;
 	~CHL2_Player( void );
 	
 	static CHL2_Player *CreatePlayer( const char *className, edict_t *ed )

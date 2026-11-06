@@ -20,7 +20,7 @@ $Configuration
 	}
 }
 
-$Project "Server (Episodic)"
+$Project "Server (Episodic, RTSL)"
 {
 	$Folder	"Source Files"
 	{
@@ -156,6 +156,7 @@ $Project "Server (Episodic)"
 			$File	"hl2\item_healthkit.cpp"
 			$File	"hl2\item_itemcrate.cpp"
 			$File	"hl2\item_suit.cpp"
+			$File	"item_physcannon_freeze.cpp"
 			$File	"hl2\look_door.cpp"
 			$File	"hl2\monster_dummy.cpp"
 			$File	"$SRCDIR\game\shared\episodic\npc_advisor_shared.h"

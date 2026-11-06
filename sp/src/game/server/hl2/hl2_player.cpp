@@ -515,6 +515,7 @@ END_DATADESC()
 
 // Global Savedata for HL2 player
 BEGIN_DATADESC( CHL2_Player )
+	DEFINE_FIELD( m_bHasGGFreezeModule, FIELD_BOOLEAN ),
 
 	DEFINE_FIELD( m_nControlClass, FIELD_INTEGER ),
 	DEFINE_EMBEDDED( m_HL2Local ),

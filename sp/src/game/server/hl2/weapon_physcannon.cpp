@@ -56,7 +56,7 @@ ConVar	g_debug_physcannon( "g_debug_physcannon", "0" );
 ConVar physcannon_minforce( "physcannon_minforce", "700" );
 ConVar physcannon_maxforce( "physcannon_maxforce", "1500" );
 ConVar physcannon_maxmass( "physcannon_maxmass", "250" );
-ConVar physcannon_tracelength( "physcannon_tracelength", "250" );
+ConVar physcannon_tracelength( "physcannon_tracelength", "250", FCVAR_REPLICATED );
 ConVar physcannon_mega_tracelength( "physcannon_mega_tracelength", "850" );
 ConVar physcannon_chargetime("physcannon_chargetime", "2" );
 ConVar physcannon_pullforce( "physcannon_pullforce", "4000" );
@@ -101,8 +101,8 @@ class CTraceFilterPhyscannon : public CTraceFilterSimple
 public:
 	DECLARE_CLASS( CTraceFilterPhyscannon, CTraceFilterSimple );
 
-	CTraceFilterPhyscannon( const IHandleEntity *passentity, int collisionGroup )
-		: CTraceFilterSimple( NULL, collisionGroup ), m_pTraceOwner( passentity ) {	}
+	CTraceFilterPhyscannon( const IHandleEntity *passentity, int collisionGroup, bool isFreezeTest = false )
+		: CTraceFilterSimple( NULL, collisionGroup ), m_isFreezeTest( isFreezeTest ), m_pTraceOwner( passentity ) {	}
 
 	// For this test, we only test against entities (then world brushes afterwards)
 	virtual TraceType_t	GetTraceType() const { return TRACE_ENTITIES_ONLY; }
@@ -148,6 +148,8 @@ public:
 		// Handle grate entities differently
 		if ( HasContentsGrate( pEntity ) )
 		{
+			if ( m_isFreezeTest )
+				return FClassnameIs( pEntity, "prop_physics" ) || FClassnameIs( pEntity, "func_physbox" );
 #ifdef MAPBASE
 			if (pEntity->CanBePickedUpByPhyscannon())
 				return true;
@@ -188,6 +190,7 @@ public:
 	}
 
 protected:
+	bool m_isFreezeTest;
 	const IHandleEntity *m_pTraceOwner;
 };
 
@@ -1311,6 +1314,12 @@ public:
 	void	WeaponIdle();
 	void	ItemPreFrame();
 	void	ItemPostFrame();
+	void TertiaryAttack();
+	void FindObjectTraceFreeze( CBasePlayer *pPlayer, trace_t *pTraceResult );
+	bool FreezePhysicsObject( CBaseEntity *pEntity );
+	void FreezeObject();
+	bool m_bPhyscannonFreezeModuleState = false;
+	float m_flNextTertiaryAttack = 0.0f;
 	void	ItemBusyFrame();
 
 	virtual float GetMaxAutoAimDeflection() { return 0.90f; }
@@ -1477,6 +1486,8 @@ LINK_ENTITY_TO_CLASS( weapon_physcannon, CWeaponPhysCannon );
 PRECACHE_WEAPON_REGISTER( weapon_physcannon );
 
 BEGIN_DATADESC( CWeaponPhysCannon )
+	DEFINE_FIELD( m_flNextTertiaryAttack, FIELD_TIME ),
+	DEFINE_FIELD( m_bPhyscannonFreezeModuleState, FIELD_BOOLEAN ),
 
 	DEFINE_FIELD( m_bOpen, FIELD_BOOLEAN ),
 	DEFINE_FIELD( m_bActive, FIELD_BOOLEAN ),
@@ -1606,6 +1617,7 @@ void CWeaponPhysCannon::Precache( void )
 	// Precache our alternate model
 	PrecacheModel( MEGACANNON_MODEL );
 
+	PrecacheScriptSound( "Weapon_Physgun.FreezeSound" );
 	PrecacheScriptSound( "Weapon_PhysCannon.HoldSound" );
 	PrecacheScriptSound( "Weapon_Physgun.Off" );
 
@@ -1704,21 +1716,22 @@ bool CWeaponPhysCannon::Deploy( void )
 //-----------------------------------------------------------------------------
 void CWeaponPhysCannon::SetViewModel( void )
 {
-	if ( !IsMegaPhysCannon() )
-	{
-		BaseClass::SetViewModel();
-		return;
-	}
-
 	CBasePlayer *pOwner = ToBasePlayer( GetOwner() );
-	if ( pOwner == NULL )
+	if ( !pOwner )
 		return;
-
 	CBaseViewModel *vm = pOwner->GetViewModel( m_nViewModelIndex );
-	if ( vm == NULL )
+	if ( !vm )
 		return;
 
-	vm->SetWeaponModel( MEGACANNON_MODEL, this );
+	if ( !IsMegaPhysCannon() )
+		BaseClass::SetViewModel();
+	else
+		vm->SetWeaponModel( MEGACANNON_MODEL, this );
+	CHL2_Player *pHL2Player = dynamic_cast<CHL2_Player *>( pOwner );
+	m_bPhyscannonFreezeModuleState = pHL2Player && pHL2Player->m_bHasGGFreezeModule;
+	const int extension = vm->FindBodygroupByName( "extension" );
+	if ( extension >= 0 && vm->GetBodygroupCount( extension ) > 1 )
+		vm->SetBodygroup( extension, m_bPhyscannonFreezeModuleState ? 1 : 0 );
 }
 
 //-----------------------------------------------------------------------------
@@ -2347,7 +2360,9 @@ void CWeaponPhysCannon::PrimaryAttack( void )
 		if( GetOwner()->IsPlayer() && !IsMegaPhysCannon() )
 		{
 			// Don't let the player zap any NPC's except regular antlions and headcrabs.
-			if( pEntity->IsNPC() && pEntity->Classify() != CLASS_HEADCRAB && !FClassnameIs(pEntity, "npc_antlion") )
+			if( pEntity->IsNPC() && pEntity->Classify() != CLASS_HEADCRAB && !FClassnameIs(pEntity, "npc_antlion")
+				&& !FClassnameIs( pEntity, "npc_headcrab_mecha" )
+			)
 			{
 				DryFire();
 				return;
@@ -2425,6 +2440,7 @@ void CWeaponPhysCannon::SecondaryAttack( void )
 		// Drop the held object
 		m_flNextPrimaryAttack = gpGlobals->curtime + 0.5;
 		m_flNextSecondaryAttack = gpGlobals->curtime + 0.5;
+		m_flNextTertiaryAttack = gpGlobals->curtime + 0.5;
 
 		DetachObject();
 
@@ -3254,6 +3270,25 @@ void CWeaponPhysCannon::DoEffectIdle( void )
 	if ( pOwner == NULL )
 		return;
 
+	CHL2_Player *pHL2Player = dynamic_cast<CHL2_Player *>( pOwner );
+	CBaseViewModel *pViewModel = pOwner->GetViewModel( m_nViewModelIndex );
+	if ( pHL2Player && m_bPhyscannonFreezeModuleState != pHL2Player->m_bHasGGFreezeModule )
+	{
+		m_bPhyscannonFreezeModuleState = pHL2Player->m_bHasGGFreezeModule;
+		SendWeaponAnim( ACT_VM_DRAW );
+	}
+	if ( pHL2Player && pViewModel && pOwner->GetActiveWeapon() == this )
+	{
+		// RTSL viewmodels expose the Stasis Crystal as an optional extension.
+		const int extension = pViewModel->FindBodygroupByName( "extension" );
+		if ( extension >= 0 && pViewModel->GetBodygroupCount( extension ) > 1 )
+		{
+			const int state = pHL2Player->m_bHasGGFreezeModule ? 1 : 0;
+			if ( pViewModel->GetBodygroup( extension ) != state )
+				pViewModel->SetBodygroup( extension, state );
+		}
+	}
+
 	if ( m_bPhyscannonState != IsMegaPhysCannon() )
 	{
 		DestroyEffects();
@@ -3439,6 +3474,190 @@ void CWeaponPhysCannon::ItemBusyFrame( void )
 
 //-----------------------------------------------------------------------------
 //-----------------------------------------------------------------------------
+void UTIL_PhyscannonTraceLineUnFreeze( const Vector &vecAbsStart, const Vector &vecAbsEnd, CBaseEntity *pTraceOwner, trace_t *pTrace )
+{
+	// Default to HL2 vanilla
+	if ( hl2_episodic.GetBool() == false )
+	{
+		CTraceFilterNoOwnerTest filter( pTraceOwner, COLLISION_GROUP_NONE );
+		UTIL_TraceLine( vecAbsStart, vecAbsEnd, ( MASK_SHOT | CONTENTS_GRATE ), &filter, pTrace );
+		return;
+	}
+
+	// First, trace against entities
+	CTraceFilterPhyscannon filter( pTraceOwner, COLLISION_GROUP_NONE, true );
+	UTIL_TraceLine( vecAbsStart, vecAbsEnd, ( MASK_SHOT | CONTENTS_GRATE ), &filter, pTrace );
+
+	// If we've hit something, test again to make sure no brushes block us
+	if ( pTrace->m_pEnt != NULL )
+	{
+		trace_t testTrace;
+		CTraceFilterOnlyBrushes brushFilter( COLLISION_GROUP_NONE );
+		UTIL_TraceLine( pTrace->startpos, pTrace->endpos, MASK_SHOT, &brushFilter, &testTrace );
+
+		// If we hit a brush, replace the trace with that result
+		if ( testTrace.fraction < 1.0f || testTrace.startsolid || testTrace.allsolid )
+		{
+			*pTrace = testTrace;
+		}
+	}
+}
+
+void CWeaponPhysCannon::FindObjectTraceFreeze( CBasePlayer *pPlayer, trace_t *pTraceResult )
+{
+	Vector forward;
+	pPlayer->EyeVectors( &forward );
+
+	// Setup our positions
+	Vector	start = pPlayer->Weapon_ShootPosition();
+	float	testLength = TraceLength() * 4.0f;
+	Vector	end = start + forward * testLength;
+
+	if ( IsMegaPhysCannon() && hl2_episodic.GetBool() )
+	{
+		Vector vecAutoAimDir = pPlayer->GetAutoaimVector( 1.0f, testLength );
+		end = start + vecAutoAimDir * testLength;
+	}
+
+	// Try to find an object by looking straight ahead
+	UTIL_PhyscannonTraceLineUnFreeze( start, end, pPlayer, pTraceResult );
+
+	// Try again with a hull trace
+	if ( !pTraceResult->DidHitNonWorldEntity() )
+	{
+		UTIL_PhyscannonTraceHull( start, end, -Vector( 4, 4, 4 ), Vector( 4, 4, 4 ), pPlayer, pTraceResult );
+	}
+}
+
+bool CWeaponPhysCannon::FreezePhysicsObject( CBaseEntity *pEntity )
+{
+	IPhysicsObject *pPhysics = pEntity->VPhysicsGetObject();
+	CPhysicsProp *pProp = dynamic_cast<CPhysicsProp *>( pEntity );
+	CPhysBox *pBox = dynamic_cast<CPhysBox *>( pEntity );
+	if ( !pPhysics || pEntity->GetServerVehicle() || ( !pProp && !pBox ) )
+		return false;
+
+	const bool bFrozen = pProp ? pProp->IsGGFrozen() : pBox->IsGGFrozen();
+	// A mapper's motion lock is only reversible with the RTSL initial-freeze flag.
+	if ( !bFrozen && !pPhysics->IsMotionEnabled() )
+		return false;
+
+	variant_t value;
+	pEntity->AcceptInput( bFrozen ? "GGUnFreeze" : "GGFreeze", GetOwner(), this, value, 0 );
+	return bFrozen != ( pProp ? pProp->IsGGFrozen() : pBox->IsGGFrozen() );
+}
+
+void CWeaponPhysCannon::FreezeObject( void )
+{
+	if ( m_grabController.GetAttached() )
+	{
+		CBaseEntity *pObject = m_grabController.GetAttached();
+		DetachObject( false, false );
+
+		// Freeze
+		FreezePhysicsObject( pObject );
+
+		// Don't allow the gun to regrab a thrown object!!
+		m_flNextTertiaryAttack = m_flNextPrimaryAttack = gpGlobals->curtime + 0.5;
+
+		Vector	center = pObject->WorldSpaceCenter();
+
+		//Do repulse effect
+		DoEffect( EFFECT_LAUNCH, &center );
+	}
+}
+
+void CWeaponPhysCannon::TertiaryAttack( void )
+{
+	if ( m_flNextTertiaryAttack > gpGlobals->curtime )
+		return;
+
+	if ( !m_bPhyscannonFreezeModuleState )
+		return;
+
+	CBasePlayer *pOwner = ToBasePlayer( GetOwner() );
+
+	if ( pOwner == NULL )
+		return;
+
+	// If not active, just issue a physics punch in the world.
+	m_flNextTertiaryAttack = gpGlobals->curtime + 0.5f;
+
+	// See if we should drop a held item
+	if ( ( m_bActive ) && ( pOwner->m_afButtonPressed & IN_ATTACK3 ) )
+	{
+		// Freeze the held object
+		m_flNextPrimaryAttack = gpGlobals->curtime + 0.5;
+		m_flNextSecondaryAttack = gpGlobals->curtime + 0.5;
+		m_flNextTertiaryAttack = gpGlobals->curtime + 0.5;
+
+		FreezeObject();
+
+		if ( !IsMegaPhysCannon() )
+		{
+			DoEffect( EFFECT_READY );
+		}
+		else
+		{
+			DoMegaEffect( EFFECT_READY );
+		}
+
+		SendWeaponAnim( ACT_VM_PRIMARYATTACK );
+		EmitSound( "Weapon_Physgun.FreezeSound" );
+	}
+	else
+	{
+		//We are not holding anything, see if there is a valid object within range we can freeze or defreeze
+		trace_t tr;
+		FindObjectTraceFreeze( pOwner, &tr );
+		float dist = ( tr.endpos - tr.startpos ).Length();
+
+		//Hit
+		if ( ( tr.fraction != 1.0f ) && ( tr.m_pEnt ) && ( tr.m_pEnt->IsWorld() == false ) && ( dist <= TraceLength() ) )
+		{
+			CBaseEntity *pEntity = tr.m_pEnt;
+			CPhysBox *pPhysBox = dynamic_cast<CPhysBox*>( pEntity );
+			CPhysicsProp *pPhysics = dynamic_cast<CPhysicsProp*>( pEntity );
+
+			if ( pPhysBox != NULL || pPhysics != NULL )
+			{
+				bool bPlayAnimation = FreezePhysicsObject( pEntity );
+				if ( bPlayAnimation )
+				{
+					Vector	center = pEntity->WorldSpaceCenter();
+					if ( !IsMegaPhysCannon() )
+					{
+						DoEffect( EFFECT_LAUNCH, &center );
+					}
+					else
+					{
+						DoMegaEffect( EFFECT_LAUNCH, &center );
+					}
+
+					SendWeaponAnim( ACT_VM_PRIMARYATTACK );
+					EmitSound( "Weapon_Physgun.FreezeSound" );
+					return;
+				}
+				else
+				{
+					DryFire();
+					return;
+				}
+			}
+			else
+			{
+				DryFire();
+				return;
+			}
+		}
+		else
+		{
+			DryFire();
+			return;
+		}
+	}
+}
+
 void CWeaponPhysCannon::ItemPostFrame()
 {
 	CBasePlayer *pOwner = ToBasePlayer( GetOwner() );
@@ -3503,6 +3722,10 @@ void CWeaponPhysCannon::ItemPostFrame()
 	if ( pOwner->m_nButtons & IN_ATTACK )
 	{
 		PrimaryAttack();
+	}
+	else if ( pOwner->m_nButtons & IN_ATTACK3 )
+	{
+		TertiaryAttack();
 	}
 	else 
 	{

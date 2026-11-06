@@ -33,6 +33,7 @@ public:
 	CNetworkHandle( CBaseEntity, m_hGlowTarget );
 	CNetworkColor32( m_GlowColor );
 	CNetworkVar( bool, m_bGlowDisabled );
+	CNetworkVar( bool, m_bGravityGunFreeze );
 
 	DECLARE_DATADESC();
 	DECLARE_SERVERCLASS();
@@ -40,12 +41,28 @@ public:
 
 LINK_ENTITY_TO_CLASS( point_glow, CPointGlow );
 
+CBaseEntity *CreateGravityGunFreezeGlow( CBaseEntity *pTarget )
+{
+	CPointGlow *pGlow = static_cast<CPointGlow *>( CreateEntityByName( "point_glow" ) );
+	if ( !pGlow )
+		return NULL;
+
+	DispatchSpawn( pGlow );
+	pGlow->SetParent( pTarget );
+	pGlow->m_hGlowTarget = pTarget;
+	pGlow->m_bGravityGunFreeze = true;
+	color32 color = { 246, 219, 50, 255 };
+	pGlow->m_GlowColor = color;
+	return pGlow;
+}
+
 
 BEGIN_DATADESC( CPointGlow )
 
 	// Keys
 	DEFINE_KEYFIELD( m_GlowColor, FIELD_COLOR32, "GlowColor" ),
 	DEFINE_FIELD( m_hGlowTarget, FIELD_EHANDLE ),
+	DEFINE_FIELD( m_bGravityGunFreeze, FIELD_BOOLEAN ),
 	DEFINE_KEYFIELD( m_bGlowDisabled, FIELD_BOOLEAN, "StartDisabled" ),
 
 	// Inputs
@@ -60,6 +77,7 @@ IMPLEMENT_SERVERCLASS_ST( CPointGlow, DT_PointGlow )
 	SendPropEHandle( SENDINFO( m_hGlowTarget ) ),
 	SendPropInt( SENDINFO( m_GlowColor ), 32, SPROP_UNSIGNED, SendProxy_Color32ToInt ),
 	SendPropBool( SENDINFO( m_bGlowDisabled ) ),
+	SendPropBool( SENDINFO( m_bGravityGunFreeze ) ),
 END_SEND_TABLE()
 
 //-----------------------------------------------------------------------------

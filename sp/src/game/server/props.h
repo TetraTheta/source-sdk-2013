@@ -405,6 +405,11 @@ public:
 	void InputSleep( inputdata_t &inputdata );
 	void InputEnableMotion( inputdata_t &inputdata );
 	void InputDisableMotion( inputdata_t &inputdata );
+	void InputGGFreeze( inputdata_t &inputdata );
+	void InputGGUnFreeze( inputdata_t &inputdata );
+	bool IsGGFrozen() const { return m_bGGFrozen; }
+	bool m_bGGFrozen = false;
+	EHANDLE m_hGGFreezeGlow;
 	void InputDisableFloating( inputdata_t &inputdata );
 #ifdef MAPBASE
 	void InputSetDebris( inputdata_t &inputdata );

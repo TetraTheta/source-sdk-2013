@@ -8,6 +8,6 @@ $Macro SRCDIR		"..\.."
 $Macro GAMENAME "mod_episodic"
 $Include "$SRCDIR\materialsystem\stdshaders\game_shader_dx9_base.vpc"
 
-$Project "Shaders (Episodic)"
+$Project "Shaders (Episodic, RTSL)"
 {
 }

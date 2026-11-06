@@ -5,6 +5,7 @@
 //===========================================================================//
 
 #include "cbase.h"
+#include "hl2/hl2_player.h"
 #include "const.h"
 #include "baseplayer_shared.h"
 #include "trains.h"
@@ -8224,6 +8225,7 @@ class CStripWeapons : public CPointEntity
 public:
 	void InputStripWeapons(inputdata_t &data);
 	void InputStripWeaponsAndSuit(inputdata_t &data);
+	void InputStripGGFreezeModule( inputdata_t &data );
 
 	void StripWeapons(inputdata_t &data, bool stripSuit);
 	DECLARE_DATADESC();
@@ -8234,6 +8236,7 @@ LINK_ENTITY_TO_CLASS( player_weaponstrip, CStripWeapons );
 BEGIN_DATADESC( CStripWeapons )
 	DEFINE_INPUTFUNC( FIELD_VOID, "Strip", InputStripWeapons ),
 	DEFINE_INPUTFUNC( FIELD_VOID, "StripWeaponsAndSuit", InputStripWeaponsAndSuit ),
+	DEFINE_INPUTFUNC( FIELD_VOID, "StripGGFreezeModule", InputStripGGFreezeModule ),
 END_DATADESC()
 	
 
@@ -8245,6 +8248,15 @@ void CStripWeapons::InputStripWeapons(inputdata_t &data)
 void CStripWeapons::InputStripWeaponsAndSuit(inputdata_t &data)
 {
 	StripWeapons(data, true);
+}
+
+void CStripWeapons::InputStripGGFreezeModule( inputdata_t &data )
+{
+	CHL2_Player *pPlayer = dynamic_cast<CHL2_Player *>( data.pActivator );
+	if ( !pPlayer && !g_pGameRules->IsDeathmatch() )
+		pPlayer = dynamic_cast<CHL2_Player *>( UTIL_GetLocalPlayer() );
+	if ( pPlayer )
+		pPlayer->m_bHasGGFreezeModule = false;
 }
 
 void CStripWeapons::StripWeapons(inputdata_t &data, bool stripSuit)

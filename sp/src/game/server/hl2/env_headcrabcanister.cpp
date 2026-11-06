@@ -63,6 +63,7 @@ static const char *s_pHeadcrabClass[] =
 	"npc_headcrab",
 	"npc_headcrab_fast",
 	"npc_headcrab_poison",
+	"npc_headcrab_mecha"
 };
 
 
@@ -755,7 +756,7 @@ void CEnvHeadcrabCanister::HeadcrabCanisterSpawnHeadcrabThink()
 		int iHeadcrabType = m_nHeadcrabType;
 		if ( m_nHeadcrabType == RANDOM_CRAB_TYPE )
 		{
-			iHeadcrabType = RandomInt( 0, ARRAYSIZE( s_pHeadcrabClass ) - 1 );
+			iHeadcrabType = RandomInt( 0, 2 );
 		}
 
 		CBaseEntity *pEnt = CreateEntityByName( s_pHeadcrabClass[iHeadcrabType] );

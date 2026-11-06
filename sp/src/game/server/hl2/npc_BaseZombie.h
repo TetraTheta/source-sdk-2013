@@ -123,6 +123,7 @@ public:
 	CNPC_BaseZombie( void );
 	~CNPC_BaseZombie( void );
 
+	bool KeyValue( const char *szKeyName, const char *szValue );
 	void Spawn( void );
 	void Precache( void );
 	void StartTouch( CBaseEntity *pOther );

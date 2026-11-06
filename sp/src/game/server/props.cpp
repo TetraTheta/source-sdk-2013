@@ -3003,7 +3003,14 @@ LINK_ENTITY_TO_CLASS( physics_prop, CPhysicsProp );
 LINK_ENTITY_TO_CLASS( prop_physics, CPhysicsProp );	
 LINK_ENTITY_TO_CLASS( prop_physics_override, CPhysicsProp );	
 
+static const int SF_PHYSPROP_RTSL_FROZEN = 0x800000;
+extern CBaseEntity *CreateGravityGunFreezeGlow( CBaseEntity *pTarget );
+
 BEGIN_DATADESC( CPhysicsProp )
+	DEFINE_FIELD( m_bGGFrozen, FIELD_BOOLEAN ),
+	DEFINE_FIELD( m_hGGFreezeGlow, FIELD_EHANDLE ),
+	DEFINE_INPUTFUNC( FIELD_VOID, "GGFreeze", InputGGFreeze ),
+	DEFINE_INPUTFUNC( FIELD_VOID, "GGUnFreeze", InputGGUnFreeze ),
 
 	DEFINE_INPUTFUNC( FIELD_VOID, "EnableMotion", InputEnableMotion ),
 	DEFINE_INPUTFUNC( FIELD_VOID, "DisableMotion", InputDisableMotion ),
@@ -3198,6 +3205,11 @@ bool CPhysicsProp::CreateVPhysics()
 		if ( HasSpawnFlags( SF_PHYSPROP_MOTIONDISABLED ) || m_damageToEnableMotion > 0 || m_flForceToEnableMotion > 0 )
 		{
 			pPhysicsObject->EnableMotion( false );
+			if ( HasSpawnFlags( SF_PHYSPROP_RTSL_FROZEN ) )
+			{
+				m_bGGFrozen = true;
+				m_hGGFreezeGlow = CreateGravityGunFreezeGlow( this );
+			}
 		}
 	}
 
@@ -3297,6 +3309,30 @@ void CPhysicsProp::InputEnableMotion( inputdata_t &inputdata )
 //-----------------------------------------------------------------------------
 // Purpose: Disable any physics motion or collision response
 //-----------------------------------------------------------------------------
+void CPhysicsProp::InputGGFreeze( inputdata_t &inputdata )
+{
+	IPhysicsObject *pPhysics = VPhysicsGetObject();
+	if ( !pPhysics || m_bGGFrozen )
+		return;
+
+	InputDisableMotion( inputdata );
+	m_bGGFrozen = true;
+	m_hGGFreezeGlow = CreateGravityGunFreezeGlow( this );
+}
+
+void CPhysicsProp::InputGGUnFreeze( inputdata_t &inputdata )
+{
+	IPhysicsObject *pPhysics = VPhysicsGetObject();
+	if ( !pPhysics )
+		return;
+
+	m_bGGFrozen = false;
+	UTIL_Remove( m_hGGFreezeGlow );
+	m_hGGFreezeGlow = NULL;
+	pPhysics->EnableMotion( true );
+	pPhysics->Wake();
+}
+
 void CPhysicsProp::InputDisableMotion( inputdata_t &inputdata )
 {
 	IPhysicsObject *pPhysicsObject = VPhysicsGetObject();
@@ -3336,6 +3372,12 @@ void CPhysicsProp::InputSetDebris( inputdata_t &inputdata )
 //-----------------------------------------------------------------------------
 void CPhysicsProp::EnableMotion( void )
 {
+	if ( m_bGGFrozen )
+	{
+		m_bGGFrozen = false;
+		UTIL_Remove( m_hGGFreezeGlow );
+		m_hGGFreezeGlow = NULL;
+	}
 	IPhysicsObject *pPhysicsObject = VPhysicsGetObject();
 	if ( pPhysicsObject )
 	{

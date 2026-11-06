@@ -369,7 +369,14 @@ END_SEND_TABLE()
 
 LINK_ENTITY_TO_CLASS( func_physbox, CPhysBox );
 
+static const int SF_PHYSBOX_RTSL_FROZEN = 0x1000000;
+extern CBaseEntity *CreateGravityGunFreezeGlow( CBaseEntity *pTarget );
+
 BEGIN_DATADESC( CPhysBox )
+	DEFINE_FIELD( m_bGGFrozen, FIELD_BOOLEAN ),
+	DEFINE_FIELD( m_hGGFreezeGlow, FIELD_EHANDLE ),
+	DEFINE_INPUTFUNC( FIELD_VOID, "GGFreeze", InputGGFreeze ),
+	DEFINE_INPUTFUNC( FIELD_VOID, "GGUnFreeze", InputGGUnFreeze ),
 
 	DEFINE_FIELD( m_hCarryingPlayer, FIELD_EHANDLE ),
 
@@ -541,6 +548,11 @@ bool CPhysBox::CreateVPhysics()
 	if ( HasSpawnFlags(SF_PHYSBOX_MOTIONDISABLED) || m_damageToEnableMotion > 0 || m_flForceToEnableMotion > 0 )
 	{
 		pPhysics->EnableMotion( false );
+		if ( HasSpawnFlags( SF_PHYSBOX_RTSL_FROZEN ) )
+		{
+			m_bGGFrozen = true;
+			m_hGGFreezeGlow = CreateGravityGunFreezeGlow( this );
+		}
 	}
 
 	return true;
@@ -565,13 +577,7 @@ int CPhysBox::ObjectCaps()
 		}
 	}
 
-#ifdef MAPBASE
-	if ( HasSpawnFlags( SF_PHYSBOX_RADIUS_PICKUP ) )
-	{
-		caps |= FCAP_USE_IN_RADIUS;
-	}
-#endif
-
+	// Mapbase uses 0x1000000 for radius pickup; RTSL's initial-freeze meaning takes precedence, so do not add FCAP_USE_IN_RADIUS.
 	return caps;
 }
 
@@ -668,6 +674,12 @@ void CPhysBox::InputEnableMotion( inputdata_t &inputdata )
 //-----------------------------------------------------------------------------
 void CPhysBox::EnableMotion( void )
 {
+	if ( m_bGGFrozen )
+	{
+		m_bGGFrozen = false;
+		UTIL_Remove( m_hGGFreezeGlow );
+		m_hGGFreezeGlow = NULL;
+	}
 	IPhysicsObject *pPhysicsObject = VPhysicsGetObject();
 	if ( pPhysicsObject != NULL )
 	{
@@ -684,6 +696,30 @@ void CPhysBox::EnableMotion( void )
 //-----------------------------------------------------------------------------
 // Purpose: Disable any physics motion or collision response
 //-----------------------------------------------------------------------------
+void CPhysBox::InputGGFreeze( inputdata_t &inputdata )
+{
+	IPhysicsObject *pPhysics = VPhysicsGetObject();
+	if ( !pPhysics || m_bGGFrozen )
+		return;
+
+	InputDisableMotion( inputdata );
+	m_bGGFrozen = true;
+	m_hGGFreezeGlow = CreateGravityGunFreezeGlow( this );
+}
+
+void CPhysBox::InputGGUnFreeze( inputdata_t &inputdata )
+{
+	IPhysicsObject *pPhysics = VPhysicsGetObject();
+	if ( !pPhysics )
+		return;
+
+	m_bGGFrozen = false;
+	UTIL_Remove( m_hGGFreezeGlow );
+	m_hGGFreezeGlow = NULL;
+	pPhysics->EnableMotion( true );
+	pPhysics->Wake();
+}
+
 void CPhysBox::InputDisableMotion( inputdata_t &inputdata )
 {
 	IPhysicsObject *pPhysicsObject = VPhysicsGetObject();
