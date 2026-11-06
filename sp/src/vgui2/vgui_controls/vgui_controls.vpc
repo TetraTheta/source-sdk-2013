@@ -15,6 +15,7 @@ $Configuration
 {
 	$Compiler
 	{
+		$PreprocessorDefinitions "$BASE;MAPBASE"
 		$AdditionalIncludeDirectories	"$BASE;$SRCDIR\thirdparty;$SRCDIR\thirdparty\cef;$GENERATED_PROTO_DIR"
 	}
 }

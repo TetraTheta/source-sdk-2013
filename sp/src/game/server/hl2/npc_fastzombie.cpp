@@ -661,7 +661,8 @@ void CFastZombie::Spawn( void )
 	m_fJustJumped = false;
 
 #ifndef MAPBASE // Controlled by KV
-	m_fIsTorso = m_fIsHeadless = false;
+	m_fIsTorso = false;
+	m_fIsHeadless = false;
 #endif
 
 	if( FClassnameIs( this, "npc_fastzombie" ) )

@@ -296,5 +296,33 @@ private:
 	float m_flNextHopTime;		// Keeps us from hopping too often due to damage.
 };
 
+class CMechaHeadcrab : public CBaseHeadcrab
+{
+	DECLARE_CLASS( CMechaHeadcrab, CBaseHeadcrab );
+
+public:
+	void Precache( void );
+	void Spawn( void );
+
+	float	MaxYawSpeed( void );
+	Activity NPC_TranslateActivity( Activity eNewActivity );
+	Class_T Classify( void );
+	int		OnTakeDamage_Alive( const CTakeDamageInfo &info );
+	virtual void JumpAttack( bool bRandomJump, const Vector &vecPos = vec3_origin, bool bThrown = false );
+	int		RangeAttack1Conditions( float flDot, float flDist );
+	virtual void TouchDamage( CBaseEntity *pOther );
+	void	HandleAnimEvent( animevent_t *pEvent );
+
+	void	BiteSound( void );
+	void	PainSound( const CTakeDamageInfo &info );
+	void	DeathSound( const CTakeDamageInfo &info );
+	void	IdleSound( void );
+	void	AlertSound( void );
+	void	AttackSound( void );
+	void	TelegraphSound( void );
+
+protected:
+	int CalcDamageInfo( CTakeDamageInfo *pInfo );
+};
 
 #endif // NPC_HEADCRAB_H

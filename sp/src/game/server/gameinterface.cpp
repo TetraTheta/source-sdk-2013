@@ -1767,7 +1767,9 @@ void CServerGameDLL::GetTitleName( const char *pMapName, char* pTitleBuff, int t
 	{
 		for ( int i = 0; i < ModChapterComments->Count(); i++ )
 		{
-			if ( !Q_strnicmp( mapname, ModChapterComments->Element(i).pBSPName, strlen(ModChapterComments->Element(i).pBSPName) ) )
+			if ( ( ModChapterComments->Element(i).bExactMatch
+				? !Q_stricmp( mapname, ModChapterComments->Element(i).pBSPName )
+				: !Q_strnicmp( mapname, ModChapterComments->Element(i).pBSPName, strlen(ModChapterComments->Element(i).pBSPName) ) ) )
 			{
 				Q_strncpy( pTitleBuff, ModChapterComments->Element(i).pTitleName, titleBuffSize );
 				return;
@@ -1831,7 +1833,9 @@ void CServerGameDLL::GetSaveComment( char *text, int maxlength, float flMinutes,
 	{
 		for ( int i = 0; i < ModChapterComments->Count(); i++ )
 		{
-			if ( !Q_strnicmp( mapname, ModChapterComments->Element(i).pBSPName, strlen(ModChapterComments->Element(i).pBSPName) ) )
+			if ( ( ModChapterComments->Element(i).bExactMatch
+				? !Q_stricmp( mapname, ModChapterComments->Element(i).pBSPName )
+				: !Q_strnicmp( mapname, ModChapterComments->Element(i).pBSPName, strlen(ModChapterComments->Element(i).pBSPName) ) ) )
 			{
 				// found one
 				int j;
@@ -2163,7 +2167,9 @@ void UpdateChapterRestrictions( const char *mapname )
 	{
 		for ( int i = 0; i < ModChapterComments->Count(); i++ )
 		{
-			if ( !Q_strnicmp( mapname, ModChapterComments->Element(i).pBSPName, strlen(ModChapterComments->Element(i).pBSPName) ) )
+			if ( ( ModChapterComments->Element(i).bExactMatch
+				? !Q_stricmp( mapname, ModChapterComments->Element(i).pBSPName )
+				: !Q_strnicmp( mapname, ModChapterComments->Element(i).pBSPName, strlen(ModChapterComments->Element(i).pBSPName) ) ) )
 			{
 				// found
 				Q_strncpy( chapterTitle, ModChapterComments->Element(i).pTitleName, sizeof( chapterTitle ) );

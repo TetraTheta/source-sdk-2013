@@ -213,11 +213,12 @@ EXPOSE_SINGLE_INTERFACE( CServerGameTags, IServerGameTags, INTERFACEVERSION_SERV
 // 
 // Dynamic mod-based mod title comments
 // 
-typedef struct
+struct MODTITLECOMMENT
 {
 	char pBSPName[64];
 	char pTitleName[64];
-} MODTITLECOMMENT;
+	bool bExactMatch = false;
+};
 
 typedef struct
 {

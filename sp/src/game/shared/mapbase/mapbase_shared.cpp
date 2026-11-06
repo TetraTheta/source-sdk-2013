@@ -717,6 +717,18 @@ CUtlVector<MODTITLECOMMENT> *Mapbase_GetChapterMaps()
 {
 	if (g_MapbaseChapterMaps.Count() == 0)
 	{
+		KeyValuesAD rtslTitles( "chaptertitles" );
+		if ( rtslTitles->LoadFromFile( filesystem, "scripts/maptitles.txt", "GAME" ) )
+		{
+			for ( KeyValues *pTitle = rtslTitles->GetFirstValue(); pTitle; pTitle = pTitle->GetNextValue() )
+			{
+				MODTITLECOMMENT &title = g_MapbaseChapterMaps[g_MapbaseChapterMaps.AddToTail()];
+				title.bExactMatch = true;
+				Q_strncpy( title.pBSPName, pTitle->GetName(), sizeof( title.pBSPName ) );
+				Q_strncpy( title.pTitleName, pTitle->GetString(), sizeof( title.pTitleName ) );
+			}
+		}
+
 		// Check the chapter list
 		KeyValues *chapterlist = new KeyValues("ChapterList");
 		if (chapterlist->LoadFromFile(filesystem, "scripts/chapters.txt", "MOD"))

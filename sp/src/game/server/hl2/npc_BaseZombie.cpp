@@ -205,6 +205,33 @@ int AE_ZOMBIE_POPHEADCRAB;
 
 //=========================================================
 //=========================================================
+// RTSL map keys use the existing Mapbase state and spawn flag.
+bool CNPC_BaseZombie::KeyValue( const char *szKeyName, const char *szValue )
+{
+#ifdef MAPBASE
+	if ( !Q_stricmp( szKeyName, "isheadless" ) )
+	{
+		m_fIsHeadless = atoi( szValue ) != 0;
+		return true;
+	}
+	if ( !Q_stricmp( szKeyName, "noheadcrabspawn" ) )
+	{
+		if ( atoi( szValue ) != 0 )
+			AddSpawnFlags( SF_ZOMBIE_NO_HEADCRAB_SPAWN );
+		else
+			RemoveSpawnFlags( SF_ZOMBIE_NO_HEADCRAB_SPAWN );
+		return true;
+	}
+	// Entity key order must not erase the RTSL alias when spawnflags follows it.
+	if ( !Q_stricmp( szKeyName, "spawnflags" ) && HasSpawnFlags( SF_ZOMBIE_NO_HEADCRAB_SPAWN ) )
+	{
+		AddSpawnFlags( atoi( szValue ) );
+		return true;
+	}
+#endif
+	return BaseClass::KeyValue( szKeyName, szValue );
+}
+
 BEGIN_DATADESC( CNPC_BaseZombie )
 
 	DEFINE_SOUNDPATCH( m_pMoanSound ),
@@ -337,12 +364,7 @@ bool CNPC_BaseZombie::FindNearestPhysicsObject( int iMaxMass )
 				 pEntity->VPhysicsGetObject()->IsAsleep() && 
 				 pEntity->VPhysicsGetObject()->IsMoveable() )
 			{
-#ifdef MAPBASE
-				// Don't swat props that don't want to be swatted
-				if (pEntity->HasSpawnFlags(SF_PHYSPROP_NO_ZOMBIE_SWAT) && dynamic_cast<CPhysicsProp*>(pEntity))
-					return ITERATION_CONTINUE;
-#endif
-
+				// Mapbase uses 0x800000 to prevent zombie swats; RTSL's initial-freeze meaning takes precedence, so skip that check.
 				return CFlaggedEntitiesEnum::EnumElement( pHandleEntity );
 			}
 			return ITERATION_CONTINUE;
@@ -1122,7 +1144,11 @@ void CNPC_BaseZombie::DieChopped( const CTakeDamageInfo &info )
 
 	forceVector += CalcDamageForceVector( info );
 
-	if( !m_fIsHeadless && !bSquashed )
+	if( !m_fIsHeadless && !bSquashed
+#ifdef MAPBASE
+		&& !HasSpawnFlags( SF_ZOMBIE_NO_HEADCRAB_SPAWN )
+#endif
+	)
 	{
 		if( random->RandomInt( 0, 1 ) == 0 )
 		{
@@ -2561,6 +2587,11 @@ bool CNPC_BaseZombie::HeadcrabFits( CBaseAnimating *pCrab, const Vector *vecOrig
 //-----------------------------------------------------------------------------
 void CNPC_BaseZombie::ReleaseHeadcrab( const Vector &vecOrigin, const Vector &vecVelocity, bool fRemoveHead, bool fRagdollBody, bool fRagdollCrab )
 {
+#ifdef MAPBASE
+	// Torso conversion and animation events can bypass ShouldReleaseHeadcrab.
+	if ( m_iHealth <= 0 && HasSpawnFlags( SF_ZOMBIE_NO_HEADCRAB_SPAWN ) )
+		return;
+#endif
 	CAI_BaseNPC		*pCrab;
 	Vector vecSpot = vecOrigin;
 

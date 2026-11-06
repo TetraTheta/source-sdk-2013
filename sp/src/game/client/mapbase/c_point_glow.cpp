@@ -6,6 +6,7 @@
 
 #include "cbase.h"
 #include "glow_outline_effect.h"
+#include "view.h"
 
 // memdbgon must be the last include file in a .cpp file!!!
 #include "tier0/memdbgon.h"
@@ -27,6 +28,7 @@ public:
 	};
 
 	void OnDataChanged( DataUpdateType_t type );
+	void ClientThink();
 
 	CGlowObject			*GetGlowObject( void ){ return m_pGlowEffect; }
 	void				UpdateGlowEffect( void );
@@ -36,6 +38,7 @@ public:
 	color32 m_GlowColor;
 
 	bool				m_bGlowDisabled;
+	bool				m_bGravityGunFreeze;
 	CGlowObject			*m_pGlowEffect;
 };
 
@@ -43,6 +46,7 @@ IMPLEMENT_CLIENTCLASS_DT( C_PointGlow, DT_PointGlow, CPointGlow )
 	RecvPropEHandle( RECVINFO( m_hGlowTarget ) ),
 	RecvPropInt( RECVINFO( m_GlowColor ), 0, RecvProxy_IntToColor32 ),
 	RecvPropBool( RECVINFO( m_bGlowDisabled ) ),
+	RecvPropBool( RECVINFO( m_bGravityGunFreeze ) ),
 END_RECV_TABLE()
 
 //-----------------------------------------------------------------------------
@@ -61,11 +65,20 @@ void C_PointGlow::OnDataChanged( DataUpdateType_t updateType )
 	BaseClass::OnDataChanged( updateType );
 
 	UpdateGlowEffect();
+	SetNextClientThink( m_bGravityGunFreeze ? CLIENT_THINK_ALWAYS : CLIENT_THINK_NEVER );
 }
 
 //-----------------------------------------------------------------------------
 // Purpose: 
 //-----------------------------------------------------------------------------
+void C_PointGlow::ClientThink()
+{
+	static ConVarRef traceLength( "physcannon_tracelength" );
+	const bool bInRange = m_hGlowTarget && m_hGlowTarget->GetAbsOrigin().DistToSqr( MainViewOrigin() ) <= Square( traceLength.GetFloat() );
+	if ( ( m_pGlowEffect != NULL ) != ( !m_bGlowDisabled && bInRange ) )
+		UpdateGlowEffect();
+}
+
 void C_PointGlow::UpdateGlowEffect( void )
 {
 	// destroy the existing effect
@@ -75,7 +88,8 @@ void C_PointGlow::UpdateGlowEffect( void )
 	}
 
 	// create a new effect
-	if ( !m_bGlowDisabled )
+	static ConVarRef traceLength( "physcannon_tracelength" );
+	if ( !m_bGlowDisabled && ( !m_bGravityGunFreeze || ( m_hGlowTarget && m_hGlowTarget->GetAbsOrigin().DistToSqr( MainViewOrigin() ) <= Square( traceLength.GetFloat() ) ) ) )
 	{
 		Vector4D vecColor( m_GlowColor.r, m_GlowColor.g, m_GlowColor.b, m_GlowColor.a );
 		for (int i = 0; i < 4; i++)
