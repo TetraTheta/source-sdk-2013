@@ -1091,7 +1091,24 @@ void EnableNoClip( CBasePlayer *pPlayer )
 	pPlayer->AddEFlags( EFL_NOCLIP_ACTIVE );
 }
 
-void CC_Player_NoClip( void )
+static bool ShouldToggleCheat( const CCommand &args, CBasePlayer *pPlayer, bool bEnabled )
+{
+	if ( args.ArgC() == 1 )
+		return true;
+
+	if ( args.ArgC() == 2 )
+	{
+		if ( !Q_stricmp( args[1], "on" ) )
+			return !bEnabled;
+		if ( !Q_stricmp( args[1], "off" ) )
+			return bEnabled;
+	}
+
+	ClientPrint( pPlayer, HUD_PRINTCONSOLE, UTIL_VarArgs( "Usage: %s [on|off]\n", args[0] ) );
+	return false;
+}
+
+void CC_Player_NoClip( const CCommand &args )
 {
 	if ( !sv_cheats->GetBool() )
 		return;
@@ -1100,10 +1117,14 @@ void CC_Player_NoClip( void )
 	if ( !pPlayer )
 		return;
 
+	const bool bEnabled = pPlayer->GetMoveType() == MOVETYPE_NOCLIP;
+	if ( !ShouldToggleCheat( args, pPlayer, bEnabled ) )
+		return;
+
 	CPlayerState *pl = pPlayer->PlayerData();
 	Assert( pl );
 
-	if (pPlayer->GetMoveType() != MOVETYPE_NOCLIP)
+	if ( !bEnabled )
 	{
 		EnableNoClip( pPlayer );
 		return;
@@ -1145,13 +1166,13 @@ void CC_Player_NoClip( void )
 	}
 }
 
-static ConCommand noclip("noclip", CC_Player_NoClip, "Toggle. Player becomes non-solid and flies.", FCVAR_CHEAT);
+static ConCommand noclip("noclip", CC_Player_NoClip, "noclip [on|off]. Toggles without an argument. Player becomes non-solid and flies.", FCVAR_CHEAT);
 
 
 //------------------------------------------------------------------------------
 // Sets client to godmode
 //------------------------------------------------------------------------------
-void CC_God_f (void)
+void CC_God_f( const CCommand &args )
 {
 	if ( !sv_cheats->GetBool() )
 		return;
@@ -1171,6 +1192,9 @@ void CC_God_f (void)
 		return;
 #endif
 
+	if ( !ShouldToggleCheat( args, pPlayer, ( pPlayer->GetFlags() & FL_GODMODE ) != 0 ) )
+		return;
+
 	pPlayer->ToggleFlag( FL_GODMODE );
 	if (!(pPlayer->GetFlags() & FL_GODMODE ) )
 		ClientPrint( pPlayer, HUD_PRINTCONSOLE, "godmode OFF\n");
@@ -1178,7 +1202,7 @@ void CC_God_f (void)
 		ClientPrint( pPlayer, HUD_PRINTCONSOLE, "godmode ON\n");
 }
 
-static ConCommand god("god", CC_God_f, "Toggle. Player becomes invulnerable.", FCVAR_CHEAT );
+static ConCommand god("god", CC_God_f, "god [on|off]. Toggles without an argument. Player becomes invulnerable.", FCVAR_CHEAT );
 
 
 //------------------------------------------------------------------------------
