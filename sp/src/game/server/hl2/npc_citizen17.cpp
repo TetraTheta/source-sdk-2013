@@ -2471,7 +2471,7 @@ bool CNPC_Citizen::ShouldLookForBetterWeapon()
 			bool bDefer = false;
 
 #ifdef MAPBASE
-			if ( EntIsClass(pWeapon, gm_isz_class_AR2) )
+			if ( EntIsClass(pWeapon, gm_isz_class_AR2) || FClassnameIs( pWeapon, "weapon_admin" ) )
 #else
 			if( FClassnameIs( pWeapon, "weapon_ar2" ) )
 #endif

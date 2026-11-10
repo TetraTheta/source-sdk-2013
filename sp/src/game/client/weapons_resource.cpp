@@ -110,13 +110,18 @@ void WeaponsResource::LoadWeaponSprites( WEAPON_FILE_INFO_HANDLE hWeaponFileInfo
 
 	LoadHudTextures( tempList, sz, g_pGameRules->GetEncryptionKey() );
 
+	CUtlDict< CHudTexture *, int > adminSelection;
+	if ( !Q_stricmp( pWeaponInfo->szClassName, "weapon_admin" ) )
+		LoadHudTextures( adminSelection, "scripts/weapon_smg1", g_pGameRules->GetEncryptionKey() );
+
 	if ( !tempList.Count() )
 	{
 		// no sprite description file for weapon, use default small blocks
 		pWeaponInfo->iconActive = gHUD.GetIcon( "selection" );
 		pWeaponInfo->iconInactive = gHUD.GetIcon( "selection" );
 		pWeaponInfo->iconAmmo = gHUD.GetIcon( "bucket1" );
-		return;
+		if ( !adminSelection.Count() )
+			return;
 	}
 
 	CHudTexture *p;
@@ -155,7 +160,8 @@ void WeaponsResource::LoadWeaponSprites( WEAPON_FILE_INFO_HANDLE hWeaponFileInfo
 	CHudHistoryResource *pHudHR = GET_HUDELEMENT( CHudHistoryResource );	
 	if( pHudHR )
 	{
-		p = FindHudTextureInDict( tempList, "weapon" );
+		CUtlDict< CHudTexture *, int > &selection = adminSelection.Count() ? adminSelection : tempList;
+		p = FindHudTextureInDict( selection, "weapon" );
 		if ( p )
 		{
 			pWeaponInfo->iconInactive = gHUD.AddUnsearchableHudIconToList( *p );
@@ -166,7 +172,7 @@ void WeaponsResource::LoadWeaponSprites( WEAPON_FILE_INFO_HANDLE hWeaponFileInfo
 			}
 		}
 
-		p = FindHudTextureInDict( tempList, "weapon_s" );
+		p = FindHudTextureInDict( selection, "weapon_s" );
 		if ( p )
 		{
 			pWeaponInfo->iconActive = gHUD.AddUnsearchableHudIconToList( *p );
@@ -176,7 +182,7 @@ void WeaponsResource::LoadWeaponSprites( WEAPON_FILE_INFO_HANDLE hWeaponFileInfo
 			}
 		}
 
-		p = FindHudTextureInDict( tempList, "weapon_small" );
+		p = FindHudTextureInDict( selection, "weapon_small" );
 		if ( p )
 		{
 			pWeaponInfo->iconSmall = gHUD.AddUnsearchableHudIconToList( *p );
@@ -209,6 +215,7 @@ void WeaponsResource::LoadWeaponSprites( WEAPON_FILE_INFO_HANDLE hWeaponFileInfo
 		}
 	}
 
+	FreeHudTextureList( adminSelection );
 	FreeHudTextureList( tempList );
 }
 
