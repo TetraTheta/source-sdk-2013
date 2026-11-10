@@ -1,27 +1,17 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-# Rebase upstream-based branches first, then replay RTSL on Map Labs.
 # This rewrites the 'gm/*' branches so their commits appear on top of the upstreams.
 # If a conflict occurs the script will stop so you can resolve it manually.
 
 cd "$(git rev-parse --show-toplevel)"
 
 run_rebase() {
-  local rtsl_base=""
-  if git show-ref --verify --quiet refs/heads/gm/rtsl; then
-    if ! rtsl_base="$(git rev-parse --verify gm/rtsl^)" ||
-       ! git merge-base --is-ancestor "$rtsl_base" gm/maplabs ||
-       git rev-parse --verify --quiet gm/rtsl^2 >/dev/null; then
-      echo "Expected one RTSL commit on the local Map Labs history."
-      return 1
-    fi
-  fi
-
   declare -A MAP
   MAP["gm/ez2"]="upstream/ez2"
   MAP["gm/mapbase"]="upstream/mapbase"
   MAP["gm/maplabs"]="upstream/maplabs"
+  MAP["gm/rtsl"]="upstream/maplabs"
 
   for gbranch in "${!MAP[@]}"; do
     upstream="${MAP[$gbranch]}"
@@ -50,15 +40,6 @@ run_rebase() {
 
     echo "Rebase of '$gbranch' onto '$upstream' completed successfully."
   done
-
-  if [[ -n "$rtsl_base" ]]; then
-    echo "Rebasing 'gm/rtsl' onto 'gm/maplabs'..."
-    if ! git rebase --autostash --onto gm/maplabs "$rtsl_base" gm/rtsl; then
-      echo "Resolve conflicts, then run: git rebase --continue"
-      echo "Or to abort and restore original branch: git rebase --abort"
-      exit 2
-    fi
-  fi
 
   if git show-ref --verify --quiet refs/heads/main; then
     git switch main >/dev/null
