@@ -7939,9 +7939,10 @@ void CBasePlayer::Weapon_Equip( CBaseCombatWeapon *pWeapon )
 			bShouldSwitch = g_pGameRules->FShouldSwitchWeapon( this, pWeapon );
 			break;
 
-		// Always (old behavior)
+		// Always, unless either weapon opts out of automatic switching.
 		case 1:
-			bShouldSwitch = true;
+			bShouldSwitch = !GetActiveWeapon() ||
+				( GetActiveWeapon()->AllowsAutoSwitchFrom() && pWeapon->AllowsAutoSwitchTo() );
 			break;
 	}
 #else
