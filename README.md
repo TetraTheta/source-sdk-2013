@@ -23,7 +23,10 @@ because Visual Studio 2026's upgrade otherwise retargets generated projects to v
 before each selected project is rebuilt.
 
 Build orchestration uses Git for Windows utilities for paths, DLL headers, hashing, and cleanup, plus `reg.exe` for registry
-queries. The build script does not launch PowerShell.
+queries. The build script does not launch PowerShell. Solution upgrade output is accepted as UTF-8 or converted from CP949
+with Git Bash's `iconv`; MSBuild output is passed through unchanged. Both `Release|x86` and `Release|Win32` solution
+configurations are supported. Stage headings are cyan in a terminal; errors and failure summaries are red.
+Redirected output and build logs contain no script color codes.
 
 | Local branch | Projects | Destination | DLLs |
 | --- | --- | --- | --- |
@@ -57,6 +60,7 @@ Run the focused checks with:
 
 ```bash
 bash tests/test_build_gunmaster.sh
+bash tests/test_script_output.sh
 ```
 
 These checks require Git Bash, MSBuild, and Windows PowerShell only for the exclusive DLL-lock fixture. They use temporary
@@ -64,3 +68,6 @@ fixtures for target selection (including RTSL's comma with the real MSBuild CLI)
 DLLs, copy failures, clean-tree enforcement,
 staged/unstaged change disposal, safe deletion, and interrupt handling. Expected failure cases print errors; the final
 line is `GunMaster checks passed.` They do not build game code or modify `E:\GunMaster`.
+
+The script output checks use mock tools and a temporary Git repository to verify stage colors, plain logs, CP949
+conversion, failure propagation, and helpers surviving checkout. They do not run the build or deploy DLLs.

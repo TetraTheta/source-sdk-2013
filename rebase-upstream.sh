@@ -1,6 +1,17 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
+step() {
+  if [[ ${COLOR_STEPS:-0} == 1 ]]; then
+    printf '\033[36m%s\033[0m\n' "$*"
+  else
+    printf '%s\n' "$*"
+  fi
+}
+
+COLOR_STEPS=0
+[[ ! -t 1 ]] || COLOR_STEPS=1
+
 # This rewrites the 'gm/*' branches so their commits appear on top of the upstreams.
 # If a conflict occurs the script will stop so you can resolve it manually.
 
@@ -26,7 +37,7 @@ run_rebase() {
       continue
     fi
 
-    echo "Rebasing '$gbranch' onto '$upstream'..."
+    step "Rebasing '$gbranch' onto '$upstream'..."
     git switch "$gbranch"
 
     # Rebase commits that are unique to gbranch onto upstream.
@@ -38,7 +49,7 @@ run_rebase() {
       exit 2
     fi
 
-    echo "Rebase of '$gbranch' onto '$upstream' completed successfully."
+    step "Rebase of '$gbranch' onto '$upstream' completed successfully."
   done
 
   if git show-ref --verify --quiet refs/heads/main; then
@@ -50,7 +61,7 @@ run_rebase() {
 # Parse the complete operation before switching away from main.
 run_rebase
 
-echo "All done."
+step "All done."
 
 read -r -n 1 -s -p "Press any key to continue..."
 echo

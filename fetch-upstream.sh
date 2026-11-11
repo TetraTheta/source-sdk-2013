@@ -1,6 +1,17 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
+step() {
+  if [[ ${COLOR_STEPS:-0} == 1 ]]; then
+    printf '\033[36m%s\033[0m\n' "$*"
+  else
+    printf '%s\n' "$*"
+  fi
+}
+
+COLOR_STEPS=0
+[[ ! -t 1 ]] || COLOR_STEPS=1
+
 # Fetch latest commits from the three upstream repositories and place them into
 # local branches 'upstream/ez2', 'upstream/mapbase', and 'upstream/maplabs'
 
@@ -31,14 +42,14 @@ else
   git remote add "$MAPLABS_REMOTE_NAME" "$MAPLABS_REMOTE_URL"
 fi
 
-echo "Cloning 'upstream/ez2'..."
+step "Cloning 'upstream/ez2'..."
 git fetch --no-tags "$EZ2_REMOTE_NAME" +refs/heads/ez2/mapbase:refs/heads/upstream/ez2
-echo "Cloning 'upstream/mapbase'..."
+step "Cloning 'upstream/mapbase'..."
 git fetch --no-tags "$MAPBASE_REMOTE_NAME" +refs/heads/master:refs/heads/upstream/mapbase
-echo "Cloning 'upstream/maplabs'..."
+step "Cloning 'upstream/maplabs'..."
 git fetch --no-tags "$MAPLABS_REMOTE_NAME" +refs/heads/master:refs/heads/upstream/maplabs
 
-echo "Fetched and updated:"
+step "Fetched and updated:"
 echo "  - upstream/ez2  <= $EZ2_REMOTE_NAME/ez2/mapbase"
 echo "  - upstream/mapbase <= $MAPBASE_REMOTE_NAME/master"
 echo "  - upstream/maplabs <= $MAPLABS_REMOTE_NAME/master"

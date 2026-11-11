@@ -1,8 +1,32 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
+step() {
+  if [[ ${COLOR_STEPS:-0} == 1 ]]; then
+    printf '\033[36m%s\033[0m\n' "$*"
+  else
+    printf '%s\n' "$*"
+  fi
+}
+
+COLOR_STEPS=0
+[[ ! -t 1 ]] || COLOR_STEPS=1
+
+stage() {
+  STAGE=$1
+  step "[$BRANCH] $STAGE"
+}
+
+error() {
+  if [[ ${COLOR_STEPS:-0} == 1 ]]; then
+    printf '\033[31m%s\033[0m\n' "$*" >&2
+  else
+    printf '%s\n' "$*" >&2
+  fi
+}
+
 fail() {
-  printf 'ERROR: %s\n' "$*" >&2
+  error "ERROR: $*"
   exit 1
 }
 
@@ -42,13 +66,17 @@ finish() {
     cleanup_result=$?
   fi
   if (( cleanup_result != 0 )); then
-    echo 'Recovery incomplete: preserve changes, switch to main, and inspect sp before removing it.' >&2
+    error 'Recovery incomplete: preserve changes, switch to main, and inspect sp before removing it.'
     result=1
   fi
   if [[ ${LOCKED:-0} == 1 ]]; then
     rmdir "$LOCK_DIR"
   fi
-  printf '\nResult: %s | branch: %s | stage: %s\n' "$result" "${BRANCH:-preflight}" "${STAGE:-preflight}"
+  if (( result != 0 )); then
+    error "Result: $result | branch: ${BRANCH:-preflight} | stage: ${STAGE:-preflight}"
+  else
+    printf '\nResult: %s | branch: %s | stage: %s\n' "$result" "${BRANCH:-preflight}" "${STAGE:-preflight}"
+  fi
   printf 'Copied DLLs:\n%s\n' "${COPIED:-  (none)}"
   [[ -z ${LOG:-} ]] || printf 'Log: %s\n' "$LOG"
   if [[ -t 0 ]]; then
@@ -86,15 +114,15 @@ build_variant() {
     project=$(grep -F "= \"$name\", " everything.sln | cut -d '"' -f 6 | tr -d '\r')
     project=$(cygpath -u "$project")
     grep -Fq 'Release|Win32' "$project" || fail "Release/Win32 project configuration missing: $project"
-    STAGE="Check settings: $name"
+    stage "Check settings: $name (solution platform: $SOLUTION_PLATFORM)"
     properties=$(native "$MSBUILD" "$project" -nologo '-property:Configuration=Release;Platform=Win32;PlatformToolset=v143' -getProperty:PlatformToolset,WindowsTargetPlatformVersion,VCToolsVersion) || return $?
     printf '%s\n' "$properties"
     grep -Eq '"PlatformToolset": "v143"' <<< "$properties" || fail "Expected effective v143 toolset: $name"
     grep -Eq '"WindowsTargetPlatformVersion": "[0-9][^"]*"' <<< "$properties" || fail "Windows SDK is missing: $name"
     grep -Eq '"VCToolsVersion": "14\.[0-9][^"]*"' <<< "$properties" || fail "MSVC tools are missing: $name"
-    STAGE="Rebuild $name"
+    stage "Rebuild $name"
     # Keep literal quotes so MSBuild does not split RTSL's comma into two targets.
-    native "$MSBUILD" everything.sln "-target:\"$target:Rebuild\"" '-property:Configuration=Release;Platform=x86;PlatformToolset=v143' -maxCpuCount:1 -nodeReuse:false -verbosity:minimal || return $?
+    native "$MSBUILD" everything.sln "-target:\"$target:Rebuild\"" "-property:Configuration=Release;Platform=$SOLUTION_PLATFORM;PlatformToolset=v143" -maxCpuCount:1 -nodeReuse:false -verbosity:minimal || return $?
   done
 }
 
@@ -114,6 +142,7 @@ copy_variant() {
     [[ "$expected" == "$actual" ]] || fail "Copy verification failed: $destination/$dll"
     printf 'SHA256 %s  %s\n' "$actual" "$destination/$dll"
   done
+
 }
 
 main() {
@@ -122,13 +151,14 @@ main() {
   COPIED=''
   LOG=''
   BRANCH=preflight
-  STAGE=preflight
+  stage preflight
   ROOT=$(git -C "$(dirname "${BASH_SOURCE[0]}")" rev-parse --show-toplevel)
   cd "$ROOT"
   trap finish EXIT
   trap 'exit 130' INT
   trap 'exit 143' TERM
   [[ $(uname -s) == MINGW* ]] || fail 'Run this script with Git Bash on Windows.'
+  command -v iconv >/dev/null || fail 'iconv is missing.'
   LOCK_DIR="$(git rev-parse --absolute-git-dir)/gunmaster-build.lock"
   mkdir "$LOCK_DIR" || fail "Build lock exists: $LOCK_DIR (remove only after confirming no build is running)."
   LOCKED=1
@@ -158,10 +188,11 @@ main() {
   local log_dir="$(git rev-parse --absolute-git-dir)/gunmaster-build-logs"
   mkdir -p "$log_dir"
   LOG="$log_dir/$(date +%Y%m%d-%H%M%S)-$$.log"
-  exec > >(tee -i -a "$LOG") 2>&1
+  # Strip our ANSI colors only from the log; preserve terminal output.
+  exec > >(tee -i >(sed -u $'s/\033\\[[0-9;]*m//g' >> "$LOG")) 2>&1
   local -a games
   for BRANCH in gm/ez2 gm/mapbase gm/maplabs gm/rtsl; do
-    STAGE=checkout
+    stage checkout
     assert_clean
     git switch --no-overwrite-ignore "$BRANCH"
     OWN_SP=1
@@ -171,19 +202,33 @@ main() {
       gm/mapbase) games=(/hl2 /episodic) ;;
       *) games=(/episodic) ;;
     esac
-    STAGE=VPC
+    stage VPC
     native ./devtools/bin/vpc.exe "${games[@]}" +everything /mksln everything.sln
     [[ -s everything.sln ]] || fail 'VPC did not generate everything.sln.'
-    STAGE=upgrade
-    native "$DEVENV" everything.sln /upgrade
-    grep -Fq 'Release|x86' everything.sln || fail 'Release/x86 solution configuration is missing.'
+    stage upgrade
+    # Visual Studio can emit either UTF-8 or CP949, depending on its environment.
+    local upgrade_result=0
+    native "$DEVENV" everything.sln /upgrade > "$LOG.upgrade" 2>&1 || upgrade_result=$?
+    if iconv -f UTF-8 -t UTF-8 "$LOG.upgrade" >/dev/null 2>&1; then
+      cat "$LOG.upgrade"
+    else
+      iconv -f CP949 -t UTF-8 "$LOG.upgrade"
+    fi
+    (( upgrade_result == 0 )) || fail "Visual Studio upgrade failed: $upgrade_result"
+    if grep -Fq 'Release|x86' everything.sln; then
+      SOLUTION_PLATFORM=x86
+    elif grep -Fq 'Release|Win32' everything.sln; then
+      SOLUTION_PLATFORM=Win32
+    else
+      fail 'Release/x86 or Release/Win32 solution configuration is missing.'
+    fi
     case "$BRANCH" in
       gm/ez2) build_variant 'Entropy Zero 2' ;;
       gm/mapbase) build_variant HL2; build_variant Episodic ;;
       gm/maplabs) build_variant Episodic ;;
       gm/rtsl) build_variant 'Episodic, RTSL' ;;
     esac
-    STAGE=copy
+    stage copy
     case "$BRANCH" in
       gm/ez2) copy_variant mod_ez2 /e/GunMaster/ez2/bin ;;
       gm/mapbase)
@@ -198,14 +243,14 @@ main() {
       gm/maplabs) copy_variant mod_episodic /e/GunMaster/maplabs/bin ;;
       gm/rtsl) copy_variant mod_episodic /e/GunMaster/rtsl/bin ;;
     esac
-    STAGE=cleanup
+    stage cleanup
     cd "$ROOT"
     discard_build_changes
     git switch --no-overwrite-ignore main
     clean_sp
     OWN_SP=0
   done
-  STAGE=complete
+  stage complete
   assert_clean
 }
 

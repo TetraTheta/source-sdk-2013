@@ -1,6 +1,17 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
+step() {
+  if [[ ${COLOR_STEPS:-0} == 1 ]]; then
+    printf '\033[36m%s\033[0m\n' "$*"
+  else
+    printf '%s\n' "$*"
+  fi
+}
+
+COLOR_STEPS=0
+[[ ! -t 1 ]] || COLOR_STEPS=1
+
 # !!! DANGER !!!
 # Delete all local branches except 'main', then create the 'upstream/*' and 'gm/*' branches.
 
@@ -16,7 +27,7 @@ if [ "$CONFIRM" != "CONFIRM" ]; then
 fi
 
 if ! git show-ref --verify --quiet refs/heads/main; then
-  echo "Creating 'main' branch with README.md"
+  step "Creating 'main' branch with README.md"
   git switch --create main
   if [ ! -f README.md ]; then
     printf "%s\n" "# source-sdk-2013" >README.md
@@ -30,7 +41,7 @@ if ! git show-ref --verify --quiet refs/heads/main; then
   fi
 fi
 
-echo "Deleting every local branches except 'main'..."
+step "Deleting every local branches except 'main'..."
 for br in $(git for-each-ref --format='%(refname:short)' refs/heads/); do
   if [ "$br" != "main" ]; then
     git branch -D "$br"
@@ -62,14 +73,14 @@ else
   git remote add "$MAPLABS_REMOTE_NAME" "$MAPLABS_REMOTE_URL"
 fi
 
-echo "Cloning 'upstream/ez2'..."
+step "Cloning 'upstream/ez2'..."
 git fetch --no-tags "$EZ2_REMOTE_NAME" +refs/heads/ez2/mapbase:refs/heads/upstream/ez2
-echo "Cloning 'upstream/mapbase'..."
+step "Cloning 'upstream/mapbase'..."
 git fetch --no-tags "$MAPBASE_REMOTE_NAME" +refs/heads/master:refs/heads/upstream/mapbase
-echo "Cloning 'upstream/maplabs'..."
+step "Cloning 'upstream/maplabs'..."
 git fetch --no-tags "$MAPLABS_REMOTE_NAME" +refs/heads/master:refs/heads/upstream/maplabs
 
-echo "Creating 'gm/ez2' from 'upstream/ez2'..."
+step "Creating 'gm/ez2' from 'upstream/ez2'..."
 if git show-ref --verify --quiet refs/heads/upstream/ez2; then
   git branch --force gm/ez2 upstream/ez2
 else
@@ -77,7 +88,7 @@ else
   exit 2
 fi
 
-echo "Creating 'gm/mapbase' from 'upstream/mapbase'..."
+step "Creating 'gm/mapbase' from 'upstream/mapbase'..."
 if git show-ref --verify --quiet refs/heads/upstream/mapbase; then
   git branch --force gm/mapbase upstream/mapbase
 else
@@ -85,7 +96,7 @@ else
   exit 2
 fi
 
-echo "Creating 'gm/maplabs' from 'upstream/maplabs'..."
+step "Creating 'gm/maplabs' from 'upstream/maplabs'..."
 if git show-ref --verify --quiet refs/heads/upstream/maplabs; then
   git branch --force gm/maplabs upstream/maplabs
 else
@@ -95,7 +106,7 @@ fi
 
 git switch main
 
-echo "Initialization complete. Current local branches:"
+step "Initialization complete. Current local branches:"
 git branch --sort=-committerdate --format="  - %(refname:short)"
 echo
 echo "Notes:"
