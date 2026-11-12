@@ -43,6 +43,9 @@ static ConVar sv_snd_filter( "sv_snd_filter", "", FCVAR_REPLICATED, "Filters out
 #endif // STAGING_ONLY
 
 extern ISoundEmitterSystemBase *soundemitterbase;
+#if defined( HL2_DLL ) && defined( MAPBASE )
+void PrecacheAdminWeaponSounds();
+#endif
 static ConVar *g_pClosecaption = NULL;
 
 #ifdef _XBOX
@@ -330,6 +333,10 @@ public:
 		{
 			soundemitterbase->AddSoundOverrides( scriptfile );
 		}
+#endif
+
+#if defined( HL2_DLL ) && defined( MAPBASE )
+		PrecacheAdminWeaponSounds();
 #endif
 
 #if !defined( CLIENT_DLL )
