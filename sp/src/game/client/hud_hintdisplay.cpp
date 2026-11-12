@@ -633,6 +633,45 @@ bool CHudHintKeyDisplay::SetHintText( const char *text )
 		ws = wszBuf;
 	}
 
+	// Literal headings use the key font, but explicit lines form one column.
+	if ( !wcsncmp( ws, L"%$", 2 ) && wcsstr( ws, L"%\n" ) )
+	{
+		int width = 0;
+		int height = m_iTextY;
+		while ( *ws )
+		{
+			const wchar_t *end = wcschr( ws, L'\n' );
+			int length = end ? end - ws : wcslen( ws );
+			bool heading = length >= 3 && ws[0] == L'%' && ws[1] == L'$' && ws[length - 1] == L'%';
+			wchar_t line[256];
+			int count = MIN( length - ( heading ? 3 : 0 ), ARRAYSIZE( line ) - 1 );
+			wcsncpy( line, ws + ( heading ? 2 : 0 ), count );
+			line[count] = 0;
+			vgui::Label *label = vgui::SETUP_PANEL( new vgui::Label( this, NULL, line ) );
+			label->SetFont( heading ? m_hLargeFont : m_hSmallFont );
+			label->SetPaintBackgroundEnabled( false );
+			label->SetPaintBorderEnabled( false );
+			label->SetFgColor( GetFgColor() );
+			label->SizeToContents();
+			label->SetPos( m_iTextX, height );
+			height += label->GetTall() + m_iTextGapY;
+			width = MAX( width, label->GetWide() );
+			m_Labels.AddToTail( label );
+			if ( !end )
+				break;
+			ws = const_cast<wchar_t *>( end + 1 );
+		}
+		int wide = width + m_iTextX * 2;
+		int tall = height - m_iTextGapY + m_iTextY;
+		int x, y;
+		GetPos( x, y );
+		if ( IsRightAligned() ) x += GetWide() - wide;
+		if ( IsBottomAligned() ) y += GetTall() - tall;
+		SetBounds( x, y, wide, tall );
+		m_iBaseY = y;
+		return true;
+	}
+
 	// parse out the text into a label set
 	while ( *ws )
 	{
