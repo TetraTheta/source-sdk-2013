@@ -95,7 +95,7 @@ extern int gEvilImpulse101;
 ConVar sv_autojump( "sv_autojump", "0" );
 
 ConVar hl2_walkspeed( "hl2_walkspeed", "150" );
-ConVar hl2_normspeed( "hl2_normspeed", "190" );
+ConVar hl2_normspeed( "hl2_normspeed", "190", FCVAR_REPLICATED );
 #ifdef EZ2
 ConVar hl2_sprintspeed("hl2_sprintspeed", "285");		// 1upD - Changing default from 320
 #else
@@ -1085,13 +1085,8 @@ void CHL2_Player::PreThink(void)
 
 	if( sv_stickysprint.GetBool() && m_bIsAutoSprinting )
 	{
-		// If we're ducked and not in the air
-		if( IsDucked() && GetGroundEntity() != NULL )
-		{
-			StopSprinting();
-		}
 		// Stop sprinting if the player lets off the stick for a moment.
-		else if( GetStickDist() == 0.0f )
+		if( GetStickDist() == 0.0f )
 		{
 			if( gpGlobals->curtime > m_fAutoSprintMinTime )
 			{
@@ -1102,14 +1097,6 @@ void CHL2_Player::PreThink(void)
 		{
 			// Stop sprinting one half second after the player stops inputting with the move stick.
 			m_fAutoSprintMinTime = gpGlobals->curtime + 0.5f;
-		}
-	}
-	else if ( IsSprinting() )
-	{
-		// Disable sprint while ducked unless we're in the air (jumping)
-		if ( IsDucked() && ( GetGroundEntity() != NULL ) )
-		{
-			StopSprinting();
 		}
 	}
 
@@ -1800,7 +1787,6 @@ bool CHL2_Player::CanSprint()
 {
 	return ( m_bSprintEnabled &&										// Only if sprint is enabled 
 			!IsWalking() &&												// Not if we're walking
-			!( m_Local.m_bDucked && !m_Local.m_bDucking ) &&			// Nor if we're ducking
 			(GetWaterLevel() != 3) &&									// Certainly not underwater
 			(GlobalEntity_GetState("suit_no_sprint") != GLOBAL_ON) );	// Out of the question without the sprint module
 }

@@ -55,6 +55,12 @@ ConVar player_limit_jump_speed( "player_limit_jump_speed", "1", FCVAR_REPLICATED
 // duck controls. Its value is meaningless anytime we don't have the options window open.
 ConVar option_duck_method("option_duck_method", "1", FCVAR_REPLICATED|FCVAR_ARCHIVE );// 0 = HOLD to duck, 1 = Duck is a toggle
 
+#if defined( HL2_CLIENT_DLL )
+ConVar hl2_normspeed( "hl2_normspeed", "190", FCVAR_REPLICATED );
+#elif defined( HL2_DLL )
+extern ConVar hl2_normspeed;
+#endif
+
 #ifdef MAPBASE
 ConVar player_crouch_multiplier( "player_crouch_multiplier", "0.33333333", FCVAR_REPLICATED ); // FIX: 'Parent cvar in server.dll not allowed'
 #endif
@@ -4333,6 +4339,13 @@ void CGameMovement::HandleDuckingSpeedCrop( void )
 	{
 		// Mapbase makes this an adjustable convar
 		float frac = player_crouch_multiplier.GetFloat();
+#if defined( HL2_DLL ) || defined( HL2_CLIENT_DLL )
+		if ( static_cast<CHLMoveData *>( mv )->m_bIsSprinting && player->MaxSpeed() > 0.0f )
+		{
+			// Preserve the standing sprint's additive boost after crouch slowdown.
+			frac = MAX( 0.0f, 1.0f - hl2_normspeed.GetFloat() * ( 1.0f - frac ) / player->MaxSpeed() );
+		}
+#endif
 		mv->m_flForwardMove	*= frac;
 		mv->m_flSideMove	*= frac;
 		mv->m_flUpMove		*= frac;
