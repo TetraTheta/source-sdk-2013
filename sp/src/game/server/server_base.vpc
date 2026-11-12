@@ -71,10 +71,11 @@ $Configuration
 
 $Project
 {
-  $Folder "Gunmaster"
-  {
-    $File "$SRCDIR\game\gunmaster\sc_remove.cpp"
-  }
+	$Folder "Gunmaster"
+	{
+		$File "$SRCDIR\game\gunmaster\sc_remove.cpp"
+		$File "$SRCDIR\game\gunmaster\sc_clean.cpp"
+	}
 
 	$Folder "Replay"
 	{
