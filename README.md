@@ -27,6 +27,7 @@ queries. The build script does not launch PowerShell. Solution upgrade output is
 with Git Bash's `iconv`; MSBuild output is passed through unchanged. Both `Release|x86` and `Release|Win32` solution
 configurations are supported. Stage headings are cyan in a terminal; errors and failure summaries are red.
 Redirected output and build logs contain no script color codes.
+The default `scripts/sc_clean.txt` is copied beside each destination `bin` directory when missing; existing configurations are preserved.
 
 | Local branch | Projects | Destination | DLLs |
 | --- | --- | --- | --- |

@@ -142,7 +142,15 @@ copy_variant() {
     [[ "$expected" == "$actual" ]] || fail "Copy verification failed: $destination/$dll"
     printf 'SHA256 %s  %s\n' "$actual" "$destination/$dll"
   done
-
+  local config="$ROOT/sp/game/$source/scripts/sc_clean.txt" config_destination="${destination%/bin}/scripts/sc_clean.txt"
+  [[ -f "$config" ]] || fail "Missing clean configuration: $config"
+  # Keep user-edited cleanup patterns on subsequent builds.
+  if [[ ! -e "$config_destination" ]]; then
+    mkdir -p "${config_destination%/*}" || return $?
+    cp -- "$config" "$config_destination" || return $?
+    COPIED+="  $config_destination"$'\n'
+    cmp -s -- "$config" "$config_destination" || fail "Copy verification failed: $config_destination"
+  fi
 }
 
 main() {
