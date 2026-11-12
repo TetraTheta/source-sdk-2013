@@ -1948,7 +1948,9 @@ void CBaseEntity::HandleShotImpactingGlass( const FireBulletsInfo_t &info,
 	data.m_vNormal = tr.plane.normal;
 	data.m_vOrigin = tr.endpos;
 
-	DispatchEffect( "GlassImpact", data );
+	const bool impactEffects = !( info.m_nFlags & FIRE_BULLETS_NO_IMPACT_EFFECTS );
+	if ( impactEffects )
+		DispatchEffect( "GlassImpact", data );
 
 	trace_t	penetrationTrace;
 
@@ -1963,12 +1965,13 @@ void CBaseEntity::HandleShotImpactingGlass( const FireBulletsInfo_t &info,
 	//		 would do exactly the same anyway...
 
 	// Impact the other side (will look like an exit effect)
-	DoImpactEffect( penetrationTrace, GetAmmoDef()->DamageType(info.m_iAmmoType) );
-
-	data.m_vNormal = penetrationTrace.plane.normal;
-	data.m_vOrigin = penetrationTrace.endpos;
-	
-	DispatchEffect( "GlassImpact", data );
+	if ( impactEffects )
+	{
+		DoImpactEffect( penetrationTrace, GetAmmoDef()->DamageType(info.m_iAmmoType) );
+		data.m_vNormal = penetrationTrace.plane.normal;
+		data.m_vOrigin = penetrationTrace.endpos;
+		DispatchEffect( "GlassImpact", data );
+	}
 
 	// Refire the round, as if starting from behind the glass
 	FireBulletsInfo_t behindGlassInfo;

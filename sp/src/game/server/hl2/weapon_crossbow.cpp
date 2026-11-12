@@ -76,6 +76,7 @@ public:
 	unsigned int PhysicsSolidMaskForEntity() const;
 #ifdef MAPBASE
 	static CCrossbowBolt *BoltCreate( const Vector &vecOrigin, const QAngle &angAngles, CBaseCombatCharacter *pentOwner = NULL );
+	friend bool FireAdminCrossbowBolt( CBasePlayer *, const Vector &, const Vector &, float, float );
 
 	void InputSetDamage( inputdata_t &inputdata );
 	float m_flDamage;
@@ -126,6 +127,9 @@ CCrossbowBolt *CCrossbowBolt::BoltCreate( const Vector &vecOrigin, const QAngle 
 {
 	// Create a new entity with CCrossbowBolt private data
 	CCrossbowBolt *pBolt = (CCrossbowBolt *)CreateEntityByName( "crossbow_bolt" );
+	if ( !pBolt )
+		return NULL;
+
 	UTIL_SetOrigin( pBolt, vecOrigin );
 	pBolt->SetAbsAngles( angAngles );
 	pBolt->Spawn();
@@ -144,6 +148,20 @@ CCrossbowBolt *CCrossbowBolt::BoltCreate( const Vector &vecOrigin, const QAngle 
 //-----------------------------------------------------------------------------
 // Purpose: 
 //-----------------------------------------------------------------------------
+bool FireAdminCrossbowBolt( CBasePlayer *player, const Vector &origin, const Vector &direction, float speed, float damage )
+{
+	QAngle angles;
+	VectorAngles( direction, angles );
+	CCrossbowBolt *bolt = CCrossbowBolt::BoltCreate( origin, angles, player );
+	if ( !bolt )
+		return false;
+
+	bolt->SetAbsVelocity( direction * speed );
+	if ( damage >= 0 )
+		bolt->m_flDamage = damage;
+	return true;
+}
+
 CCrossbowBolt::CCrossbowBolt( void )
 {
 	// Independent bolts without m_flDamage set need damage
@@ -969,6 +987,8 @@ void CWeaponCrossbow::FireBolt( void )
 #endif
 
 	CCrossbowBolt *pBolt = CCrossbowBolt::BoltCreate( vecSrc, angAiming, pOwner );
+	if ( !pBolt )
+		return;
 
 	if ( pOwner->GetWaterLevel() == 3 )
 	{
@@ -1030,6 +1050,8 @@ void CWeaponCrossbow::FireNPCBolt( CAI_BaseNPC *pOwner, Vector &vecShootOrigin, 
 	VectorAngles( vecShootDir, angAiming );
 
 	CCrossbowBolt *pBolt = CCrossbowBolt::BoltCreate( vecShootOrigin, angAiming, pOwner );
+	if ( !pBolt )
+		return;
 
 	if ( pOwner->GetWaterLevel() == 3 )
 	{
