@@ -84,6 +84,7 @@ $Configuration
 
 $Project
 {
+	$File "$SRCDIR\game\gunmaster\sc_clean_client.cpp"
 	$Folder "Replay"
 	{
 		$File	"replay/replaycamera.cpp"

@@ -17,6 +17,7 @@
 
 void RegisterUserMessages( void )
 {
+	usermessages->Register( "SCClean", 1 );
 	usermessages->Register( "Geiger", 1 );
 	usermessages->Register( "Train", 1 );
 	usermessages->Register( "HudText", -1 );
