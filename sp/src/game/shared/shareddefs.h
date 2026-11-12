@@ -699,6 +699,9 @@ enum FireBulletsFlags_t
 	FIRE_BULLETS_ALLOW_WATER_SURFACE_IMPACTS = 0x4,	// If the shot hits water surface, still call DoImpactEffect
 	FIRE_BULLETS_TEMPORARY_DANGER_SOUND = 0x8,		// Danger sounds added from this impact can be stomped immediately if another is queued
 #ifdef MAPBASE
+	FIRE_BULLETS_NO_IMPACT_EFFECTS = 0x40,
+	FIRE_BULLETS_AIRBOAT_TRACER = 0x80,
+	FIRE_BULLETS_ADMIN_PRIMARY = 0x100,
 	FIRE_BULLETS_NO_AUTO_GIB_TYPE = 0x10,		// Don't automatically add DMG_ALWAYSGIB or DMG_NEVERGIB if m_flDamage is set
 #endif
 };
@@ -712,6 +715,8 @@ struct FireBulletsInfo_t
 		m_vecSpread.Init( 0, 0, 0 );
 		m_flDistance = 8192;
 		m_iTracerFreq = 4;
+		m_pTracerWeapon = NULL;
+		m_iTracerAttachment = 0;
 		m_flDamage = 0;
 		m_iPlayerDamage = 0;
 		m_pAttacker = NULL;
@@ -739,6 +744,8 @@ struct FireBulletsInfo_t
 		m_flDistance = flDistance;
 		m_iAmmoType = nAmmoType;
 		m_iTracerFreq = 4;
+		m_pTracerWeapon = NULL;
+		m_iTracerAttachment = 0;
 		m_flDamage = 0;
 		m_iPlayerDamage = 0;
 		m_pAttacker = NULL;
@@ -762,6 +769,8 @@ struct FireBulletsInfo_t
 	float m_flDistance;
 	int m_iAmmoType;
 	int m_iTracerFreq;
+	CBaseEntity *m_pTracerWeapon;
+	int m_iTracerAttachment;
 	float m_flDamage;
 	int m_iPlayerDamage;	// Damage to be used instead of m_flDamage if we hit a player
 	int m_nFlags;			// See FireBulletsFlags_t

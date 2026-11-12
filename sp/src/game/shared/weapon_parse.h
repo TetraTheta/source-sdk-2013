@@ -89,6 +89,14 @@ class FileWeaponInfo_t
 public:
 
 	FileWeaponInfo_t();
+	virtual ~FileWeaponInfo_t();
+#if defined( MAPBASE )
+	float GetAdminSetting( const char *key, float fallback, float minimum, float maximum ) const;
+
+private:
+	KeyValues *m_adminSettings;
+public:
+#endif
 	
 	// Each game can override this to get whatever values it wants from the script.
 	virtual void Parse( KeyValues *pKeyValuesData, const char *szWeaponName );

@@ -358,6 +358,7 @@ $Project "Server (Entropy Zero 2)"
 			$File	"hl2\weapon_rpg.h"
 			$File	"hl2\weapon_shotgun.cpp"
 			$File	"hl2\weapon_smg1.cpp"
+			$File "$SRCDIR\game\gunmaster\weapon_admin.cpp" [$MAPBASE]
 			$File	"hl2\weapon_sniperrifle.cpp"
 			$File	"episodic\weapon_striderbuster.cpp"
 			$File	"episodic\weapon_striderbuster.h"

@@ -1952,14 +1952,25 @@ void CBaseEntity::FireBullets( const FireBulletsInfo_t &info )
 				CalculateBulletDamageForce( &dmgInfo, info.m_iAmmoType, vecDir, tr.endpos );
 				dmgInfo.ScaleDamageForce( info.m_flDamageForceScale );
 				dmgInfo.SetAmmoType( info.m_iAmmoType );
-				tr.m_pEnt->DispatchTraceAttack( dmgInfo, vecDir, &tr );
+#if defined( GAME_DLL ) && defined( MAPBASE )
+				// The original admin weapon pushes floor turrets directly, including from the front.
+				IPhysicsObject *pTurretPhysics = NULL;
+				if ( ( info.m_nFlags & FIRE_BULLETS_ADMIN_PRIMARY ) && FClassnameIs( tr.m_pEnt, "npc_turret_floor" ) )
+					pTurretPhysics = tr.m_pEnt->VPhysicsGetObject();
+
+				if ( pTurretPhysics )
+					pTurretPhysics->ApplyForceOffset( dmgInfo.GetDamageForce(), tr.endpos );
+				else
+#endif
+					tr.m_pEnt->DispatchTraceAttack( dmgInfo, vecDir, &tr );
 			
 				if ( ToBaseCombatCharacter( tr.m_pEnt ) )
 				{
 					flCumulativeDamage += dmgInfo.GetDamage();
 				}
 
-				if ( bStartedInWater || !bHitWater || (info.m_nFlags & FIRE_BULLETS_ALLOW_WATER_SURFACE_IMPACTS) )
+				if ( !( info.m_nFlags & FIRE_BULLETS_NO_IMPACT_EFFECTS ) &&
+					( bStartedInWater || !bHitWater || (info.m_nFlags & FIRE_BULLETS_ALLOW_WATER_SURFACE_IMPACTS) ) )
 				{
 					if ( bDoServerEffects == true )
 					{
@@ -1970,7 +1981,7 @@ void CBaseEntity::FireBullets( const FireBulletsInfo_t &info )
 						bDoImpacts = true;
 					}
 				}
-				else
+				else if ( !( info.m_nFlags & FIRE_BULLETS_NO_IMPACT_EFFECTS ) )
 				{
 					// We may not impact, but we DO need to affect ragdolls on the client
 					CEffectData data;
@@ -2025,7 +2036,16 @@ void CBaseEntity::FireBullets( const FireBulletsInfo_t &info )
 				}
 #endif //#ifdef PORTAL
 
-				MakeTracer( vecTracerSrc, Tracer, pAmmoDef->TracerType(info.m_iAmmoType) );
+				const bool airboatTracer = ( info.m_nFlags & FIRE_BULLETS_AIRBOAT_TRACER ) != 0;
+				if ( info.m_pTracerWeapon && info.m_iTracerAttachment > 0 )
+				{
+					UTIL_Tracer( vecTracerSrc, Tracer.endpos, info.m_pTracerWeapon->entindex(), info.m_iTracerAttachment,
+						0.0f, !airboatTracer, airboatTracer ? "AirboatGunTracer" : GetTracerType() );
+				}
+				else if ( airboatTracer )
+					UTIL_Tracer( vecTracerSrc, Tracer.endpos, entindex(), TRACER_DONT_USE_ATTACHMENT, 0.0f, false, "AirboatGunTracer" );
+				else
+					MakeTracer( vecTracerSrc, Tracer, pAmmoDef->TracerType(info.m_iAmmoType) );
 
 #ifdef PORTAL
 				if ( pShootThroughPortal )

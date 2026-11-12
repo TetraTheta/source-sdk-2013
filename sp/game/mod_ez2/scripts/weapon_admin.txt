@@ -1,0 +1,64 @@
+// Admin SMG example. Omitted keys use the C++ defaults for the current game.
+"WeaponData"
+{
+	"printname"		"Admin SMG"
+	"autoswitchfrom"	"0"
+
+	"AdminAttack"
+	{
+		// 1 = Explosion, 2 = Airboat, 3 = Combine Ball, 4 = Crossbow, 5 = Grenade
+		"InitialMode"	"1"
+
+		"Primary"
+		{
+			"Shots"		"25"
+			"Spread"	"0.015"
+			"Damage"	"1000"
+			"ForceScale"	"1"
+			"Delay"		"0.05"
+			"Recoil"	"0.1"
+		}
+
+		"Secondary"
+		{
+			"Recoil"	"0.1"
+		}
+
+		"Explosion"
+		{
+			"Magnitude"	"175"
+			"Delay"		"0.05"
+		}
+
+		"Airboat"
+		{
+			"Shots"		"7"
+			"Spread"	"0.015"
+			"Damage"	"50"
+			"ForceScale"	"1"
+			"Delay"		"0.05"
+		}
+
+		"CombineBall"
+		{
+			"Radius"	"2"
+			"Speed"		"3000"
+			"Lifetime"	"5"
+			"Delay"		"0.5"
+		}
+
+		"Crossbow"
+		{
+			"Speed"		"3750"
+			// Omit Damage to use the stock bolt damage.
+			"Delay"		"0.25"
+		}
+
+		"Grenade"
+		{
+			"Speed"		"1000"
+			"Fuse"		"3"
+			"Delay"		"0.25"
+		}
+	}
+}

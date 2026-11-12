@@ -308,6 +308,10 @@ bool ReadWeaponDataFromFileForSlot( IFileSystem* filesystem, const char *szWeapo
 #endif
 		);
 
+#ifdef MAPBASE
+	if ( !pKV && !Q_stricmp( szWeaponName, "weapon_admin" ) )
+		pKV = new KeyValues( "WeaponData" );
+#endif
 	if ( !pKV )
 		return false;
 
@@ -369,8 +373,25 @@ bool ReadCustomWeaponDataFromFileForSlot( IFileSystem* filesystem, const char *s
 // FileWeaponInfo_t implementation.
 //-----------------------------------------------------------------------------
 
+#ifdef MAPBASE
+float FileWeaponInfo_t::GetAdminSetting( const char *key, float fallback, float minimum, float maximum ) const
+{
+	if ( !m_adminSettings )
+		return fallback;
+
+	const char *value = m_adminSettings->GetString( key, "" );
+	char *end;
+	const double parsed = strtod( value, &end );
+	return end != value && *end == '\0' && parsed >= minimum && parsed <= maximum
+		? static_cast<float>( parsed ) : fallback;
+}
+#endif
+
 FileWeaponInfo_t::FileWeaponInfo_t()
 {
+#ifdef MAPBASE
+	m_adminSettings = NULL;
+#endif
 	bParsedScript = false;
 	bLoadedHudElements = false;
 	szClassName[0] = 0;
@@ -438,8 +459,55 @@ const char* pWeaponRestrictions[NUM_WEAPON_RESTRICTION_TYPES] = {
 };
 #endif // MAPBASE
 
+FileWeaponInfo_t::~FileWeaponInfo_t()
+{
+#ifdef MAPBASE
+	if ( m_adminSettings )
+		m_adminSettings->deleteThis();
+#endif
+}
+
 void FileWeaponInfo_t::Parse( KeyValues *pKeyValuesData, const char *szWeaponName )
 {
+#ifdef MAPBASE
+	if ( !Q_stricmp( szWeaponName, "weapon_admin" ) )
+	{
+		KeyValues *defaults = new KeyValues( "WeaponData" );
+		defaults->SetString( "printname", "Admin SMG" );
+		defaults->SetString( "viewmodel", "models/weapons/v_smg1.mdl" );
+		defaults->SetString( "playermodel", "models/weapons/w_smg1.mdl" );
+		defaults->SetString( "anim_prefix", "smg1" );
+		defaults->SetInt( "bucket", 2 );
+#ifdef EZ2
+		// EZ2 also uses this bucket for the SMG2 and prototype AR2.
+		defaults->SetInt( "bucket_position", 4 );
+#else
+		defaults->SetInt( "bucket_position", 2 );
+		defaults->SetInt( "bucket_position_360", 3 );
+#endif
+		defaults->SetInt( "autoswitchfrom", 0 );
+		defaults->SetInt( "weight", 5 );
+		const bool hasOverrides = pKeyValuesData->GetFirstSubKey() != NULL;
+		pKeyValuesData->RecursiveMergeKeyValues( defaults );
+		defaults->deleteThis();
+
+		// The attack paths and HUD assume this weapon has no ammo or clips.
+		pKeyValuesData->SetString( "primary_ammo", "None" );
+		pKeyValuesData->SetString( "secondary_ammo", "None" );
+		pKeyValuesData->SetInt( "clip_size", WEAPON_NOCLIP );
+		pKeyValuesData->SetInt( "clip2_size", WEAPON_NOCLIP );
+		pKeyValuesData->SetInt( "default_clip", WEAPON_NOCLIP );
+		pKeyValuesData->SetInt( "default_clip2", WEAPON_NOCLIP );
+
+		if ( m_adminSettings )
+			m_adminSettings->deleteThis();
+		KeyValues *settings = pKeyValuesData->FindKey( "AdminAttack" );
+		m_adminSettings = settings ? settings->MakeCopy() : NULL;
+		if ( developer.GetInt() )
+			DevMsg( "[weapon_admin] configuration: %s\n", hasOverrides ? "script over C++ defaults" : "C++ defaults" );
+	}
+#endif
+
 	// Okay, we tried at least once to look this up...
 	bParsedScript = true;
 
