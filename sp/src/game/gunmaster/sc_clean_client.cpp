@@ -5,7 +5,15 @@
 #include "igamesystem.h"
 #include "usermessages.h"
 #include "engine/ivmodelrender.h"
+#include "vgui/ISurface.h"
+#include "vgui_controls/Controls.h"
 #include "tier0/memdbgon.h"
+
+static void __MsgFunc_SCMenuClick( bf_read &message )
+{
+  // Use the same local UI audio path as menu buttons.
+  vgui::surface()->PlaySound( "ui/buttonclick.wav" );
+}
 
 static void __MsgFunc_SCClean( bf_read &message )
 {
@@ -31,6 +39,7 @@ public:
   bool Init() OVERRIDE
   {
     HOOK_MESSAGE( SCClean );
+    HOOK_MESSAGE( SCMenuClick );
     return true;
   }
 } s_CleanClient;

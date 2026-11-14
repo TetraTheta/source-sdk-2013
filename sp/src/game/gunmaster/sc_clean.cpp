@@ -52,7 +52,6 @@ public:
   CCleanConfig() : CAutoGameSystem( "CleanConfig" ), m_loaded( false ) {}
   void LevelInitPreEntity() OVERRIDE
   {
-    CBaseEntity::PrecacheSound( "UI/buttonclick.wav" );
     if ( m_loaded ) return;
     m_loaded = true;
     KeyValues *config = new KeyValues( "Clean" );
@@ -209,7 +208,9 @@ public:
       m_hint->KeyValue( "message", m_message );
       m_hint->AcceptInput( "ShowHudHint", player, this, variant_t(), 0 );
       CSingleUserRecipientFilter filter( player );
-      EmitSound( filter, player->entindex(), "UI/buttonclick.wav" );
+      filter.MakeReliable();
+      UserMessageBegin( filter, "SCMenuClick" );
+      MessageEnd();
       m_showPending = false;
       SetNextThink( gpGlobals->curtime + 3.0f );
     }
