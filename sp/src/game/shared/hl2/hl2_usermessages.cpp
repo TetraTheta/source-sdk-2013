@@ -57,4 +57,7 @@ void RegisterUserMessages( void )
 	// NVNT register haptic user messages
 	RegisterHapticMessages();
 #endif
+#ifdef MAPBASE
+	usermessages->Register( "SCMenuClick", 0 );
+#endif
 }

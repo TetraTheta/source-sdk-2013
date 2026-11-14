@@ -196,7 +196,6 @@ void CWeaponAdmin::Spawn()
 void CWeaponAdmin::Precache()
 {
 	BaseClass::Precache();
-	PrecacheSound( "UI/buttonclick.wav" );
 	UTIL_PrecacheOther( "env_explosion" );
 	UTIL_PrecacheOther( "crossbow_bolt" );
 	UTIL_PrecacheOther( "prop_combine_ball" );
@@ -443,9 +442,9 @@ void CWeaponAdmin::ItemPostFrame()
 	{
 		m_mode = ( m_mode + 1 ) % MODE_COUNT;
 		CSingleUserRecipientFilter filter( player );
-		// Mode switching is server-only, so the client cannot predict this click.
-		filter.SetIgnorePredictionCull( true );
-		EmitSound( filter, player->entindex(), "UI/buttonclick.wav" );
+		filter.MakeReliable();
+		UserMessageBegin( filter, "SCMenuClick" );
+		MessageEnd();
 		if ( developer.GetInt() )
 			DevMsg( "[weapon_admin] mode: %s\n", s_ModeNames[m_mode] );
 
