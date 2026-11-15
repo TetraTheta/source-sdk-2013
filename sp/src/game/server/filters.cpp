@@ -1594,18 +1594,18 @@ class CBaseFilterRedirect : public CBaseFilter
 	DECLARE_CLASS( CBaseFilterRedirect, CBaseFilter );
 
 public:
-	inline CBaseEntity *GetTargetFilter()
+	inline CBaseFilter *GetTargetFilter()
 	{
 		// Yes, this hijacks damage filter functionality.
 		// It's not like it was using it before anyway.
-		return m_hDamageFilter.Get();
+		return GetDamageFilter();
 	}
 
 	bool RedirectToFilter( CBaseEntity *pCaller, CBaseEntity *pEntity )
 	{
 		if (GetTargetFilter() && pEntity)
 		{
-			CBaseFilter *pFilter = static_cast<CBaseFilter*>(GetTargetFilter());
+			CBaseFilter *pFilter = GetTargetFilter();
 			return pFilter->PassesFilter(pCaller, pEntity);
 		}
 
@@ -1616,7 +1616,7 @@ public:
 	{
 		if (GetTargetFilter())
 		{
-			CBaseFilter *pFilter = static_cast<CBaseFilter*>(GetTargetFilter());
+			CBaseFilter *pFilter = GetTargetFilter();
 			return pFilter->PassesDamageFilter(pCaller, info);
 		}
 
@@ -1637,7 +1637,7 @@ public:
 	{
 		if (GetTargetFilter())
 		{
-			CBaseFilter *pFilter = static_cast<CBaseFilter*>(GetTargetFilter());
+			CBaseFilter *pFilter = GetTargetFilter();
 			return pFilter->BloodAllowed(pCaller, info);
 		}
 
@@ -1648,7 +1648,7 @@ public:
 	{
 		if (GetTargetFilter())
 		{
-			CBaseFilter *pFilter = static_cast<CBaseFilter*>(GetTargetFilter());
+			CBaseFilter *pFilter = GetTargetFilter();
 			return pFilter->DamageMod( pCaller, info );
 		}
 
