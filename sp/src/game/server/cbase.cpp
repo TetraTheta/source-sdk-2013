@@ -1053,11 +1053,7 @@ void CEventQueue::ServiceEvents( void )
 			
 			char szBuffer[256];
 			Q_snprintf( szBuffer, sizeof(szBuffer), "unhandled input: (%s) -> (%s), from (%s,%s); target entity not found\n", STRING(pe->m_iTargetInput), STRING(pe->m_iTarget), pClass, pName );
-#ifdef MAPBASE
-			CGMsg( 2, CON_GROUP_IO_SYSTEM, "%s", szBuffer );
-#else
-			DevMsg( 2, "%s", szBuffer );
-#endif
+			Warning( "%s", szBuffer );
 			ADD_DEBUG_HISTORY( HISTORY_ENTITY_IO, szBuffer );
 		}
 

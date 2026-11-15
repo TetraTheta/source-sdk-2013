@@ -611,7 +611,7 @@ END_DATADESC()
 //-----------------------------------------------------------------------------
 inline CBaseFilter *CLogicMeasureDirection::GetTraceFilter()
 {
-	return static_cast<CBaseFilter*>(m_hDamageFilter.Get()); // pranked
+	return GetDamageFilter();
 }
 
 //-----------------------------------------------------------------------------

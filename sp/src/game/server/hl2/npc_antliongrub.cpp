@@ -663,13 +663,9 @@ void CAntlionGrub::GrubTouch( CBaseEntity *pOther )
 	if ( pOther->IsPlayer() || FClassnameIs(pOther,"npc_vortigaunt") || ( pPhysOther && (pPhysOther->GetGameFlags() & FVPHYSICS_WAS_THROWN )) )
 	{
 #ifdef MAPBASE
-		if (m_hDamageFilter)
-		{
-			// Don't squash if they don't pass our damage filter
-			CBaseFilter *pFilter = static_cast<CBaseFilter*>(m_hDamageFilter.Get());
-			if (pFilter && !pFilter->PassesFilter(this, pOther))
-				return;
-		}
+		CBaseFilter *pFilter = GetDamageFilter();
+		if (pFilter && !pFilter->PassesFilter(this, pOther))
+			return;
 #endif
 
 		m_OnAgitated.FireOutput( pOther, pOther );
