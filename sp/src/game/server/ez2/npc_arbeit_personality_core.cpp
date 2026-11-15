@@ -249,7 +249,8 @@ int CNPC_Arbeit_PersonalityCore::OnTakeDamage( const CTakeDamageInfo &info )
 		SpeakIfAllowed( TLK_WOUND, modifiers );
 	}
 
-	if (bTriggerHurt || (m_hDamageFilter && static_cast<CBaseFilter*>(m_hDamageFilter.Get())->PassesDamageFilter(info)))
+	CBaseFilter *pFilter = GetDamageFilter();
+	if (bTriggerHurt || (pFilter && pFilter->PassesDamageFilter(info)))
 	{
 		// Slowly take damage from trigger_hurts! (or anyone who passes our damage filter if we have one)
 		m_iHealth -= info.GetDamage();

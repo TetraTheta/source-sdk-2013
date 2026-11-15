@@ -28,6 +28,7 @@
 #include "vscript/ivscript.h"
 #include "vscript_server.h"
 
+class CBaseFilter;
 class CDamageModifier;
 class CDmgAccumulator;
 
@@ -1099,6 +1100,7 @@ public:
 
 	// Call this to do a TraceAttack on an entity, performs filtering. Don't call TraceAttack() directly except when chaining up to base class
 	void			DispatchTraceAttack( const CTakeDamageInfo &info, const Vector &vecDir, trace_t *ptr, CDmgAccumulator *pAccumulator = NULL );
+	CBaseFilter *GetDamageFilter();
 	virtual bool	PassesDamageFilter( const CTakeDamageInfo &info );
 #ifdef MAPBASE
 	// Special filter functions made for the "damage" family of filters, including filter_damage_transfer.

@@ -326,7 +326,7 @@ public:
 	inline bool	IsInScannablePosition( CAI_BaseNPC *pNPC, Vector &vecToNPC, Vector &vecForward ) { return DotProduct( vecToNPC, vecForward ) < -0.10f && FVisible( pNPC, MASK_SOLID_BRUSHONLY ); }
 
 	// Just hijack the damage filter
-	inline bool	CanPassScan( CAI_BaseNPC *pNPC ) { return m_hDamageFilter ? static_cast<CBaseFilter*>(m_hDamageFilter.Get())->PassesFilter(this, pNPC) : true; }
+	inline bool	CanPassScan( CAI_BaseNPC *pNPC ) { CBaseFilter *pFilter = GetDamageFilter(); return pFilter ? pFilter->PassesFilter(this, pNPC) : true; }
 
 	CAI_BaseNPC *FindMatchingNPC( float flRadiusSqr );
 

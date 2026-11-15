@@ -883,7 +883,7 @@ END_DATADESC()
 //------------------------------------------------------------------------------
 bool CAI_DynamicLinkFilter::UseAllowed(CAI_BaseNPC *pNPC, bool bFromEnd)
 {
-	if ( !m_hDamageFilter )
+	if ( !m_hDamageFilter && m_iszDamageFilterName != NULL_STRING )
 	{
 		m_hDamageFilter = gEntList.FindEntityByName( NULL, m_iszDamageFilterName );
 		if (!m_hDamageFilter)
@@ -893,7 +893,9 @@ bool CAI_DynamicLinkFilter::UseAllowed(CAI_BaseNPC *pNPC, bool bFromEnd)
 		}
 	}
 
-	CBaseFilter *pFilter = (CBaseFilter *)(m_hDamageFilter.Get());
+	CBaseFilter *pFilter = GetDamageFilter();
+	if ( !pFilter )
+		return BaseClass::UseAllowed(pNPC, bFromEnd);
 
 	if (m_bNormalWhenEnabled)
 		return (m_nLinkState == LINK_OFF) ? (pFilter->PassesFilter(this, pNPC) || BaseClass::UseAllowed(pNPC, bFromEnd)) : true;
