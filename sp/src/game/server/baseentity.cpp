@@ -1418,6 +1418,16 @@ CBaseEntityOutput *CBaseEntity::FindNamedOutput( const char *pszOutput )
 	return NULL;
 }
 
+static void ReportInvalidDamageFilter( CBaseEntity *pOwner, string_t name, CBaseEntity *pTarget, const char *pAction, CBaseEntity *pCaller = NULL )
+{
+	Warning(
+		"!! ERROR: bad input/output link:\n!! Target Entity: %s (%s), Field: damagefilter, Reference: \"%s\"\n"
+		"!! Expected CBaseFilter, found %s. %s\n!! From: %s (%s)\n",
+		pOwner->GetClassname(), pOwner->GetDebugName(), STRING(name),
+		pTarget ? pTarget->GetClassname() : "<entity not found>", pAction,
+		pCaller ? pCaller->GetClassname() : "<none>", pCaller ? pCaller->GetDebugName() : "<none>" );
+}
+
 void CBaseEntity::Activate( void )
 {
 #ifdef DEBUG
@@ -1441,7 +1451,14 @@ void CBaseEntity::Activate( void )
 	// Get a handle to my damage filter entity if there is one.
 	if ( m_iszDamageFilterName != NULL_STRING )
 	{
-		m_hDamageFilter = gEntList.FindEntityByName( NULL, m_iszDamageFilterName );
+		CBaseEntity *pEntity = gEntList.FindEntityByName( NULL, m_iszDamageFilterName );
+		m_hDamageFilter = dynamic_cast<CBaseFilter *>(pEntity);
+		if ( !m_hDamageFilter )
+		{
+			ReportInvalidDamageFilter( this, m_iszDamageFilterName, pEntity, "Invalid initial filter cleared." );
+			m_iszDamageFilterName = NULL_STRING;
+		}
+		Assert( !m_hDamageFilter || dynamic_cast<CBaseFilter *>(m_hDamageFilter.Get()) );
 	}
 
 	// Add any non-null context strings to our context vector
@@ -3629,14 +3646,27 @@ TraceAttack
 ================
 */
 
+CBaseFilter *CBaseEntity::GetDamageFilter()
+{
+	CBaseEntity *pEntity = m_hDamageFilter.Get();
+	CBaseFilter *pFilter = dynamic_cast<CBaseFilter *>(pEntity);
+	if ( pEntity && !pFilter )
+	{
+		ReportInvalidDamageFilter( this, m_iszDamageFilterName, pEntity, "Invalid filter cleared before use." );
+		m_hDamageFilter = NULL;
+		m_iszDamageFilterName = NULL_STRING;
+	}
+	return pFilter;
+}
+
 //-----------------------------------------------------------------------------
 // Purpose: Returns whether a damage info can damage this entity.
 //-----------------------------------------------------------------------------
 bool CBaseEntity::PassesDamageFilter( const CTakeDamageInfo &info )
 {
-	if (m_hDamageFilter)
+	CBaseFilter *pFilter = GetDamageFilter();
+	if ( pFilter )
 	{
-		CBaseFilter *pFilter = (CBaseFilter *)(m_hDamageFilter.Get());
 #ifdef MAPBASE
 		return pFilter->PassesDamageFilter(this, info);
 #else
@@ -3657,9 +3687,9 @@ bool CBaseEntity::PassesFinalDamageFilter( const CTakeDamageInfo &info )
 	if (!PassesDamageFilter(info))
 		return false;
 
-	if (m_hDamageFilter)
+	CBaseFilter *pFilter = GetDamageFilter();
+	if ( pFilter )
 	{
-		CBaseFilter *pFilter = (CBaseFilter *)(m_hDamageFilter.Get());
 		if (!pFilter->PassesFinalDamageFilter(this, info))
 		{
 			return false;
@@ -3674,9 +3704,9 @@ bool CBaseEntity::PassesFinalDamageFilter( const CTakeDamageInfo &info )
 //-----------------------------------------------------------------------------
 bool CBaseEntity::DamageFilterAllowsBlood( const CTakeDamageInfo &info )
 {
-	if (m_hDamageFilter)
+	CBaseFilter *pFilter = GetDamageFilter();
+	if ( pFilter )
 	{
-		CBaseFilter *pFilter = (CBaseFilter *)(m_hDamageFilter.Get());
 		if (!pFilter->BloodAllowed(this, info))
 		{
 			return false;
@@ -3691,9 +3721,9 @@ bool CBaseEntity::DamageFilterAllowsBlood( const CTakeDamageInfo &info )
 //-----------------------------------------------------------------------------
 bool CBaseEntity::DamageFilterDamageMod( CTakeDamageInfo &info )
 {
-	if (m_hDamageFilter)
+	CBaseFilter *pFilter = GetDamageFilter();
+	if ( pFilter )
 	{
-		CBaseFilter *pFilter = (CBaseFilter *)(m_hDamageFilter.Get());
 		if (pFilter->DamageMod(this, info))
 		{
 			return true;
@@ -4679,7 +4709,7 @@ bool CBaseEntity::AcceptInput( const char *szInputName, CBaseEntity *pActivator,
 
 								if (bBadConversion)
 								{
-									Warning( "!! ERROR: bad input/output link:\n!! Unable to convert value \"%s\" from %s (%s) to field type %i\n!! Target Entity: %s (%s), Input: %s\n", 
+									Warning( "!! ERROR: bad input/output link:\n!! Unable to convert value \"%s\" from %s (%s) to field type %i\n!! Target Entity: %s (%s), Input: %s\n",
 										Value.GetDebug(),
 										( pCaller != NULL ) ? STRING(pCaller->m_iClassname) : "<null>",
 										( pCaller != NULL ) ? STRING(pCaller->m_iName.Get()) : "<null>",
@@ -4692,7 +4722,7 @@ bool CBaseEntity::AcceptInput( const char *szInputName, CBaseEntity *pActivator,
 							if ( !Value.Convert( (fieldtype_t)dmap->dataDesc[i].fieldType ) )
 							{
 								// bad conversion
-								Warning( "!! ERROR: bad input/output link:\n!! %s(%s,%s) doesn't match type from %s(%s)\n", 
+								Warning( "!! ERROR: bad input/output link:\n!! %s(%s,%s) doesn't match type from %s(%s)\n",
 									STRING(m_iClassname), GetDebugName(), szInputName, 
 									( pCaller != NULL ) ? STRING(pCaller->m_iClassname) : "<null>",
 									( pCaller != NULL ) ? STRING(pCaller->m_iName.Get()) : "<null>" );
@@ -4775,11 +4805,9 @@ bool CBaseEntity::AcceptInput( const char *szInputName, CBaseEntity *pActivator,
 	}
 #endif
 
-#ifdef MAPBASE
-	CGMsg( 2, CON_GROUP_IO_SYSTEM, "unhandled input: (%s) -> (%s,%s)\n", szInputName, STRING(m_iClassname), GetDebugName() );
-#else
-	DevMsg( 2, "unhandled input: (%s) -> (%s,%s)\n", szInputName, STRING(m_iClassname), GetDebugName()/*,", from (%s,%s)" STRING(pCaller->m_iClassname), STRING(pCaller->m_iName.Get())*/ );
-#endif
+	Warning( "unhandled input: (%s) -> (%s,%s), from (%s,%s); input not found\n",
+		szInputName, STRING(m_iClassname), GetDebugName(),
+		pCaller ? pCaller->GetClassname() : "<null>", pCaller ? pCaller->GetDebugName() : "<null>" );
 	return false;
 }
 
@@ -4959,16 +4987,27 @@ void CBaseEntity::InputDisableDamageForces( inputdata_t &inputdata )
 //-----------------------------------------------------------------------------
 void CBaseEntity::InputSetDamageFilter( inputdata_t &inputdata )
 {
-	// Get a handle to my damage filter entity if there is one.
-	m_iszDamageFilterName = inputdata.value.StringID();
-	if ( m_iszDamageFilterName != NULL_STRING )
+	string_t name = inputdata.value.StringID();
+	CBaseFilter *pFilter = NULL;
+	if ( name != NULL_STRING && STRING(name)[0] != '\0' )
 	{
-		m_hDamageFilter = gEntList.FindEntityByName( NULL, m_iszDamageFilterName );
+		CBaseEntity *pEntity = gEntList.FindEntityByName( NULL, name );
+		pFilter = dynamic_cast<CBaseFilter *>(pEntity);
+		if ( !pFilter )
+		{
+			ReportInvalidDamageFilter( this, name, pEntity, "SetDamageFilter rejected; current filter unchanged.", inputdata.pCaller );
+			return;
+		}
 	}
 	else
 	{
-		m_hDamageFilter = NULL;
+		name = NULL_STRING;
 	}
+
+	// Commit both fields only after the new reference has passed validation.
+	m_iszDamageFilterName = name;
+	m_hDamageFilter = pFilter;
+	Assert( !m_hDamageFilter || dynamic_cast<CBaseFilter *>(m_hDamageFilter.Get()) );
 }
 
 //-----------------------------------------------------------------------------

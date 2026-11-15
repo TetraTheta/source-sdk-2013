@@ -4955,9 +4955,9 @@ void CLogicPlayerProxy::NotifyPlayerHasProxy()
 
 bool CLogicPlayerProxy::PassesDamageFilter( const CTakeDamageInfo &info )
 {
-	if (m_hDamageFilter)
+	CBaseFilter *pFilter = GetDamageFilter();
+	if ( pFilter )
 	{
-		CBaseFilter *pFilter = (CBaseFilter *)(m_hDamageFilter.Get());
 #ifdef MAPBASE
 		return pFilter->PassesDamageFilter(m_hPlayer.Get(), info);
 #else
