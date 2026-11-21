@@ -1,0 +1,58 @@
+{
+  "targets": [
+    {
+      "name": "Pickup.KeepSprint",
+      "pattern": "6A 00 8B CF E8 ?? ?? ?? ?? 8B 45 0C 83 B8 DC 01 00 00 01 75 09 6A 03",
+      "edit_offset": 0,
+      "replacement": "EB 07 90 90"
+    },
+    {
+      "name": "Physcannon.SkipCarrySlowdown",
+      "pattern": "6A 00 E8 ?? ?? ?? ?? A1 ?? ?? ?? ?? 0F 57 DB F3 0F 10 86 24 06 00 00 51 8B 4D F8 F3 0F 5E 40 2C A1 ?? ?? ?? ?? F3 0F 10 50 2C A1 ?? ?? ?? ?? F3 0F 10 D8 F3 0F 10 05 ?? ?? ?? ?? F3 0F 5F D8 F3 0F 10 05 ?? ?? ?? ?? F3 0F 10 48 2C F3 0F 5C CA F3 0F 5D D8 F3 0F 5C C3 F3 0F 59 C8 F3 0F 58 CA F3 0F 11 0C 24 E8 ?? ?? ?? ??",
+      "edit_offset": 0,
+      "replacement": "EB 68 90 90"
+    },
+    {
+      "name": "Physcannon.KeepDropSpeed",
+      "pattern": "6A 01 8B CE E8 ?? ?? ?? ?? A1 ?? ?? ?? ?? 8D 4D FC F3 0F 10 40 2C 8B 86 BC 0D 00 00 F3 0F 11 45 FC F3 0F 11 45 F8 3B 01 74 32 8B CE 80 79 54 00 74 06 80 49 58 01 EB 1C 8B 51 18 85 D2 74 15 8D 86 BC 0D 00 00 2B C1 8B CA 50 E8 ?? ?? ?? ?? F3 0F 10 45 F8 F3 0F 11 86 BC 0D 00 00",
+      "edit_offset": 14,
+      "replacement": "EB 4C 90 90"
+    },
+    {
+      "name": "Achievements.IgnoreCheatHistory",
+      "pattern": "8B 47 14 8D 4F 14 8B 40 28 FF D0 84 C0 74 3E",
+      "edit_offset": 11,
+      "replacement": "84 C0 EB 3E"
+    },
+    {
+      "name": "Commands.God",
+      "pattern": "A1 ?? ?? ?? ?? 8B 40 1C 83 78 30 00 74 6A 56 E8 ?? ?? ?? ?? 8B F0 85 F6 74 5D 8B 16 8B CE 8B 92 40 01 00 00 FF D2 84 C0 74 4D A1 ?? ?? ?? ?? 80 78 4D 00 75 42 68 00 40 00 00 8B CE E8 ?? ?? ?? ?? F7 86 04 01 00 00 00 40 00 00 6A 00 6A 00 6A 00 6A 00 75 12 68 ?? ?? ?? ?? 6A 02 56 E8 ?? ?? ?? ?? 83 C4 1C 5E C3 68 ?? ?? ?? ?? 6A 02 56 E8 ?? ?? ?? ?? 83 C4 1C 5E C3"
+    },
+    {
+      "name": "Commands.Noclip",
+      "pattern": "55 8B EC A1 ?? ?? ?? ?? 83 EC 30 8B 40 1C 83 78 30 00 0F 84 8D 01 00 00 56 E8 ?? ?? ?? ?? 8B F0 85 F6 0F 84 7C 01 00 00 8B 16 8B CE 8B 92 40 01 00 00 FF D2 84 C0 0F 84 68 01 00 00 80 BE 3A 01 00 00 08 74 0E 56 E8 ?? ?? ?? ??"
+    },
+    {
+      "name": "Commands.GetPlayer",
+      "pattern": "A1 ?? ?? ?? ?? 40 85 C0 7E 0A 50 E8 ?? ?? ?? ?? 83 C4 04 C3 33 C0 C3"
+    },
+    {
+      "name": "Commands.Dispatch",
+      "pattern": "55 8B EC 8A 41 20 A8 02 74 13 8B 41 18 85 C0 74 25 FF 75 08 FF D0 83 C4 04 5D C2 04 00 A8 04 74 0C 8B 49 18 85 C9 74 0E 8B 01 5D FF 20 8B 41 18 85 C0 74 02 FF D0 5D C2",
+      "class": "ConCommand",
+      "slot": 12
+    },
+    {
+      "name": "Sprint.PreThinkStickyDuck",
+      "pattern": "80 BF AC 08 00 00 00 74 0B 8B CF E8 ?? ?? ?? ?? 85 C0 75 66",
+      "edit_offset": 0,
+      "replacement": "EB 12 90 90"
+    },
+    {
+      "name": "Sprint.PreThinkDuck",
+      "pattern": "80 BF 5C 11 00 00 00 74 28 8B 87 80 0A 00 00 C1 E8 02 A8 01 74 1B 80 BF AC 08 00 00 00 74 12 8B CF E8 ?? ?? ?? ?? 85 C0 74 07 8B CF E8 ?? ?? ?? ??",
+      "edit_offset": 0,
+      "replacement": "EB 2F 90 90"
+    }
+  ]
+}

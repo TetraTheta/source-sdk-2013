@@ -1,0 +1,41 @@
+{
+  "baseline_sha256": "7ce0bb2567bdb6d06306cdc0b5c2d31ba176759727d5d0c9a0ca8c6829cf9b3e",
+  "build_id": "19307283",
+  "module": "hl2_complete/bin/server.dll",
+  "runtime_verified": false,
+  "provenance": "Ghidra disassembly; HIGHLOW relocations and relative CALL/JMP operands masked. Slot indices are build-specific, zero-based.",
+  "targets": [
+    {
+      "name": "SMG1.GetBulletSpread",
+      "class": "CWeaponSMG1",
+      "slot": 280,
+      "baseline_rva": "0x429490",
+      "length": 53,
+      "pattern": "A1 ?? ?? ?? ?? A8 01 75 26 83 C8 01 C7 05 ?? ?? ?? ?? E3 AA 32 3D A3 ?? ?? ?? ?? C7 05 ?? ?? ?? ?? E3 AA 32 3D C7 05 ?? ?? ?? ?? E3 AA 32 3D B8 ?? ?? ?? ?? C3"
+    },
+    {
+      "name": "AR2.GetBulletSpread",
+      "class": "CWeaponAR2",
+      "slot": 280,
+      "baseline_rva": "0x4103d0",
+      "length": 53,
+      "pattern": "A1 ?? ?? ?? ?? A8 01 75 08 83 C8 01 A3 ?? ?? ?? ?? C7 05 ?? ?? ?? ?? 70 77 D6 3C B8 ?? ?? ?? ?? C7 05 ?? ?? ?? ?? 70 77 D6 3C C7 05 ?? ?? ?? ?? 70 77 D6 3C C3"
+    },
+    {
+      "name": "SMG1.AddViewKick",
+      "class": "CWeaponSMG1",
+      "slot": 297,
+      "baseline_rva": "0x4291f0",
+      "length": 81,
+      "pattern": "56 57 8B F9 E8 ?? ?? ?? ?? 8B F0 85 F6 74 3F 8B 16 8B CE 8B 92 40 01 00 00 FF D2 84 C0 74 2F D9 05 ?? ?? ?? ?? 83 EC 10 D9 5C 24 0C D9 87 CC 04 00 00 D9 5C 24 08 D9 E8 D9 5C 24 04 D9 05 ?? ?? ?? ?? D9 1C 24 56 E8 ?? ?? ?? ?? 83 C4 14 5F 5E C3"
+    },
+    {
+      "name": "AR2.AddViewKick",
+      "class": "CWeaponAR2",
+      "slot": 297,
+      "baseline_rva": "0x40f9e0",
+      "length": 149,
+      "pattern": "55 8B EC 83 EC 08 56 57 8B F9 E8 ?? ?? ?? ?? 8B F0 85 F6 74 7A 8B 16 8B CE 8B 92 40 01 00 00 FF D2 84 C0 74 6A 8B 0D ?? ?? ?? ?? F3 0F 10 87 CC 04 00 00 F3 0F 11 45 F8 F3 0F 11 45 FC 8B 01 FF 90 F8 00 00 00 83 F8 02 75 15 F3 0F 10 05 ?? ?? ?? ?? 0F 2F 45 F8 77 07 C7 45 FC 00 00 40 3F D9 05 ?? ?? ?? ?? 83 EC 10 D9 5C 24 0C D9 45 FC D9 5C 24 08 D9 05 ?? ?? ?? ?? D9 5C 24 04 D9 05 ?? ?? ?? ?? D9 1C 24 56 E8 ?? ?? ?? ?? 83 C4 14 5F 5E 8B E5 5D C3"
+    }
+  ]
+}

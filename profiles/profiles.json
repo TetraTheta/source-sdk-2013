@@ -1,0 +1,2820 @@
+{
+  "build_id": "19307283",
+  "review_status": "STATIC_REVIEWED_RUNTIME_UNVERIFIED",
+  "profiles": [
+    {
+      "name": "hl2_complete",
+      "runtime_verified": false,
+      "server_sha256": "7ce0bb2567bdb6d06306cdc0b5c2d31ba176759727d5d0c9a0ca8c6829cf9b3e",
+      "client_sha256": "f0b1a5ae4d758bc95a009bdf605b4fe481b5438f0a4cf22ef7f998afc14e8874",
+      "engine_sha256": "6a277234ae8edb4939ed7ef45a27499210f14db3a7f6a9e7e83540492b638d6e",
+      "targets": [
+        {
+          "name": "SMG1.GetBulletSpread",
+          "rva": 4363408,
+          "pattern": "A1 ?? ?? ?? ?? A8 01 75 26 83 C8 01 C7 05 ?? ?? ?? ?? E3 AA 32 3D A3 ?? ?? ?? ?? C7 05 ?? ?? ?? ?? E3 AA 32 3D C7 05 ?? ?? ?? ?? E3 AA 32 3D B8 ?? ?? ?? ?? C3",
+          "vtable": 6098084,
+          "slot": 280
+        },
+        {
+          "name": "AR2.GetBulletSpread",
+          "rva": 4260816,
+          "pattern": "A1 ?? ?? ?? ?? A8 01 75 08 83 C8 01 A3 ?? ?? ?? ?? C7 05 ?? ?? ?? ?? 70 77 D6 3C B8 ?? ?? ?? ?? C7 05 ?? ?? ?? ?? 70 77 D6 3C C7 05 ?? ?? ?? ?? 70 77 D6 3C C3",
+          "vtable": 6068128,
+          "slot": 280
+        },
+        {
+          "name": "SMG1.AddViewKick",
+          "rva": 4362736,
+          "pattern": "56 57 8B F9 E8 ?? ?? ?? ?? 8B F0 85 F6 74 3F 8B 16 8B CE 8B 92 40 01 00 00 FF D2 84 C0 74 2F D9 05 ?? ?? ?? ?? 83 EC 10 D9 5C 24 0C D9 87 CC 04 00 00 D9 5C 24 08 D9 E8 D9 5C 24 04 D9 05 ?? ?? ?? ?? D9 1C 24 56 E8 ?? ?? ?? ?? 83 C4 14 5F 5E C3",
+          "vtable": 6098084,
+          "slot": 297
+        },
+        {
+          "name": "AR2.AddViewKick",
+          "rva": 4258272,
+          "pattern": "55 8B EC 83 EC 08 56 57 8B F9 E8 ?? ?? ?? ?? 8B F0 85 F6 74 7A 8B 16 8B CE 8B 92 40 01 00 00 FF D2 84 C0 74 6A 8B 0D ?? ?? ?? ?? F3 0F 10 87 CC 04 00 00 F3 0F 11 45 F8 F3 0F 11 45 FC 8B 01 FF 90 F8 00 00 00 83 F8 02 75 15 F3 0F 10 05 ?? ?? ?? ?? 0F 2F 45 F8 77 07 C7 45 FC 00 00 40 3F D9 05 ?? ?? ?? ?? 83 EC 10 D9 5C 24 0C D9 45 FC D9 5C 24 08 D9 05 ?? ?? ?? ?? D9 5C 24 04 D9 05 ?? ?? ?? ?? D9 1C 24 56 E8 ?? ?? ?? ?? 83 C4 14 5F 5E 8B E5 5D C3",
+          "vtable": 6068128,
+          "slot": 297
+        },
+        {
+          "name": "357.Factory",
+          "rva": 4252704,
+          "pattern": "55 8B EC 56 68 6C 05 00 00 E8 ?? ?? ?? ?? 8B F0 83 C4 04 85 F6 74 2D 8B CE E8 ?? ?? ?? ?? FF 75 08 C7 06 ?? ?? ?? ?? 8B CE C6 86 C8 04 00 00 00 C6 86 B4 04 00 00 00 8B 06 FF 50 68 8D 46 0C 5E 5D C2 04 00 FF 75 08 33 F6 8B CE 8B 06 FF 50 68 8D 46 0C 5E 5D C2 04 00",
+          "vtable": 0,
+          "slot": 0,
+          "class_vtable": 6063400
+        },
+        {
+          "name": "Shotgun.Constructor",
+          "rva": 4357504,
+          "pattern": "56 8B F1 E8 ?? ?? ?? ?? C7 06 ?? ?? ?? ?? 8B C6 C6 86 C8 04 00 00 01 66 C7 86 6C 05 00 00 00 00 C6 86 6E 05 00 00 00 C7 86 B8 04 00 00 00 00 00 00 C7 86 C0 04 00 00 00 00 FA 43 C7 86 BC 04 00 00 00 00 00 00 C7 86 C4 04 00 00 00 00 48 43 5E C3",
+          "vtable": 0,
+          "slot": 0,
+          "class_vtable": 6096560
+        },
+        {
+          "name": "SMG1.Factory",
+          "rva": 4362832,
+          "pattern": "55 8B EC 56 68 8C 05 00 00 E8 ?? ?? ?? ?? 8B F0 83 C4 04 85 F6 74 3A 8B CE E8 ?? ?? ?? ?? FF 75 08 C7 06 ?? ?? ?? ?? 8B CE C7 86 B8 04 00 00 00 00 00 00 C7 86 C0 04 00 00 00 00 AF 44 C6 86 B5 04 00 00 00 8B 06 FF 50 68 8D 46 0C 5E 5D C2 04 00 FF 75 08 33 F6 8B CE 8B 06 FF 50 68 8D 46 0C 5E 5D C2 04 00",
+          "vtable": 0,
+          "slot": 0,
+          "class_vtable": 6098084
+        },
+        {
+          "name": "AR2.Constructor",
+          "rva": 4258144,
+          "pattern": "56 8B F1 E8 ?? ?? ?? ?? C7 06 ?? ?? ?? ?? 8B C6 C7 86 B8 04 00 00 00 00 82 42 C7 86 C0 04 00 00 00 00 00 45 C7 86 BC 04 00 00 00 00 80 43 C7 86 C4 04 00 00 00 00 80 44 C7 86 6C 05 00 00 00 00 00 00 C7 86 7C 05 00 00 FF FF FF FF C6 86 B5 04 00 00 00 5E C3",
+          "vtable": 0,
+          "slot": 0,
+          "class_vtable": 6068128
+        },
+        {
+          "name": "AR2.SecondaryAttack",
+          "rva": 4261440,
+          "pattern": "55 8B EC 51 56 8B F1 80 BE 78 05 00 00 00 0F 85 ?? ?? ?? ?? E8 ?? ?? ?? ?? 85 C0 74 59 8B CE E8 ?? ?? ?? ?? 80 B8 F7 01 00 00 03 75 49 8B 06 8B CE 68 B9 00 00 00 FF 90 AC 03 00 00 D9 EE 51 D9 1C 24 6A 00 8B CE E8 ?? ?? ?? ?? A1 ?? ?? ?? ?? 8D 8E 6C 04 00 00 F3 0F 10 40 0C 8D 45 FC",
+          "vtable": 6068128,
+          "slot": 273
+        },
+        {
+          "name": "SMG1.SecondaryAttack",
+          "rva": 4364224,
+          "pattern": "55 8B EC 83 EC 38 53 57 8B F9 E8 ?? ?? ?? ?? 8B D8 85 DB 0F 84 ?? ?? ?? ?? 8B 13 8B CB 8B 92 40 01 00 00 FF D2 84 C0 0F 84 ?? ?? ?? ?? 8B 03 8B CB FF B7 A8 04 00 00 FF 90 F8 03 00 00 85 C0 0F 8E ?? ?? ?? ?? 80 BB F7 01 00 00 03 0F 84 ?? ?? ?? ?? 80 BF 74 04 00 00 00 74 07",
+          "vtable": 6098084,
+          "slot": 273
+        },
+        {
+          "name": "AR2.DelayedAttack",
+          "rva": 4258528,
+          "pattern": "55 8B EC 83 EC 48 53 56 8B F1 C6 86 78 05 00 00 00 E8 ?? ?? ?? ?? 8B D8 89 5D F4 85 DB 0F 84 ?? ?? ?? ?? 8B 13 8B CB 8B 92 40 01 00 00 FF D2 84 C0 0F 84 ?? ?? ?? ?? 8B 06 8B CE 57 68 B5 00 00 00 FF 90 AC 03 00 00 80 BE 2D 03 00 00 00 8B BE 8C 03 00 00 75 2A 83 BE 4C 04 00 00 00 75 12",
+          "vtable": 0,
+          "slot": 0
+        },
+        {
+          "name": "Pickup.KeepSprint",
+          "rva": 4304080,
+          "pattern": "6A 00 8B CF E8 ?? ?? ?? ?? 8B 45 0C 83 B8 DC 01 00 00 01 75 09 6A 03",
+          "vtable": 0,
+          "slot": 0
+        },
+        {
+          "name": "Physcannon.SkipCarrySlowdown",
+          "rva": 4286063,
+          "pattern": "6A 00 E8 ?? ?? ?? ?? A1 ?? ?? ?? ?? 0F 57 DB F3 0F 10 86 24 06 00 00 51 8B 4D F8 F3 0F 5E 40 2C A1 ?? ?? ?? ?? F3 0F 10 50 2C A1 ?? ?? ?? ?? F3 0F 10 D8 F3 0F 10 05 ?? ?? ?? ?? F3 0F 5F D8 F3 0F 10 05 ?? ?? ?? ?? F3 0F 10 48 2C F3 0F 5C CA F3 0F 5D D8 F3 0F 5C C3 F3 0F 59 C8 F3 0F 58 CA F3 0F 11 0C 24 E8 ?? ?? ?? ??",
+          "vtable": 0,
+          "slot": 0
+        },
+        {
+          "name": "Physcannon.KeepDropSpeed",
+          "rva": 4290123,
+          "pattern": "6A 01 8B CE E8 ?? ?? ?? ?? A1 ?? ?? ?? ?? 8D 4D FC F3 0F 10 40 2C 8B 86 BC 0D 00 00 F3 0F 11 45 FC F3 0F 11 45 F8 3B 01 74 32 8B CE 80 79 54 00 74 06 80 49 58 01 EB 1C 8B 51 18 85 D2 74 15 8D 86 BC 0D 00 00 2B C1 8B CA 50 E8 ?? ?? ?? ?? F3 0F 10 45 F8 F3 0F 11 86 BC 0D 00 00",
+          "vtable": 0,
+          "slot": 0
+        },
+        {
+          "name": "Achievements.IgnoreCheatHistory",
+          "rva": 125059,
+          "pattern": "8B 47 14 8D 4F 14 8B 40 28 FF D0 84 C0 74 3E",
+          "vtable": 0,
+          "slot": 0
+        },
+        {
+          "name": "Commands.God",
+          "rva": 1296240,
+          "pattern": "A1 ?? ?? ?? ?? 8B 40 1C 83 78 30 00 74 6A 56 E8 ?? ?? ?? ?? 8B F0 85 F6 74 5D 8B 16 8B CE 8B 92 40 01 00 00 FF D2 84 C0 74 4D A1 ?? ?? ?? ?? 80 78 4D 00 75 42 68 00 40 00 00 8B CE E8 ?? ?? ?? ?? F7 86 04 01 00 00 00 40 00 00 6A 00 6A 00 6A 00 6A 00 75 12 68 ?? ?? ?? ?? 6A 02 56 E8 ?? ?? ?? ?? 83 C4 1C 5E C3 68 ?? ?? ?? ?? 6A 02 56 E8 ?? ?? ?? ?? 83 C4 1C 5E C3",
+          "vtable": 0,
+          "slot": 0
+        },
+        {
+          "name": "Commands.Noclip",
+          "rva": 1296960,
+          "pattern": "55 8B EC A1 ?? ?? ?? ?? 83 EC 30 8B 40 1C 83 78 30 00 0F 84 8D 01 00 00 56 E8 ?? ?? ?? ?? 8B F0 85 F6 0F 84 7C 01 00 00 8B 16 8B CE 8B 92 40 01 00 00 FF D2 84 C0 0F 84 68 01 00 00 80 BE 3A 01 00 00 08 74 0E 56 E8 ?? ?? ?? ??",
+          "vtable": 0,
+          "slot": 0
+        },
+        {
+          "name": "Commands.GetPlayer",
+          "rva": 1612816,
+          "pattern": "A1 ?? ?? ?? ?? 40 85 C0 7E 0A 50 E8 ?? ?? ?? ?? 83 C4 04 C3 33 C0 C3",
+          "vtable": 0,
+          "slot": 0
+        },
+        {
+          "name": "Commands.Dispatch",
+          "rva": 4607264,
+          "pattern": "55 8B EC 8A 41 20 A8 02 74 13 8B 41 18 85 C0 74 25 FF 75 08 FF D0 83 C4 04 5D C2 04 00 A8 04 74 0C 8B 49 18 85 C9 74 0E 8B 01 5D FF 20 8B 41 18 85 C0 74 02 FF D0 5D C2",
+          "vtable": 6140448,
+          "slot": 12
+        },
+        {
+          "name": "Sprint.PreThinkStickyDuck",
+          "rva": 3042973,
+          "pattern": "80 BF AC 08 00 00 00 74 0B 8B CF E8 ?? ?? ?? ?? 85 C0 75 66",
+          "vtable": 0,
+          "slot": 0
+        },
+        {
+          "name": "Sprint.PreThinkDuck",
+          "rva": 3043053,
+          "pattern": "80 BF 5C 11 00 00 00 74 28 8B 87 80 0A 00 00 C1 E8 02 A8 01 74 1B 80 BF AC 08 00 00 00 74 12 8B CF E8 ?? ?? ?? ?? 85 C0 74 07 8B CF E8 ?? ?? ?? ??",
+          "vtable": 0,
+          "slot": 0
+        }
+      ],
+      "patches": [
+        {
+          "rva": 4363426,
+          "kind": "Scalar",
+          "before": 1026730723,
+          "after": 1007618118
+        },
+        {
+          "rva": 7403156,
+          "kind": "Cone",
+          "before": 1026730723,
+          "after": 1007618118
+        },
+        {
+          "rva": 4363441,
+          "kind": "Scalar",
+          "before": 1026730723,
+          "after": 1007618118
+        },
+        {
+          "rva": 7403160,
+          "kind": "Cone",
+          "before": 1026730723,
+          "after": 1007618118
+        },
+        {
+          "rva": 4363451,
+          "kind": "Scalar",
+          "before": 1026730723,
+          "after": 1007618118
+        },
+        {
+          "rva": 7403164,
+          "kind": "Cone",
+          "before": 1026730723,
+          "after": 1007618118
+        },
+        {
+          "rva": 4260839,
+          "kind": "Scalar",
+          "before": 1020688240,
+          "after": 1007618118
+        },
+        {
+          "rva": 7396916,
+          "kind": "Cone",
+          "before": 1020688240,
+          "after": 1007618118
+        },
+        {
+          "rva": 4260854,
+          "kind": "Scalar",
+          "before": 1020688240,
+          "after": 1007618118
+        },
+        {
+          "rva": 7396920,
+          "kind": "Cone",
+          "before": 1020688240,
+          "after": 1007618118
+        },
+        {
+          "rva": 4260864,
+          "kind": "Scalar",
+          "before": 1020688240,
+          "after": 1007618118
+        },
+        {
+          "rva": 7396924,
+          "kind": "Cone",
+          "before": 1020688240,
+          "after": 1007618118
+        },
+        {
+          "rva": 4362769,
+          "kind": "Pointer",
+          "before": 4883856,
+          "after": 4883792
+        },
+        {
+          "rva": 4258369,
+          "kind": "Pointer",
+          "before": 4901392,
+          "after": 4883792
+        },
+        {
+          "rva": 4258389,
+          "kind": "Pointer",
+          "before": 4883896,
+          "after": 4883888
+        },
+        {
+          "rva": 4252755,
+          "kind": "Scalar",
+          "before": 4,
+          "after": 16777220
+        },
+        {
+          "rva": 4357583,
+          "kind": "Scalar",
+          "before": 3435971422,
+          "after": 78939846
+        },
+        {
+          "rva": 4357587,
+          "kind": "Scalar",
+          "before": 3435973836,
+          "after": 3321954304
+        },
+        {
+          "rva": 4357591,
+          "kind": "Scalar",
+          "before": 3435973836,
+          "after": 308614
+        },
+        {
+          "rva": 4357595,
+          "kind": "Scalar",
+          "before": 3435973836,
+          "after": 3277717760
+        },
+        {
+          "rva": 4362893,
+          "kind": "Scalar",
+          "before": 79005382,
+          "after": 78939846
+        },
+        {
+          "rva": 4362897,
+          "kind": "Scalar",
+          "before": 2332033024,
+          "after": 3321954304
+        },
+        {
+          "rva": 4362901,
+          "kind": "Scalar",
+          "before": 1750138630,
+          "after": 308614
+        },
+        {
+          "rva": 4362905,
+          "kind": "Scalar",
+          "before": 1577862797,
+          "after": 109773056
+        },
+        {
+          "rva": 4362909,
+          "kind": "Scalar",
+          "before": 311901,
+          "after": 2372423935
+        },
+        {
+          "rva": 4362913,
+          "kind": "Scalar",
+          "before": 856192511,
+          "after": 1566444614
+        },
+        {
+          "rva": 4362917,
+          "kind": "Scalar",
+          "before": 2345569270,
+          "after": 4278191298
+        },
+        {
+          "rva": 4362921,
+          "kind": "Scalar",
+          "before": 1750138630,
+          "after": 4130539637
+        },
+        {
+          "rva": 4362925,
+          "kind": "Scalar",
+          "before": 1577862797,
+          "after": 109825675
+        },
+        {
+          "rva": 4362929,
+          "kind": "Scalar",
+          "before": 311901,
+          "after": 2372423935
+        },
+        {
+          "rva": 4362933,
+          "kind": "Scalar",
+          "before": 3435973836,
+          "after": 1566444614
+        },
+        {
+          "rva": 4362937,
+          "kind": "Scalar",
+          "before": 3435973836,
+          "after": 3422553282
+        },
+        {
+          "rva": 4362854,
+          "kind": "Scalar",
+          "before": 3905850170,
+          "after": 3905850177
+        },
+        {
+          "rva": 4258220,
+          "kind": "Scalar",
+          "before": 79005382,
+          "after": 78939846
+        },
+        {
+          "rva": 4258224,
+          "kind": "Scalar",
+          "before": 1577058304,
+          "after": 3321954304
+        },
+        {
+          "rva": 4258228,
+          "kind": "Scalar",
+          "before": 3435973827,
+          "after": 308614
+        },
+        {
+          "rva": 4258232,
+          "kind": "Scalar",
+          "before": 3435973836,
+          "after": 3277717760
+        },
+        {
+          "rva": 4261479,
+          "kind": "Scalar",
+          "before": 50331649,
+          "after": 67108865
+        },
+        {
+          "rva": 4364296,
+          "kind": "Scalar",
+          "before": 50331649,
+          "after": 67108865
+        },
+        {
+          "rva": 4258910,
+          "kind": "Pointer",
+          "before": 4991856,
+          "after": 4901488
+        },
+        {
+          "rva": 7336060,
+          "kind": "Pointer",
+          "before": 5620104,
+          "after": 5620104
+        },
+        {
+          "rva": 7336076,
+          "kind": "Pointer",
+          "before": 7336048,
+          "after": 7336048
+        },
+        {
+          "rva": 7336068,
+          "kind": "ClearFlags",
+          "before": 16384,
+          "after": 0
+        },
+        {
+          "rva": 4304080,
+          "kind": "Scalar",
+          "before": 3481993322,
+          "after": 2425358315
+        },
+        {
+          "rva": 4286063,
+          "kind": "Scalar",
+          "before": 451412074,
+          "after": 2425383147
+        },
+        {
+          "rva": 4290137,
+          "kind": "Scalar",
+          "before": 4093398413,
+          "after": 2425375979
+        },
+        {
+          "rva": 125070,
+          "kind": "Scalar",
+          "before": 1047838852,
+          "after": 1055637636
+        },
+        {
+          "rva": 3042973,
+          "kind": "Scalar",
+          "before": 145538944,
+          "after": 2425361131
+        },
+        {
+          "rva": 3043053,
+          "kind": "Scalar",
+          "before": 291291008,
+          "after": 2425368555
+        },
+        {
+          "rva": 7335556,
+          "kind": "Pointer",
+          "before": 5619904,
+          "after": 5619904
+        },
+        {
+          "rva": 7335572,
+          "kind": "Pointer",
+          "before": 7335544,
+          "after": 7335544
+        }
+      ],
+      "commands": {
+        "god": {
+          "object": 6965696,
+          "name": 5079500,
+          "callback": 1296240
+        },
+        "noclip": {
+          "object": 6965660,
+          "name": 5079424,
+          "callback": 1296960
+        },
+        "dispatch_table": 6140448,
+        "dispatch": 4607264,
+        "get_player": 1612816,
+        "player_flags": 260,
+        "player_movetype": 314
+      },
+      "movement": {
+        "server_crop": {
+          "name": "server.CrouchCrop",
+          "rva": 1636944,
+          "pattern": "56 8B F1 F6 86 88 06 00 00 01 75 57 8B 4E 04 F6 81 04 01 00 00 02 74 4B E8 ?? ?? ?? ?? 85 C0 74 42 8B 46 08 F3 0F 10 0D ?? ?? ?? ?? F3 0F 10 40 2C F3 0F 59 C1 F3 0F 11 40 2C 8B 46 08 F3 0F 10 40 30 F3 0F 59 C1 F3 0F 11 40 30 8B 46 08 F3 0F 10 40 34 F3 0F 59 C1 F3 0F 11 40 34 83 8E 88 06 00 00 01 5E C3",
+          "vtable": 5630116,
+          "slot": 47
+        },
+        "server_sprint_probe": {
+          "name": "server.MoveSprintField",
+          "rva": 1620226,
+          "pattern": "80 BF A4 00 00 00 00 75 0C 8B 46 04 80 B8 AC 08 00 00 00 74 0D",
+          "vtable": 0,
+          "slot": 0
+        },
+        "client_crop": {
+          "name": "client.CrouchCrop",
+          "rva": 1282000,
+          "pattern": "56 8B F1 F6 86 88 06 00 00 01 75 57 8B 4E 04 F6 81 4C 03 00 00 02 74 4B E8 ?? ?? ?? ?? 85 C0 74 42 8B 46 08 F3 0F 10 0D ?? ?? ?? ?? F3 0F 10 40 2C F3 0F 59 C1 F3 0F 11 40 2C 8B 46 08 F3 0F 10 40 30 F3 0F 59 C1 F3 0F 11 40 30 8B 46 08 F3 0F 10 40 34 F3 0F 59 C1 F3 0F 11 40 34 83 8E 88 06 00 00 01 5E C3",
+          "vtable": 4012160,
+          "slot": 47
+        },
+        "client_sprint_probe": {
+          "name": "client.MoveSprintField",
+          "rva": 1265730,
+          "pattern": "80 BF A4 00 00 00 00 75 0C 8B 46 04 80 B8 90 0E 00 00 00 74 0D",
+          "vtable": 0,
+          "slot": 0
+        },
+        "norm_speed": 7335544,
+        "norm_name": 5619904,
+        "movement_move": 8,
+        "movement_cropped": 1672,
+        "move_sprint": 164,
+        "move_inputs": 44,
+        "move_maxspeed": 60
+      },
+      "retail": {
+        "vstdlib_sha256": "30ccd4851c81e7919c8f38705dac6d3df862d267fd6b4b9350287d3b78497b2c",
+        "server_targets": [
+          {
+            "name": "Create",
+            "rva": 1776816,
+            "pattern": "55 8B EC 80 7D 10 00 56 57 74 3B E8 ?? ?? ?? ?? 84 C0 74 32 8B 75 08 68 ?? ?? ?? ?? 56 E8 ?? ?? ?? ?? 85 C0 BF ?? ?? ?? ?? 68 ?? ?? ?? ?? 0F 45",
+            "vtable": 0,
+            "slot": 0
+          },
+          {
+            "name": "Spawn",
+            "rva": 2585120,
+            "pattern": "55 8B EC 51 53 8B 5D 08 56 57 85 DB 0F 84 5E 01 00 00 8B 3D ?? ?? ?? ?? 8B CF 8B 07 FF 50 64 8B 03 8B CB FF 50 08 8B 0D ?? ?? ?? ?? 6A 00 6A 03",
+            "vtable": 0,
+            "slot": 0
+          },
+          {
+            "name": "Remove",
+            "rva": 2600000,
+            "pattern": "55 8B EC 8B 45 08 85 C0 74 0C 83 C0 0C 89 45 08 5D E9 ?? ?? ?? ?? 5D C3 CC CC CC CC CC CC CC CC 55 8B EC 56 8B 75 08 85 F6 74 5C 8B CE E8 ?? ??",
+            "vtable": 0,
+            "slot": 0
+          },
+          {
+            "name": "Next",
+            "rva": 1432688,
+            "pattern": "55 8B EC 56 8B F1 8B 4D 08 85 C9 75 11 8B 86 04 00 01 00 85 C0 74 2B 8B 00 5E 5D C2 04 00 8B 01 FF 50 08 8B 00 25 FF 0F 00 00 C1 E0 04 83 C0 04",
+            "vtable": 0,
+            "slot": 0
+          },
+          {
+            "name": "Trace",
+            "rva": 392656,
+            "pattern": "53 8B DC 83 EC 08 83 E4 F0 83 C4 04 55 8B 6B 04 89 6C 24 04 8B EC 83 EC 6C 8D 4D A0 56 FF 73 0C FF 73 08 E8 ?? ?? ?? ?? 6A 00 FF 73 18 8D 4D F0",
+            "vtable": 0,
+            "slot": 0
+          },
+          {
+            "name": "Origin",
+            "rva": 2602400,
+            "pattern": "55 8B EC FF 75 0C 8B 4D 08 E8 ?? ?? ?? ?? 80 7D 10 00 74 0A 8B 4D 08 6A 00 E8 ?? ?? ?? ?? 5D C3 55 8B EC 8B 55 0C 33 C9 56 8B 75 10 8B C6 2B D6",
+            "vtable": 0,
+            "slot": 0
+          },
+          {
+            "name": "Angles",
+            "rva": 1117936,
+            "pattern": "55 8B EC 83 EC 70 53 56 8B F1 E8 ?? ?? ?? ?? 8B 5D 08 F3 0F 10 03 0F 2E 86 F8 02 00 00 9F F6 C4 44 7A 28 F3 0F 10 43 04 0F 2E 86 FC 02 00 00 9F",
+            "vtable": 0,
+            "slot": 0
+          },
+          {
+            "name": "Velocity",
+            "rva": 1118944,
+            "pattern": "55 8B EC 83 EC 18 53 56 8B 75 08 8B D9 F3 0F 10 06 0F 2E 83 14 02 00 00 9F F6 C4 44 7A 28 F3 0F 10 46 04 0F 2E 83 18 02 00 00 9F F6 C4 44 7A 16",
+            "vtable": 0,
+            "slot": 0
+          },
+          {
+            "name": "Precache",
+            "rva": 2599376,
+            "pattern": "55 8B EC 83 EC 08 56 8B 75 08 8D 45 FC 56 50 B9 ?? ?? ?? ?? E8 ?? ?? ?? ?? B8 FF FF 00 00 66 39 45 FC 75 6D 56 8D 45 FA B9 ?? ?? ?? ?? 50 E8 ??",
+            "vtable": 0,
+            "slot": 0
+          },
+          {
+            "name": "AmmoDef",
+            "rva": 3009600,
+            "pattern": "A1 ?? ?? ?? ?? A8 01 75 1F 83 C8 01 B9 ?? ?? ?? ?? A3 ?? ?? ?? ?? E8 ?? ?? ?? ?? 68 ?? ?? ?? ?? E8 ?? ?? ?? ?? 83 C4 04 80 3D ?? ?? ?? ?? 00 0F",
+            "vtable": 0,
+            "slot": 0
+          },
+          {
+            "name": "AmmoIndex",
+            "rva": 923760,
+            "pattern": "55 8B EC 8B 45 08 53 8B D9 85 C0 75 08 83 C8 FF 5B 5D C2 04 00 56 BE 01 00 00 00 57 39 73 04 7E 1E 8D 7B 3C FF 37 50 E8 ?? ?? ?? ?? 83 C4 08 85",
+            "vtable": 0,
+            "slot": 0
+          },
+          {
+            "name": "Ball",
+            "rva": 4115744,
+            "pattern": "53 8B DC 83 EC 08 83 E4 F0 83 C4 04 55 8B 6B 04 89 6C 24 04 8B EC 83 EC 28 56 57 6A 01 6A FF 68 ?? ?? ?? ?? E8 ?? ?? ?? ?? F3 0F 10 43 10 8D 4D",
+            "vtable": 0,
+            "slot": 0
+          },
+          {
+            "name": "Grenade",
+            "rva": 3000704,
+            "pattern": "55 8B EC 56 57 8B 7D 18 57 FF 75 0C FF 75 08 68 ?? ?? ?? ?? E8 ?? ?? ?? ?? 8B 0D ?? ?? ?? ?? 8B F0 F3 0F 10 4D 1C 83 C4 10 D9 EE F3 0F 10 41 0C",
+            "vtable": 0,
+            "slot": 0
+          },
+          {
+            "name": "VectorAngles",
+            "rva": 4580608,
+            "pattern": "55 8B EC 8B 4D 08 F3 0F 10 0D ?? ?? ?? ?? F3 0F 10 41 04 0F 2E C1 F3 0F 11 45 08 9F F6 C4 44 7A 2B F3 0F 10 01 0F 2E C1 9F F6 C4 44 7A 1E F3 0F",
+            "vtable": 0,
+            "slot": 0
+          },
+          {
+            "name": "Punch",
+            "rva": 1198032,
+            "pattern": "55 8B EC A1 ?? ?? ?? ?? 83 EC 0C 83 78 30 00 56 8B F1 75 51 8B 06 8B 80 A8 04 00 00 FF D0 84 C0 75 43 8B 45 08 8D 8E D8 08 00 00 F3 0F 10 0D ??",
+            "vtable": 0,
+            "slot": 0
+          },
+          {
+            "name": "NetworkField",
+            "rva": 257328,
+            "pattern": "55 8B EC 56 8B F1 8B 06 A9 00 01 00 00 75 5F 83 C8 01 53 89 06 E8 ?? ?? ?? ?? 8B D8 A1 ?? ?? ?? ?? 66 8B 4B 02 66 3B 08 75 60 0F B7 0B 57 8D 0C",
+            "vtable": 0,
+            "slot": 0
+          },
+          {
+            "name": "Print",
+            "rva": 2584896,
+            "pattern": "55 8B EC 83 EC 20 83 7D 08 00 74 48 8D 4D E0 E8 ?? ?? ?? ?? FF 75 08 8D 4D E0 C7 45 E0 ?? ?? ?? ?? E8 ?? ?? ?? ?? 8D 4D E0 E8 ?? ?? ?? ?? FF 75",
+            "vtable": 0,
+            "slot": 0
+          },
+          {
+            "name": "BulletInit",
+            "rva": 283088,
+            "pattern": "C7 01 01 00 00 00 8B C1 C7 41 1C 00 00 00 00 C7 41 20 00 00 00 00 C7 41 24 00 00 00 00 C7 41 28 00 00 00 46 C7 41 30 04 00 00 00 C7 41 34 00 00",
+            "vtable": 0,
+            "slot": 0
+          },
+          {
+            "name": "GetOwner",
+            "rva": 1037728,
+            "pattern": "8B 91 60 04 00 00 83 FA FF 74 28 A1 ?? ?? ?? ?? 8B CA 81 E1 FF 0F 00 00 C1 EA 0C 03 C9 39 54 C8 08 75 10 8B 4C C8 04 85 C9 74 08 8B 01 FF A0 1C",
+            "vtable": 0,
+            "slot": 0
+          },
+          {
+            "name": "CommandCtor",
+            "rva": 4604928,
+            "pattern": "55 8B EC 8B 45 0C 8B 55 18 85 D2 56 8B F1 0F 95 C1 89 46 18 B8 ?? ?? ?? ?? 0F 45 C2 C7 46 04 00 00 00 00 89 46 1C 80 E1 01 8A 46 20 24 FA C7 06",
+            "vtable": 0,
+            "slot": 0
+          },
+          {
+            "name": "DefaultAccessor",
+            "rva": 4608112,
+            "pattern": "55 8B EC 8B 0D ?? ?? ?? ?? FF 75 08 8B 01 FF 50 18 B0 01 5D C2 04 00 CC CC CC CC CC CC CC CC CC 55 8B EC 8B 49 04 8B 01 5D FF 60 30 CC CC CC CC",
+            "vtable": 0,
+            "slot": 0
+          },
+          {
+            "name": "WeaponSpawn",
+            "rva": 1047712,
+            "pattern": "55 8B EC 83 EC 08 53 56 57 8B F9 8B 07 FF 50 5C 8B CF E8 ?? ?? ?? ?? 6A 02 8D 8F 48 01 00 00 E8 ?? ?? ?? ?? 81 A7 00 01 00 00 FF FF FB FF 8D 4D",
+            "vtable": 0,
+            "slot": 0
+          },
+          {
+            "name": "WeaponPrecache",
+            "rva": 1042864,
+            "pattern": "55 8B EC 51 53 56 57 8B F9 C7 45 FC FF FF FF FF 8B 87 A8 04 00 00 8D 9F A8 04 00 00 8D 4D FC 3B 01 74 2E 80 BB AC FB FF FF 00 8D 8B 58 FB FF FF",
+            "vtable": 0,
+            "slot": 0
+          },
+          {
+            "name": "WeaponFrame",
+            "rva": 1040864,
+            "pattern": "55 8B EC 83 EC 0C 56 8B F1 8B 8E 60 04 00 00 83 F9 FF 0F 84 55 03 00 00 8B 15 ?? ?? ?? ?? 8B C1 25 FF 0F 00 00 C1 E9 0C 03 C0 39 4C C2 08 0F 85",
+            "vtable": 0,
+            "slot": 0
+          },
+          {
+            "name": "EntityInput",
+            "rva": 1064944,
+            "pattern": "55 8B EC 81 EC 40 01 00 00 A1 ?? ?? ?? ?? 53 56 8B F1 83 78 30 00 57 8B 7D 08 89 75 FC 0F 84 60 01 00 00 8B 5D 10 85 DB 0F 84 C1 00 00 00 8B 86",
+            "vtable": 0,
+            "slot": 0
+          },
+          {
+            "name": "EntityKeyValue",
+            "rva": 1140016,
+            "pattern": "55 8B EC 83 EC 0C 53 56 8B 75 08 8B D9 6A 23 56 E8 ?? ?? ?? ?? 83 C4 08 85 C0 74 03 C6 00 00 81 FE ?? ?? ?? ?? 0F 84 B7 04 00 00 68 ?? ?? ?? ??",
+            "vtable": 0,
+            "slot": 0
+          },
+          {
+            "name": "EntityGetKeyValue",
+            "rva": 1137200,
+            "pattern": "55 8B EC 83 EC 0C 53 56 8B 75 08 8B D9 81 FE ?? ?? ?? ?? 0F 84 E3 02 00 00 68 ?? ?? ?? ?? 56 E8 ?? ?? ?? ?? 83 C4 08 85 C0 0F 84 CD 02 00 00 81",
+            "vtable": 0,
+            "slot": 0
+          },
+          {
+            "name": "EmitSound",
+            "rva": 2422768,
+            "pattern": "55 8B EC 83 EC 7C 8B 15 ?? ?? ?? ?? 53 57 33 FF 89 4D F8 33 DB 89 7D EC 89 5D F0 8B 42 08 85 C0 74 3B 68 ?? ?? ?? ?? 68 ?? ?? ?? ?? 68 ?? ?? ?? ?? 68 ?? ?? ?? ?? 68 92 04 00 00 68 ?? ?? ?? ??",
+            "vtable": 0,
+            "slot": 0
+          },
+          {
+            "name": "PrecacheSound",
+            "rva": 2426416,
+            "pattern": "55 8B EC FF 75 08 B9 ?? ?? ?? ?? E8 ?? ?? ?? ?? 5D C3 CC CC CC CC CC CC CC CC CC CC CC CC CC CC 55 8B EC 53 8B D9 8B 0D ?? ?? ?? ?? 56 8B 75 08 57 8B 01 56 FF 50 1C 8B 0D ?? ?? ?? ?? 8B F8 57 8B 11 8B 52 20 FF D2 84 C0 0F 85 C0 00 00 00 68 ?? ?? ?? ?? 56 E8 ?? ?? ?? ?? 83 C4 08 85 C0 0F",
+            "vtable": 0,
+            "slot": 0
+          },
+          {
+            "name": "GetOrigin",
+            "rva": 242224,
+            "pattern": "56 8B F1 8B 86 00 01 00 00 C1 E8 0B A8 01 74 05 E8 ?? ?? ?? ?? 8D 86 7C 02 00 00 5E C3 CC CC CC 56 8B F1 8B 86 00 01 00 00 C1 E8 0C A8 01 74 05",
+            "vtable": 0,
+            "slot": 0
+          },
+          {
+            "name": "PlayerByIndex",
+            "rva": 2598016,
+            "pattern": "55 8B EC 8B 55 08 85 D2 7E 31 A1 ?? ?? ?? ?? 3B 50 14 7F 27 8B 0D ?? ?? ?? ?? 52 8B 01 FF 50 4C 8B C8 85 C9 74 15 8B 01 D1 E8 A8 01 75 0D 8B 49 0C 85 C9 74 06 8B 01 5D FF 60 14 33 C0 5D C3",
+            "vtable": 0,
+            "slot": 0
+          },
+          {
+            "name": "WeaponTracer",
+            "rva": 1042112,
+            "pattern": "55 8B EC 83 EC 0C 56 8B F1 57 8B 8E 60 04 00 00 83 F9 FF 0F 84 C8 00 00 00 8B 15 ?? ?? ?? ?? 8B C1 25 FF 0F 00 00 C1 E9 0C 03 C0 39 4C C2 08 0F 85 AC 00 00 00 8B 4C C2 04 85 C9 0F 84 A0 00 00",
+            "vtable": 0,
+            "slot": 0
+          },
+          {
+            "name": "WeaponImpact",
+            "rva": 1133408,
+            "pattern": "55 8B EC 6A 00 FF 75 0C FF 75 08 E8 ?? ?? ?? ?? 83 C4 0C 5D C2 08 00",
+            "vtable": 0,
+            "slot": 0
+          },
+          {
+            "name": "Tracer",
+            "rva": 2608096,
+            "pattern": "55 8B EC 81 EC 8C 00 00 00 8D 8D 74 FF FF FF E8 ?? ?? ?? ?? 80 7D 1C 00 8B 45 08 F3 0F 10 00 F3 0F 11 45 80 F3 0F 10 40 04 F3 0F 11 45 84 F3 0F 10 40 08 8B 45 0C F3 0F 11 45 88 F3 0F 10 00 F3",
+            "vtable": 0,
+            "slot": 0
+          },
+          {
+            "name": "FireBullets",
+            "rva": 1133664,
+            "pattern": "53 8B DC 83 EC 08 83 E4 F0 83 C4 04 55 8B 6B 04 89 6C 24 04 8B EC 81 EC A8 02 00 00 56 8B F1 57 89 75 D0 E8 ?? ?? ?? ?? 8B 7B 08 8B C8 89 45 D4 FF 77 2C E8 ?? ?? ?? ?? FF 77 2C 8B 4D D4 89 45",
+            "vtable": 0,
+            "slot": 0
+          },
+          {
+            "name": "LookupAttachment",
+            "rva": 958192,
+            "pattern": "55 8B EC 56 8B F1 80 BE 2D 03 00 00 00 75 3A 83 BE 4C 04 00 00 00 75 10 E8 ?? ?? ?? ?? 85 C0 74 07 8B CE E8 ?? ?? ?? ?? 8B 86 4C 04 00 00 85 C0 74 17 83 38 00 74 12 FF 75 08 50 E8 ?? ?? ?? ??",
+            "vtable": 0,
+            "slot": 0
+          }
+        ],
+        "engine_targets": [
+          {
+            "name": "ClearDecals",
+            "rva": 1177072,
+            "pattern": "55 8B EC 51 A1 ?? ?? ?? ?? 85 C0 74 45 8B 4D 08 53 32 DB 88 5D FC 83 39 02 75 28 68 ?? ?? ?? ?? FF B1 0C 04 00 00 E8 ?? ?? ?? ?? 83 C4 08 0F B6",
+            "vtable": 0,
+            "slot": 0
+          },
+          {
+            "name": "ClearModelDecals",
+            "rva": 1251216,
+            "pattern": "53 56 57 8B F9 BB FF FF 00 00 0F B7 77 18 66 3B F3 74 21 8B 07 8B CF 56 FF 50 24 0F B7 C6 69 C8 08 01 00 00 8B 47 0C 0F B7 B4 01 06 01 00 00 66",
+            "vtable": 0,
+            "slot": 0
+          }
+        ],
+        "vstdlib_targets": [
+          {
+            "name": "Register",
+            "rva": 17200,
+            "pattern": "55 8B EC 53 57 8B 7D 08 8B D9 8B CF 8B 07 8B 40 18 FF D0 84 C0 0F 85 82 02 00 00 8B 07 8B CF C6 47 08 01 FF 50 10 85 C0 0F 84 85 02 00 00 80 38",
+            "vtable": 0,
+            "slot": 0
+          },
+          {
+            "name": "Unregister",
+            "rva": 18208,
+            "pattern": "55 8B EC 56 8B 75 08 57 8B F9 8B CE 8B 06 8B 40 18 FF D0 84 C0 74 3D C6 46 08 00 33 D2 8B 47 30 85 C0 74 30 3B C6 74 0F 8B D0 8B 40 04 85 C0 75",
+            "vtable": 0,
+            "slot": 0
+          },
+          {
+            "name": "Find",
+            "rva": 15472,
+            "pattern": "55 8B EC 8B 01 56 57 FF 50 40 8B F0 85 F6 74 25 8B 7D 08 8B 06 8B CE FF 50 10 50 57 E8 ?? ?? ?? ?? 83 C4 08 85 C0 74 15 8B CE E8 ?? ?? ?? ?? 8B",
+            "vtable": 0,
+            "slot": 0
+          }
+        ],
+        "cvar_table": 111844,
+        "model_table": 3391260,
+        "client_cleanup": {
+          "list_primary": 3734296,
+          "list_secondary": 3734312,
+          "list_offset": 65556,
+          "list_instance": 4920144,
+          "ragdoll_table": 3620108,
+          "release_field": 2180
+        },
+        "values": {
+          "EntityListPtr": 6478260,
+          "GlobalsPtr": 7067584,
+          "EnginePtr": 7068756,
+          "CvarPtr": 7508868
+        },
+        "maps": {
+          "CBaseEntity": {
+            "table": 5033884,
+            "map": 6433696
+          },
+          "CBaseHLCombatWeapon": {
+            "table": 5567464,
+            "map": 6685944
+          },
+          "CHL2_Player": {
+            "table": 5618024,
+            "map": 6704768
+          }
+        },
+        "fields": {
+          "m_iClassname": {
+            "type": 2,
+            "offset": 92
+          },
+          "m_iName": {
+            "type": 2,
+            "offset": 264
+          },
+          "m_ModelName": {
+            "type": 18,
+            "offset": 516
+          },
+          "m_iHammerID": {
+            "type": 5,
+            "offset": 104
+          },
+          "m_spawnflags": {
+            "type": 5,
+            "offset": 252
+          },
+          "m_iEFlags": {
+            "type": 5,
+            "offset": 256
+          },
+          "m_iClip1": {
+            "type": 5,
+            "offset": 1196
+          },
+          "m_iClip2": {
+            "type": 5,
+            "offset": 1200
+          },
+          "m_nButtons": {
+            "type": 5,
+            "offset": 2688
+          },
+          "m_afButtonPressed": {
+            "type": 5,
+            "offset": 2692
+          },
+          "m_hOwnerEntity": {
+            "type": 13,
+            "offset": 468
+          },
+          "m_hMoveParent": {
+            "type": 13,
+            "offset": 316
+          },
+          "m_hMoveChild": {
+            "type": 13,
+            "offset": 320
+          },
+          "m_hMovePeer": {
+            "type": 13,
+            "offset": 324
+          },
+          "m_flNextPrimaryAttack": {
+            "type": 16,
+            "offset": 1128
+          },
+          "m_flNextSecondaryAttack": {
+            "type": 16,
+            "offset": 1132
+          },
+          "m_pPhysicsObject": {
+            "type": 11,
+            "offset": 480
+          },
+          "m_bLowered": {
+            "type": 6,
+            "offset": 1376
+          },
+          "m_bFiresUnderwater": {
+            "type": 6,
+            "offset": 1204
+          },
+          "m_bAltFiresUnderwater": {
+            "type": 6,
+            "offset": 1205
+          },
+          "m_hActiveWeapon": {
+            "type": 13,
+            "offset": 2064
+          },
+          "m_hViewModel": {
+            "type": 13,
+            "offset": 3412
+          }
+        }
+      }
+    },
+    {
+      "name": "hl2",
+      "runtime_verified": false,
+      "server_sha256": "99f01211453b2c4a773ee81d73622b8b27d38b54483a4ae5ee48d33a38ec986b",
+      "client_sha256": "96c5dd5e3d25ce8f8cc321d123b77dbfe8fa6aaef39df518786055f3cd507fa9",
+      "engine_sha256": "6a277234ae8edb4939ed7ef45a27499210f14db3a7f6a9e7e83540492b638d6e",
+      "targets": [
+        {
+          "name": "SMG1.GetBulletSpread",
+          "rva": 4362720,
+          "pattern": "A1 ?? ?? ?? ?? A8 01 75 26 83 C8 01 C7 05 ?? ?? ?? ?? E3 AA 32 3D A3 ?? ?? ?? ?? C7 05 ?? ?? ?? ?? E3 AA 32 3D C7 05 ?? ?? ?? ?? E3 AA 32 3D B8 ?? ?? ?? ?? C3",
+          "vtable": 6096456,
+          "slot": 280
+        },
+        {
+          "name": "AR2.GetBulletSpread",
+          "rva": 4260752,
+          "pattern": "A1 ?? ?? ?? ?? A8 01 75 08 83 C8 01 A3 ?? ?? ?? ?? C7 05 ?? ?? ?? ?? 70 77 D6 3C B8 ?? ?? ?? ?? C7 05 ?? ?? ?? ?? 70 77 D6 3C C7 05 ?? ?? ?? ?? 70 77 D6 3C C3",
+          "vtable": 6068064,
+          "slot": 280
+        },
+        {
+          "name": "SMG1.AddViewKick",
+          "rva": 4362048,
+          "pattern": "56 57 8B F9 E8 ?? ?? ?? ?? 8B F0 85 F6 74 3F 8B 16 8B CE 8B 92 40 01 00 00 FF D2 84 C0 74 2F D9 05 ?? ?? ?? ?? 83 EC 10 D9 5C 24 0C D9 87 CC 04 00 00 D9 5C 24 08 D9 E8 D9 5C 24 04 D9 05 ?? ?? ?? ?? D9 1C 24 56 E8 ?? ?? ?? ?? 83 C4 14 5F 5E C3",
+          "vtable": 6096456,
+          "slot": 297
+        },
+        {
+          "name": "AR2.AddViewKick",
+          "rva": 4258208,
+          "pattern": "55 8B EC 83 EC 08 56 57 8B F9 E8 ?? ?? ?? ?? 8B F0 85 F6 74 7A 8B 16 8B CE 8B 92 40 01 00 00 FF D2 84 C0 74 6A 8B 0D ?? ?? ?? ?? F3 0F 10 87 CC 04 00 00 F3 0F 11 45 F8 F3 0F 11 45 FC 8B 01 FF 90 F8 00 00 00 83 F8 02 75 15 F3 0F 10 05 ?? ?? ?? ?? 0F 2F 45 F8 77 07 C7 45 FC 00 00 40 3F D9 05 ?? ?? ?? ?? 83 EC 10 D9 5C 24 0C D9 45 FC D9 5C 24 08 D9 05 ?? ?? ?? ?? D9 5C 24 04 D9 05 ?? ?? ?? ?? D9 1C 24 56 E8 ?? ?? ?? ?? 83 C4 14 5F 5E 8B E5 5D C3",
+          "vtable": 6068064,
+          "slot": 297
+        },
+        {
+          "name": "357.Factory",
+          "rva": 4252784,
+          "pattern": "55 8B EC 56 68 6C 05 00 00 E8 ?? ?? ?? ?? 8B F0 83 C4 04 85 F6 74 2D 8B CE E8 ?? ?? ?? ?? FF 75 08 C7 06 ?? ?? ?? ?? 8B CE C6 86 C8 04 00 00 00 C6 86 B4 04 00 00 00 8B 06 FF 50 68 8D 46 0C 5E 5D C2 04 00 FF 75 08 33 F6 8B CE 8B 06 FF 50 68 8D 46 0C 5E 5D C2 04 00",
+          "vtable": 0,
+          "slot": 0,
+          "class_vtable": 6063336
+        },
+        {
+          "name": "Shotgun.Constructor",
+          "rva": 4356640,
+          "pattern": "56 8B F1 E8 ?? ?? ?? ?? C7 06 ?? ?? ?? ?? 8B C6 C6 86 C8 04 00 00 01 66 C7 86 6C 05 00 00 00 00 C6 86 6E 05 00 00 00 C7 86 B8 04 00 00 00 00 00 00 C7 86 C0 04 00 00 00 00 FA 43 C7 86 BC 04 00 00 00 00 00 00 C7 86 C4 04 00 00 00 00 48 43 5E C3",
+          "vtable": 0,
+          "slot": 0,
+          "class_vtable": 6094932
+        },
+        {
+          "name": "SMG1.Factory",
+          "rva": 4362144,
+          "pattern": "55 8B EC 56 68 8C 05 00 00 E8 ?? ?? ?? ?? 8B F0 83 C4 04 85 F6 74 3A 8B CE E8 ?? ?? ?? ?? FF 75 08 C7 06 ?? ?? ?? ?? 8B CE C7 86 B8 04 00 00 00 00 00 00 C7 86 C0 04 00 00 00 00 AF 44 C6 86 B5 04 00 00 00 8B 06 FF 50 68 8D 46 0C 5E 5D C2 04 00 FF 75 08 33 F6 8B CE 8B 06 FF 50 68 8D 46 0C 5E 5D C2 04 00",
+          "vtable": 0,
+          "slot": 0,
+          "class_vtable": 6096456
+        },
+        {
+          "name": "AR2.Constructor",
+          "rva": 4258080,
+          "pattern": "56 8B F1 E8 ?? ?? ?? ?? C7 06 ?? ?? ?? ?? 8B C6 C7 86 B8 04 00 00 00 00 82 42 C7 86 C0 04 00 00 00 00 00 45 C7 86 BC 04 00 00 00 00 80 43 C7 86 C4 04 00 00 00 00 80 44 C7 86 6C 05 00 00 00 00 00 00 C7 86 7C 05 00 00 FF FF FF FF C6 86 B5 04 00 00 00 5E C3",
+          "vtable": 0,
+          "slot": 0,
+          "class_vtable": 6068064
+        },
+        {
+          "name": "AR2.SecondaryAttack",
+          "rva": 4261376,
+          "pattern": "55 8B EC 51 56 8B F1 80 BE 78 05 00 00 00 0F 85 ?? ?? ?? ?? E8 ?? ?? ?? ?? 85 C0 74 59 8B CE E8 ?? ?? ?? ?? 80 B8 F7 01 00 00 03 75 49 8B 06 8B CE 68 B9 00 00 00 FF 90 AC 03 00 00 D9 EE 51 D9 1C 24 6A 00 8B CE E8 ?? ?? ?? ?? A1 ?? ?? ?? ?? 8D 8E 6C 04 00 00 F3 0F 10 40 0C 8D 45 FC",
+          "vtable": 6068064,
+          "slot": 273
+        },
+        {
+          "name": "SMG1.SecondaryAttack",
+          "rva": 4363552,
+          "pattern": "55 8B EC 83 EC 38 53 57 8B F9 E8 ?? ?? ?? ?? 8B D8 85 DB 0F 84 ?? ?? ?? ?? 8B 13 8B CB 8B 92 40 01 00 00 FF D2 84 C0 0F 84 ?? ?? ?? ?? 8B 03 8B CB FF B7 A8 04 00 00 FF 90 F8 03 00 00 85 C0 0F 8E ?? ?? ?? ?? 80 BB F7 01 00 00 03 0F 84 ?? ?? ?? ?? 80 BF 74 04 00 00 00 74 07",
+          "vtable": 6096456,
+          "slot": 273
+        },
+        {
+          "name": "AR2.DelayedAttack",
+          "rva": 4258464,
+          "pattern": "55 8B EC 83 EC 48 53 56 8B F1 C6 86 78 05 00 00 00 E8 ?? ?? ?? ?? 8B D8 89 5D F4 85 DB 0F 84 ?? ?? ?? ?? 8B 13 8B CB 8B 92 40 01 00 00 FF D2 84 C0 0F 84 ?? ?? ?? ?? 8B 06 8B CE 57 68 B5 00 00 00 FF 90 AC 03 00 00 80 BE 2D 03 00 00 00 8B BE 8C 03 00 00 75 2A 83 BE 4C 04 00 00 00 75 12",
+          "vtable": 0,
+          "slot": 0
+        },
+        {
+          "name": "Pickup.KeepSprint",
+          "rva": 4303568,
+          "pattern": "6A 00 8B CF E8 ?? ?? ?? ?? 8B 45 0C 83 B8 DC 01 00 00 01 75 09 6A 03",
+          "vtable": 0,
+          "slot": 0
+        },
+        {
+          "name": "Physcannon.SkipCarrySlowdown",
+          "rva": 4285583,
+          "pattern": "6A 00 E8 ?? ?? ?? ?? A1 ?? ?? ?? ?? 0F 57 DB F3 0F 10 86 24 06 00 00 51 8B 4D F8 F3 0F 5E 40 2C A1 ?? ?? ?? ?? F3 0F 10 50 2C A1 ?? ?? ?? ?? F3 0F 10 D8 F3 0F 10 05 ?? ?? ?? ?? F3 0F 5F D8 F3 0F 10 05 ?? ?? ?? ?? F3 0F 10 48 2C F3 0F 5C CA F3 0F 5D D8 F3 0F 5C C3 F3 0F 59 C8 F3 0F 58 CA F3 0F 11 0C 24 E8 ?? ?? ?? ??",
+          "vtable": 0,
+          "slot": 0
+        },
+        {
+          "name": "Physcannon.KeepDropSpeed",
+          "rva": 4289643,
+          "pattern": "6A 01 8B CE E8 ?? ?? ?? ?? A1 ?? ?? ?? ?? 8D 4D FC F3 0F 10 40 2C 8B 86 BC 0D 00 00 F3 0F 11 45 FC F3 0F 11 45 F8 3B 01 74 32 8B CE 80 79 54 00 74 06 80 49 58 01 EB 1C 8B 51 18 85 D2 74 15 8D 86 BC 0D 00 00 2B C1 8B CA 50 E8 ?? ?? ?? ?? F3 0F 10 45 F8 F3 0F 11 86 BC 0D 00 00",
+          "vtable": 0,
+          "slot": 0
+        },
+        {
+          "name": "Achievements.IgnoreCheatHistory",
+          "rva": 124659,
+          "pattern": "8B 47 14 8D 4F 14 8B 40 28 FF D0 84 C0 74 3E",
+          "vtable": 0,
+          "slot": 0
+        },
+        {
+          "name": "Commands.God",
+          "rva": 1295296,
+          "pattern": "A1 ?? ?? ?? ?? 8B 40 1C 83 78 30 00 74 6A 56 E8 ?? ?? ?? ?? 8B F0 85 F6 74 5D 8B 16 8B CE 8B 92 40 01 00 00 FF D2 84 C0 74 4D A1 ?? ?? ?? ?? 80 78 4D 00 75 42 68 00 40 00 00 8B CE E8 ?? ?? ?? ?? F7 86 04 01 00 00 00 40 00 00 6A 00 6A 00 6A 00 6A 00 75 12 68 ?? ?? ?? ?? 6A 02 56 E8 ?? ?? ?? ?? 83 C4 1C 5E C3 68 ?? ?? ?? ?? 6A 02 56 E8 ?? ?? ?? ?? 83 C4 1C 5E C3",
+          "vtable": 0,
+          "slot": 0
+        },
+        {
+          "name": "Commands.Noclip",
+          "rva": 1296016,
+          "pattern": "55 8B EC A1 ?? ?? ?? ?? 83 EC 30 8B 40 1C 83 78 30 00 0F 84 8D 01 00 00 56 E8 ?? ?? ?? ?? 8B F0 85 F6 0F 84 7C 01 00 00 8B 16 8B CE 8B 92 40 01 00 00 FF D2 84 C0 0F 84 68 01 00 00 80 BE 3A 01 00 00 08 74 0E 56 E8 ?? ?? ?? ??",
+          "vtable": 0,
+          "slot": 0
+        },
+        {
+          "name": "Commands.GetPlayer",
+          "rva": 1612240,
+          "pattern": "A1 ?? ?? ?? ?? 40 85 C0 7E 0A 50 E8 ?? ?? ?? ?? 83 C4 04 C3 33 C0 C3",
+          "vtable": 0,
+          "slot": 0
+        },
+        {
+          "name": "Commands.Dispatch",
+          "rva": 4604176,
+          "pattern": "55 8B EC 8A 41 20 A8 02 74 13 8B 41 18 85 C0 74 25 FF 75 08 FF D0 83 C4 04 5D C2 04 00 A8 04 74 0C 8B 49 18 85 C9 74 0E 8B 01 5D FF 20 8B 41 18 85 C0 74 02 FF D0 5D C2",
+          "vtable": 6137008,
+          "slot": 12
+        },
+        {
+          "name": "Sprint.PreThinkStickyDuck",
+          "rva": 3041917,
+          "pattern": "80 BF AC 08 00 00 00 74 0B 8B CF E8 ?? ?? ?? ?? 85 C0 75 66",
+          "vtable": 0,
+          "slot": 0
+        },
+        {
+          "name": "Sprint.PreThinkDuck",
+          "rva": 3041997,
+          "pattern": "80 BF 5C 11 00 00 00 74 28 8B 87 80 0A 00 00 C1 E8 02 A8 01 74 1B 80 BF AC 08 00 00 00 74 12 8B CF E8 ?? ?? ?? ?? 85 C0 74 07 8B CF E8 ?? ?? ?? ??",
+          "vtable": 0,
+          "slot": 0
+        }
+      ],
+      "patches": [
+        {
+          "rva": 4362738,
+          "kind": "Scalar",
+          "before": 1026730723,
+          "after": 1007618118
+        },
+        {
+          "rva": 7398468,
+          "kind": "Cone",
+          "before": 1026730723,
+          "after": 1007618118
+        },
+        {
+          "rva": 4362753,
+          "kind": "Scalar",
+          "before": 1026730723,
+          "after": 1007618118
+        },
+        {
+          "rva": 7398472,
+          "kind": "Cone",
+          "before": 1026730723,
+          "after": 1007618118
+        },
+        {
+          "rva": 4362763,
+          "kind": "Scalar",
+          "before": 1026730723,
+          "after": 1007618118
+        },
+        {
+          "rva": 7398476,
+          "kind": "Cone",
+          "before": 1026730723,
+          "after": 1007618118
+        },
+        {
+          "rva": 4260775,
+          "kind": "Scalar",
+          "before": 1020688240,
+          "after": 1007618118
+        },
+        {
+          "rva": 7392532,
+          "kind": "Cone",
+          "before": 1020688240,
+          "after": 1007618118
+        },
+        {
+          "rva": 4260790,
+          "kind": "Scalar",
+          "before": 1020688240,
+          "after": 1007618118
+        },
+        {
+          "rva": 7392536,
+          "kind": "Cone",
+          "before": 1020688240,
+          "after": 1007618118
+        },
+        {
+          "rva": 4260800,
+          "kind": "Scalar",
+          "before": 1020688240,
+          "after": 1007618118
+        },
+        {
+          "rva": 7392540,
+          "kind": "Cone",
+          "before": 1020688240,
+          "after": 1007618118
+        },
+        {
+          "rva": 4362081,
+          "kind": "Pointer",
+          "before": 4883792,
+          "after": 4883728
+        },
+        {
+          "rva": 4258305,
+          "kind": "Pointer",
+          "before": 4901328,
+          "after": 4883728
+        },
+        {
+          "rva": 4258325,
+          "kind": "Pointer",
+          "before": 4883832,
+          "after": 4883824
+        },
+        {
+          "rva": 4252835,
+          "kind": "Scalar",
+          "before": 4,
+          "after": 16777220
+        },
+        {
+          "rva": 4356719,
+          "kind": "Scalar",
+          "before": 3435971422,
+          "after": 78939846
+        },
+        {
+          "rva": 4356723,
+          "kind": "Scalar",
+          "before": 3435973836,
+          "after": 3321954304
+        },
+        {
+          "rva": 4356727,
+          "kind": "Scalar",
+          "before": 3435973836,
+          "after": 308614
+        },
+        {
+          "rva": 4356731,
+          "kind": "Scalar",
+          "before": 3435973836,
+          "after": 3277717760
+        },
+        {
+          "rva": 4362205,
+          "kind": "Scalar",
+          "before": 79005382,
+          "after": 78939846
+        },
+        {
+          "rva": 4362209,
+          "kind": "Scalar",
+          "before": 2332033024,
+          "after": 3321954304
+        },
+        {
+          "rva": 4362213,
+          "kind": "Scalar",
+          "before": 1750138630,
+          "after": 308614
+        },
+        {
+          "rva": 4362217,
+          "kind": "Scalar",
+          "before": 1577862797,
+          "after": 109773056
+        },
+        {
+          "rva": 4362221,
+          "kind": "Scalar",
+          "before": 311901,
+          "after": 2372423935
+        },
+        {
+          "rva": 4362225,
+          "kind": "Scalar",
+          "before": 856192511,
+          "after": 1566444614
+        },
+        {
+          "rva": 4362229,
+          "kind": "Scalar",
+          "before": 2345569270,
+          "after": 4278191298
+        },
+        {
+          "rva": 4362233,
+          "kind": "Scalar",
+          "before": 1750138630,
+          "after": 4130539637
+        },
+        {
+          "rva": 4362237,
+          "kind": "Scalar",
+          "before": 1577862797,
+          "after": 109825675
+        },
+        {
+          "rva": 4362241,
+          "kind": "Scalar",
+          "before": 311901,
+          "after": 2372423935
+        },
+        {
+          "rva": 4362245,
+          "kind": "Scalar",
+          "before": 3435973836,
+          "after": 1566444614
+        },
+        {
+          "rva": 4362249,
+          "kind": "Scalar",
+          "before": 3435973836,
+          "after": 3422553282
+        },
+        {
+          "rva": 4362166,
+          "kind": "Scalar",
+          "before": 3905850170,
+          "after": 3905850177
+        },
+        {
+          "rva": 4258156,
+          "kind": "Scalar",
+          "before": 79005382,
+          "after": 78939846
+        },
+        {
+          "rva": 4258160,
+          "kind": "Scalar",
+          "before": 1577058304,
+          "after": 3321954304
+        },
+        {
+          "rva": 4258164,
+          "kind": "Scalar",
+          "before": 3435973827,
+          "after": 308614
+        },
+        {
+          "rva": 4258168,
+          "kind": "Scalar",
+          "before": 3435973836,
+          "after": 3277717760
+        },
+        {
+          "rva": 4261415,
+          "kind": "Scalar",
+          "before": 50331649,
+          "after": 67108865
+        },
+        {
+          "rva": 4363624,
+          "kind": "Scalar",
+          "before": 50331649,
+          "after": 67108865
+        },
+        {
+          "rva": 4258846,
+          "kind": "Pointer",
+          "before": 4991792,
+          "after": 4901424
+        },
+        {
+          "rva": 7331676,
+          "kind": "Pointer",
+          "before": 5620040,
+          "after": 5620040
+        },
+        {
+          "rva": 7331692,
+          "kind": "Pointer",
+          "before": 7331664,
+          "after": 7331664
+        },
+        {
+          "rva": 7331684,
+          "kind": "ClearFlags",
+          "before": 16384,
+          "after": 0
+        },
+        {
+          "rva": 4303568,
+          "kind": "Scalar",
+          "before": 3481993322,
+          "after": 2425358315
+        },
+        {
+          "rva": 4285583,
+          "kind": "Scalar",
+          "before": 3404202090,
+          "after": 2425383147
+        },
+        {
+          "rva": 4289657,
+          "kind": "Scalar",
+          "before": 4093398413,
+          "after": 2425375979
+        },
+        {
+          "rva": 124670,
+          "kind": "Scalar",
+          "before": 1047838852,
+          "after": 1055637636
+        },
+        {
+          "rva": 3041917,
+          "kind": "Scalar",
+          "before": 145538944,
+          "after": 2425361131
+        },
+        {
+          "rva": 3041997,
+          "kind": "Scalar",
+          "before": 291291008,
+          "after": 2425368555
+        },
+        {
+          "rva": 7331172,
+          "kind": "Pointer",
+          "before": 5619840,
+          "after": 5619840
+        },
+        {
+          "rva": 7331188,
+          "kind": "Pointer",
+          "before": 7331160,
+          "after": 7331160
+        }
+      ],
+      "commands": {
+        "god": {
+          "object": 6961312,
+          "name": 5079436,
+          "callback": 1295296
+        },
+        "noclip": {
+          "object": 6961276,
+          "name": 5079360,
+          "callback": 1296016
+        },
+        "dispatch_table": 6137008,
+        "dispatch": 4604176,
+        "get_player": 1612240,
+        "player_flags": 260,
+        "player_movetype": 314
+      },
+      "movement": {
+        "server_crop": {
+          "name": "server.CrouchCrop",
+          "rva": 1636336,
+          "pattern": "56 8B F1 F6 86 88 06 00 00 01 75 57 8B 4E 04 F6 81 04 01 00 00 02 74 4B E8 ?? ?? ?? ?? 85 C0 74 42 8B 46 08 F3 0F 10 0D ?? ?? ?? ?? F3 0F 10 40 2C F3 0F 59 C1 F3 0F 11 40 2C 8B 46 08 F3 0F 10 40 30 F3 0F 59 C1 F3 0F 11 40 30 8B 46 08 F3 0F 10 40 34 F3 0F 59 C1 F3 0F 11 40 34 83 8E 88 06 00 00 01 5E C3",
+          "vtable": 5630052,
+          "slot": 47
+        },
+        "server_sprint_probe": {
+          "name": "server.MoveSprintField",
+          "rva": 1619650,
+          "pattern": "80 BF A4 00 00 00 00 75 0C 8B 46 04 80 B8 AC 08 00 00 00 74 0D",
+          "vtable": 0,
+          "slot": 0
+        },
+        "client_crop": {
+          "name": "client.CrouchCrop",
+          "rva": 1281152,
+          "pattern": "56 8B F1 F6 86 88 06 00 00 01 75 57 8B 4E 04 F6 81 4C 03 00 00 02 74 4B E8 ?? ?? ?? ?? 85 C0 74 42 8B 46 08 F3 0F 10 0D ?? ?? ?? ?? F3 0F 10 40 2C F3 0F 59 C1 F3 0F 11 40 2C 8B 46 08 F3 0F 10 40 30 F3 0F 59 C1 F3 0F 11 40 30 8B 46 08 F3 0F 10 40 34 F3 0F 59 C1 F3 0F 11 40 34 83 8E 88 06 00 00 01 5E C3",
+          "vtable": 4003888,
+          "slot": 47
+        },
+        "client_sprint_probe": {
+          "name": "client.MoveSprintField",
+          "rva": 1264898,
+          "pattern": "80 BF A4 00 00 00 00 75 0C 8B 46 04 80 B8 90 0E 00 00 00 74 0D",
+          "vtable": 0,
+          "slot": 0
+        },
+        "norm_speed": 7331160,
+        "norm_name": 5619840,
+        "movement_move": 8,
+        "movement_cropped": 1672,
+        "move_sprint": 164,
+        "move_inputs": 44,
+        "move_maxspeed": 60
+      },
+      "retail": {
+        "vstdlib_sha256": "30ccd4851c81e7919c8f38705dac6d3df862d267fd6b4b9350287d3b78497b2c",
+        "server_targets": [
+          {
+            "name": "Create",
+            "rva": 1775344,
+            "pattern": "55 8B EC 80 7D 10 00 56 57 74 3B E8 ?? ?? ?? ?? 84 C0 74 32 8B 75 08 68 ?? ?? ?? ?? 56 E8 ?? ?? ?? ?? 85 C0 BF ?? ?? ?? ?? 68 ?? ?? ?? ?? 0F 45",
+            "vtable": 0,
+            "slot": 0
+          },
+          {
+            "name": "Spawn",
+            "rva": 2584384,
+            "pattern": "55 8B EC 51 53 8B 5D 08 56 57 85 DB 0F 84 5E 01 00 00 8B 3D ?? ?? ?? ?? 8B CF 8B 07 FF 50 64 8B 03 8B CB FF 50 08 8B 0D ?? ?? ?? ?? 6A 00 6A 03",
+            "vtable": 0,
+            "slot": 0
+          },
+          {
+            "name": "Remove",
+            "rva": 2599264,
+            "pattern": "55 8B EC 8B 45 08 85 C0 74 0C 83 C0 0C 89 45 08 5D E9 ?? ?? ?? ?? 5D C3 CC CC CC CC CC CC CC CC 55 8B EC 56 8B 75 08 85 F6 74 5C 8B CE E8 ?? ??",
+            "vtable": 0,
+            "slot": 0
+          },
+          {
+            "name": "Next",
+            "rva": 1432016,
+            "pattern": "55 8B EC 56 8B F1 8B 4D 08 85 C9 75 11 8B 86 04 00 01 00 85 C0 74 2B 8B 00 5E 5D C2 04 00 8B 01 FF 50 08 8B 00 25 FF 0F 00 00 C1 E0 04 83 C0 04",
+            "vtable": 0,
+            "slot": 0
+          },
+          {
+            "name": "Trace",
+            "rva": 391856,
+            "pattern": "53 8B DC 83 EC 08 83 E4 F0 83 C4 04 55 8B 6B 04 89 6C 24 04 8B EC 83 EC 6C 8D 4D A0 56 FF 73 0C FF 73 08 E8 ?? ?? ?? ?? 6A 00 FF 73 18 8D 4D F0",
+            "vtable": 0,
+            "slot": 0
+          },
+          {
+            "name": "Origin",
+            "rva": 2601664,
+            "pattern": "55 8B EC FF 75 0C 8B 4D 08 E8 ?? ?? ?? ?? 80 7D 10 00 74 0A 8B 4D 08 6A 00 E8 ?? ?? ?? ?? 5D C3 55 8B EC 8B 55 0C 33 C9 56 8B 75 10 8B C6 2B D6",
+            "vtable": 0,
+            "slot": 0
+          },
+          {
+            "name": "Angles",
+            "rva": 1116896,
+            "pattern": "55 8B EC 83 EC 70 53 56 8B F1 E8 ?? ?? ?? ?? 8B 5D 08 F3 0F 10 03 0F 2E 86 F8 02 00 00 9F F6 C4 44 7A 28 F3 0F 10 43 04 0F 2E 86 FC 02 00 00 9F",
+            "vtable": 0,
+            "slot": 0
+          },
+          {
+            "name": "Velocity",
+            "rva": 1117904,
+            "pattern": "55 8B EC 83 EC 18 53 56 8B 75 08 8B D9 F3 0F 10 06 0F 2E 83 14 02 00 00 9F F6 C4 44 7A 28 F3 0F 10 46 04 0F 2E 83 18 02 00 00 9F F6 C4 44 7A 16",
+            "vtable": 0,
+            "slot": 0
+          },
+          {
+            "name": "Precache",
+            "rva": 2598640,
+            "pattern": "55 8B EC 83 EC 08 56 8B 75 08 8D 45 FC 56 50 B9 ?? ?? ?? ?? E8 ?? ?? ?? ?? B8 FF FF 00 00 66 39 45 FC 75 6D 56 8D 45 FA B9 ?? ?? ?? ?? 50 E8 ??",
+            "vtable": 0,
+            "slot": 0
+          },
+          {
+            "name": "AmmoDef",
+            "rva": 3008496,
+            "pattern": "A1 ?? ?? ?? ?? A8 01 75 1F 83 C8 01 B9 ?? ?? ?? ?? A3 ?? ?? ?? ?? E8 ?? ?? ?? ?? 68 ?? ?? ?? ?? E8 ?? ?? ?? ?? 83 C4 04 80 3D ?? ?? ?? ?? 00 0F",
+            "vtable": 0,
+            "slot": 0
+          },
+          {
+            "name": "AmmoIndex",
+            "rva": 921392,
+            "pattern": "55 8B EC 8B 45 08 53 8B D9 85 C0 75 08 83 C8 FF 5B 5D C2 04 00 56 BE 01 00 00 00 57 39 73 04 7E 1E 8D 7B 3C FF 37 50 E8 ?? ?? ?? ?? 83 C4 08 85",
+            "vtable": 0,
+            "slot": 0
+          },
+          {
+            "name": "Ball",
+            "rva": 4115648,
+            "pattern": "53 8B DC 83 EC 08 83 E4 F0 83 C4 04 55 8B 6B 04 89 6C 24 04 8B EC 83 EC 28 56 57 6A 01 6A FF 68 ?? ?? ?? ?? E8 ?? ?? ?? ?? F3 0F 10 43 10 8D 4D",
+            "vtable": 0,
+            "slot": 0
+          },
+          {
+            "name": "Grenade",
+            "rva": 2999584,
+            "pattern": "55 8B EC 56 57 8B 7D 18 57 FF 75 0C FF 75 08 68 ?? ?? ?? ?? E8 ?? ?? ?? ?? 8B 0D ?? ?? ?? ?? 8B F0 F3 0F 10 4D 1C 83 C4 10 D9 EE F3 0F 10 41 0C",
+            "vtable": 0,
+            "slot": 0
+          },
+          {
+            "name": "VectorAngles",
+            "rva": 4577568,
+            "pattern": "55 8B EC 8B 4D 08 F3 0F 10 0D ?? ?? ?? ?? F3 0F 10 41 04 0F 2E C1 F3 0F 11 45 08 9F F6 C4 44 7A 2B F3 0F 10 01 0F 2E C1 9F F6 C4 44 7A 1E F3 0F",
+            "vtable": 0,
+            "slot": 0
+          },
+          {
+            "name": "Punch",
+            "rva": 1197008,
+            "pattern": "55 8B EC A1 ?? ?? ?? ?? 83 EC 0C 83 78 30 00 56 8B F1 75 51 8B 06 8B 80 A8 04 00 00 FF D0 84 C0 75 43 8B 45 08 8D 8E D8 08 00 00 F3 0F 10 0D ??",
+            "vtable": 0,
+            "slot": 0
+          },
+          {
+            "name": "NetworkField",
+            "rva": 256608,
+            "pattern": "55 8B EC 56 8B F1 8B 06 A9 00 01 00 00 75 5F 83 C8 01 53 89 06 E8 ?? ?? ?? ?? 8B D8 A1 ?? ?? ?? ?? 66 8B 4B 02 66 3B 08 75 60 0F B7 0B 57 8D 0C",
+            "vtable": 0,
+            "slot": 0
+          },
+          {
+            "name": "Print",
+            "rva": 2584160,
+            "pattern": "55 8B EC 83 EC 20 83 7D 08 00 74 48 8D 4D E0 E8 ?? ?? ?? ?? FF 75 08 8D 4D E0 C7 45 E0 ?? ?? ?? ?? E8 ?? ?? ?? ?? 8D 4D E0 E8 ?? ?? ?? ?? FF 75",
+            "vtable": 0,
+            "slot": 0
+          },
+          {
+            "name": "BulletInit",
+            "rva": 282288,
+            "pattern": "C7 01 01 00 00 00 8B C1 C7 41 1C 00 00 00 00 C7 41 20 00 00 00 00 C7 41 24 00 00 00 00 C7 41 28 00 00 00 46 C7 41 30 04 00 00 00 C7 41 34 00 00",
+            "vtable": 0,
+            "slot": 0
+          },
+          {
+            "name": "GetOwner",
+            "rva": 1035712,
+            "pattern": "8B 91 60 04 00 00 83 FA FF 74 28 A1 ?? ?? ?? ?? 8B CA 81 E1 FF 0F 00 00 C1 EA 0C 03 C9 39 54 C8 08 75 10 8B 4C C8 04 85 C9 74 08 8B 01 FF A0 1C",
+            "vtable": 0,
+            "slot": 0
+          },
+          {
+            "name": "CommandCtor",
+            "rva": 4601824,
+            "pattern": "55 8B EC 8B 45 0C 8B 55 18 85 D2 56 8B F1 0F 95 C1 89 46 18 B8 ?? ?? ?? ?? 0F 45 C2 C7 46 04 00 00 00 00 89 46 1C 80 E1 01 8A 46 20 24 FA C7 06",
+            "vtable": 0,
+            "slot": 0
+          },
+          {
+            "name": "DefaultAccessor",
+            "rva": 4605040,
+            "pattern": "55 8B EC 8B 0D ?? ?? ?? ?? FF 75 08 8B 01 FF 50 18 B0 01 5D C2 04 00 CC CC CC CC CC CC CC CC CC 55 8B EC 8B 49 04 8B 01 5D FF 60 30 CC CC CC CC",
+            "vtable": 0,
+            "slot": 0
+          },
+          {
+            "name": "WeaponSpawn",
+            "rva": 1045696,
+            "pattern": "55 8B EC 83 EC 08 53 56 57 8B F9 8B 07 FF 50 5C 8B CF E8 ?? ?? ?? ?? 6A 02 8D 8F 48 01 00 00 E8 ?? ?? ?? ?? 81 A7 00 01 00 00 FF FF FB FF 8D 4D",
+            "vtable": 0,
+            "slot": 0
+          },
+          {
+            "name": "WeaponPrecache",
+            "rva": 1040848,
+            "pattern": "55 8B EC 51 53 56 57 8B F9 C7 45 FC FF FF FF FF 8B 87 A8 04 00 00 8D 9F A8 04 00 00 8D 4D FC 3B 01 74 2E 80 BB AC FB FF FF 00 8D 8B 58 FB FF FF",
+            "vtable": 0,
+            "slot": 0
+          },
+          {
+            "name": "WeaponFrame",
+            "rva": 1038848,
+            "pattern": "55 8B EC 83 EC 0C 56 8B F1 8B 8E 60 04 00 00 83 F9 FF 0F 84 55 03 00 00 8B 15 ?? ?? ?? ?? 8B C1 25 FF 0F 00 00 C1 E9 0C 03 C0 39 4C C2 08 0F 85",
+            "vtable": 0,
+            "slot": 0
+          },
+          {
+            "name": "EntityInput",
+            "rva": 1062944,
+            "pattern": "55 8B EC 81 EC 40 01 00 00 A1 ?? ?? ?? ?? 53 56 8B F1 83 78 30 00 57 8B 7D 08 89 75 FC 0F 84 60 01 00 00 8B 5D 10 85 DB 0F 84 C1 00 00 00 8B 86",
+            "vtable": 0,
+            "slot": 0
+          },
+          {
+            "name": "EntityKeyValue",
+            "rva": 1138928,
+            "pattern": "55 8B EC 83 EC 0C 53 56 8B 75 08 8B D9 6A 23 56 E8 ?? ?? ?? ?? 83 C4 08 85 C0 74 03 C6 00 00 81 FE ?? ?? ?? ?? 0F 84 B7 04 00 00 68 ?? ?? ?? ??",
+            "vtable": 0,
+            "slot": 0
+          },
+          {
+            "name": "EntityGetKeyValue",
+            "rva": 1136128,
+            "pattern": "55 8B EC 83 EC 0C 53 56 8B 75 08 8B D9 81 FE ?? ?? ?? ?? 0F 84 E3 02 00 00 68 ?? ?? ?? ?? 56 E8 ?? ?? ?? ?? 83 C4 08 85 C0 0F 84 CD 02 00 00 81",
+            "vtable": 0,
+            "slot": 0
+          },
+          {
+            "name": "EmitSound",
+            "rva": 2422656,
+            "pattern": "55 8B EC 83 EC 7C 8B 15 ?? ?? ?? ?? 53 57 33 FF 89 4D F8 33 DB 89 7D EC 89 5D F0 8B 42 08 85 C0 74 3B 68 ?? ?? ?? ?? 68 ?? ?? ?? ?? 68 ?? ?? ?? ?? 68 ?? ?? ?? ?? 68 92 04 00 00 68 ?? ?? ?? ??",
+            "vtable": 0,
+            "slot": 0
+          },
+          {
+            "name": "PrecacheSound",
+            "rva": 2426304,
+            "pattern": "55 8B EC FF 75 08 B9 ?? ?? ?? ?? E8 ?? ?? ?? ?? 5D C3 CC CC CC CC CC CC CC CC CC CC CC CC CC CC 55 8B EC 53 8B D9 8B 0D ?? ?? ?? ?? 56 8B 75 08 57 8B 01 56 FF 50 1C 8B 0D ?? ?? ?? ?? 8B F8 57 8B 11 8B 52 20 FF D2 84 C0 0F 85 C0 00 00 00 68 ?? ?? ?? ?? 56 E8 ?? ?? ?? ?? 83 C4 08 85 C0 0F",
+            "vtable": 0,
+            "slot": 0
+          },
+          {
+            "name": "GetOrigin",
+            "rva": 241488,
+            "pattern": "56 8B F1 8B 86 00 01 00 00 C1 E8 0B A8 01 74 05 E8 ?? ?? ?? ?? 8D 86 7C 02 00 00 5E C3 CC CC CC 56 8B F1 8B 86 00 01 00 00 C1 E8 0C A8 01 74 05",
+            "vtable": 0,
+            "slot": 0
+          },
+          {
+            "name": "PlayerByIndex",
+            "rva": 2597280,
+            "pattern": "55 8B EC 8B 55 08 85 D2 7E 31 A1 ?? ?? ?? ?? 3B 50 14 7F 27 8B 0D ?? ?? ?? ?? 52 8B 01 FF 50 4C 8B C8 85 C9 74 15 8B 01 D1 E8 A8 01 75 0D 8B 49 0C 85 C9 74 06 8B 01 5D FF 60 14 33 C0 5D C3",
+            "vtable": 0,
+            "slot": 0
+          },
+          {
+            "name": "WeaponTracer",
+            "rva": 1040096,
+            "pattern": "55 8B EC 83 EC 0C 56 8B F1 57 8B 8E 60 04 00 00 83 F9 FF 0F 84 C8 00 00 00 8B 15 ?? ?? ?? ?? 8B C1 25 FF 0F 00 00 C1 E9 0C 03 C0 39 4C C2 08 0F 85 AC 00 00 00 8B 4C C2 04 85 C9 0F 84 A0 00 00",
+            "vtable": 0,
+            "slot": 0
+          },
+          {
+            "name": "WeaponImpact",
+            "rva": 1132368,
+            "pattern": "55 8B EC 6A 00 FF 75 0C FF 75 08 E8 ?? ?? ?? ?? 83 C4 0C 5D C2 08 00",
+            "vtable": 0,
+            "slot": 0
+          },
+          {
+            "name": "Tracer",
+            "rva": 2607360,
+            "pattern": "55 8B EC 81 EC 8C 00 00 00 8D 8D 74 FF FF FF E8 ?? ?? ?? ?? 80 7D 1C 00 8B 45 08 F3 0F 10 00 F3 0F 11 45 80 F3 0F 10 40 04 F3 0F 11 45 84 F3 0F 10 40 08 8B 45 0C F3 0F 11 45 88 F3 0F 10 00 F3",
+            "vtable": 0,
+            "slot": 0
+          },
+          {
+            "name": "FireBullets",
+            "rva": 1132592,
+            "pattern": "53 8B DC 83 EC 08 83 E4 F0 83 C4 04 55 8B 6B 04 89 6C 24 04 8B EC 81 EC A8 02 00 00 56 8B F1 57 89 75 D0 E8 ?? ?? ?? ?? 8B 7B 08 8B C8 89 45 D4 FF 77 2C E8 ?? ?? ?? ?? FF 77 2C 8B 4D D4 89 45",
+            "vtable": 0,
+            "slot": 0
+          },
+          {
+            "name": "LookupAttachment",
+            "rva": 955808,
+            "pattern": "55 8B EC 56 8B F1 80 BE 2D 03 00 00 00 75 3A 83 BE 4C 04 00 00 00 75 10 E8 ?? ?? ?? ?? 85 C0 74 07 8B CE E8 ?? ?? ?? ?? 8B 86 4C 04 00 00 85 C0 74 17 83 38 00 74 12 FF 75 08 50 E8 ?? ?? ?? ??",
+            "vtable": 0,
+            "slot": 0
+          }
+        ],
+        "engine_targets": [
+          {
+            "name": "ClearDecals",
+            "rva": 1177072,
+            "pattern": "55 8B EC 51 A1 ?? ?? ?? ?? 85 C0 74 45 8B 4D 08 53 32 DB 88 5D FC 83 39 02 75 28 68 ?? ?? ?? ?? FF B1 0C 04 00 00 E8 ?? ?? ?? ?? 83 C4 08 0F B6",
+            "vtable": 0,
+            "slot": 0
+          },
+          {
+            "name": "ClearModelDecals",
+            "rva": 1251216,
+            "pattern": "53 56 57 8B F9 BB FF FF 00 00 0F B7 77 18 66 3B F3 74 21 8B 07 8B CF 56 FF 50 24 0F B7 C6 69 C8 08 01 00 00 8B 47 0C 0F B7 B4 01 06 01 00 00 66",
+            "vtable": 0,
+            "slot": 0
+          }
+        ],
+        "vstdlib_targets": [
+          {
+            "name": "Register",
+            "rva": 17200,
+            "pattern": "55 8B EC 53 57 8B 7D 08 8B D9 8B CF 8B 07 8B 40 18 FF D0 84 C0 0F 85 82 02 00 00 8B 07 8B CF C6 47 08 01 FF 50 10 85 C0 0F 84 85 02 00 00 80 38",
+            "vtable": 0,
+            "slot": 0
+          },
+          {
+            "name": "Unregister",
+            "rva": 18208,
+            "pattern": "55 8B EC 56 8B 75 08 57 8B F9 8B CE 8B 06 8B 40 18 FF D0 84 C0 74 3D C6 46 08 00 33 D2 8B 47 30 85 C0 74 30 3B C6 74 0F 8B D0 8B 40 04 85 C0 75",
+            "vtable": 0,
+            "slot": 0
+          },
+          {
+            "name": "Find",
+            "rva": 15472,
+            "pattern": "55 8B EC 8B 01 56 57 FF 50 40 8B F0 85 F6 74 25 8B 7D 08 8B 06 8B CE FF 50 10 50 57 E8 ?? ?? ?? ?? 83 C4 08 85 C0 74 15 8B CE E8 ?? ?? ?? ?? 8B",
+            "vtable": 0,
+            "slot": 0
+          }
+        ],
+        "cvar_table": 111844,
+        "model_table": 3391260,
+        "client_cleanup": {
+          "list_primary": 3726024,
+          "list_secondary": 3726040,
+          "list_offset": 65556,
+          "list_instance": 4911920,
+          "ragdoll_table": 3611868,
+          "release_field": 2180
+        },
+        "values": {
+          "EntityListPtr": 6474164,
+          "GlobalsPtr": 7063200,
+          "EnginePtr": 7064372,
+          "CvarPtr": 7503732
+        },
+        "maps": {
+          "CBaseEntity": {
+            "table": 5033820,
+            "map": 6429600
+          },
+          "CBaseHLCombatWeapon": {
+            "table": 5567400,
+            "map": 6681848
+          },
+          "CHL2_Player": {
+            "table": 5617960,
+            "map": 6700672
+          }
+        },
+        "fields": {
+          "m_iClassname": {
+            "type": 2,
+            "offset": 92
+          },
+          "m_iName": {
+            "type": 2,
+            "offset": 264
+          },
+          "m_ModelName": {
+            "type": 18,
+            "offset": 516
+          },
+          "m_iHammerID": {
+            "type": 5,
+            "offset": 104
+          },
+          "m_spawnflags": {
+            "type": 5,
+            "offset": 252
+          },
+          "m_iEFlags": {
+            "type": 5,
+            "offset": 256
+          },
+          "m_iClip1": {
+            "type": 5,
+            "offset": 1196
+          },
+          "m_iClip2": {
+            "type": 5,
+            "offset": 1200
+          },
+          "m_nButtons": {
+            "type": 5,
+            "offset": 2688
+          },
+          "m_afButtonPressed": {
+            "type": 5,
+            "offset": 2692
+          },
+          "m_hOwnerEntity": {
+            "type": 13,
+            "offset": 468
+          },
+          "m_hMoveParent": {
+            "type": 13,
+            "offset": 316
+          },
+          "m_hMoveChild": {
+            "type": 13,
+            "offset": 320
+          },
+          "m_hMovePeer": {
+            "type": 13,
+            "offset": 324
+          },
+          "m_flNextPrimaryAttack": {
+            "type": 16,
+            "offset": 1128
+          },
+          "m_flNextSecondaryAttack": {
+            "type": 16,
+            "offset": 1132
+          },
+          "m_pPhysicsObject": {
+            "type": 11,
+            "offset": 480
+          },
+          "m_bLowered": {
+            "type": 6,
+            "offset": 1376
+          },
+          "m_bFiresUnderwater": {
+            "type": 6,
+            "offset": 1204
+          },
+          "m_bAltFiresUnderwater": {
+            "type": 6,
+            "offset": 1205
+          },
+          "m_hActiveWeapon": {
+            "type": 13,
+            "offset": 2064
+          },
+          "m_hViewModel": {
+            "type": 13,
+            "offset": 3412
+          }
+        }
+      }
+    },
+    {
+      "name": "episodic",
+      "runtime_verified": false,
+      "server_sha256": "5d7f1ab3ef8b8c19c48e23050cd00c558a8f5c4ed42ef1e9e6cdfd52571ad3ee",
+      "client_sha256": "d6f6ad1224a9c04a937574ed0e5363da1f1db7bf87ccc54c461d59a4636ca29a",
+      "engine_sha256": "6a277234ae8edb4939ed7ef45a27499210f14db3a7f6a9e7e83540492b638d6e",
+      "targets": [
+        {
+          "name": "SMG1.GetBulletSpread",
+          "rva": 4362720,
+          "pattern": "A1 ?? ?? ?? ?? A8 01 75 26 83 C8 01 C7 05 ?? ?? ?? ?? E3 AA 32 3D A3 ?? ?? ?? ?? C7 05 ?? ?? ?? ?? E3 AA 32 3D C7 05 ?? ?? ?? ?? E3 AA 32 3D B8 ?? ?? ?? ?? C3",
+          "vtable": 6096456,
+          "slot": 280
+        },
+        {
+          "name": "AR2.GetBulletSpread",
+          "rva": 4260752,
+          "pattern": "A1 ?? ?? ?? ?? A8 01 75 08 83 C8 01 A3 ?? ?? ?? ?? C7 05 ?? ?? ?? ?? 70 77 D6 3C B8 ?? ?? ?? ?? C7 05 ?? ?? ?? ?? 70 77 D6 3C C7 05 ?? ?? ?? ?? 70 77 D6 3C C3",
+          "vtable": 6068064,
+          "slot": 280
+        },
+        {
+          "name": "SMG1.AddViewKick",
+          "rva": 4362048,
+          "pattern": "56 57 8B F9 E8 ?? ?? ?? ?? 8B F0 85 F6 74 3F 8B 16 8B CE 8B 92 40 01 00 00 FF D2 84 C0 74 2F D9 05 ?? ?? ?? ?? 83 EC 10 D9 5C 24 0C D9 87 CC 04 00 00 D9 5C 24 08 D9 E8 D9 5C 24 04 D9 05 ?? ?? ?? ?? D9 1C 24 56 E8 ?? ?? ?? ?? 83 C4 14 5F 5E C3",
+          "vtable": 6096456,
+          "slot": 297
+        },
+        {
+          "name": "AR2.AddViewKick",
+          "rva": 4258208,
+          "pattern": "55 8B EC 83 EC 08 56 57 8B F9 E8 ?? ?? ?? ?? 8B F0 85 F6 74 7A 8B 16 8B CE 8B 92 40 01 00 00 FF D2 84 C0 74 6A 8B 0D ?? ?? ?? ?? F3 0F 10 87 CC 04 00 00 F3 0F 11 45 F8 F3 0F 11 45 FC 8B 01 FF 90 F8 00 00 00 83 F8 02 75 15 F3 0F 10 05 ?? ?? ?? ?? 0F 2F 45 F8 77 07 C7 45 FC 00 00 40 3F D9 05 ?? ?? ?? ?? 83 EC 10 D9 5C 24 0C D9 45 FC D9 5C 24 08 D9 05 ?? ?? ?? ?? D9 5C 24 04 D9 05 ?? ?? ?? ?? D9 1C 24 56 E8 ?? ?? ?? ?? 83 C4 14 5F 5E 8B E5 5D C3",
+          "vtable": 6068064,
+          "slot": 297
+        },
+        {
+          "name": "357.Factory",
+          "rva": 4252784,
+          "pattern": "55 8B EC 56 68 6C 05 00 00 E8 ?? ?? ?? ?? 8B F0 83 C4 04 85 F6 74 2D 8B CE E8 ?? ?? ?? ?? FF 75 08 C7 06 ?? ?? ?? ?? 8B CE C6 86 C8 04 00 00 00 C6 86 B4 04 00 00 00 8B 06 FF 50 68 8D 46 0C 5E 5D C2 04 00 FF 75 08 33 F6 8B CE 8B 06 FF 50 68 8D 46 0C 5E 5D C2 04 00",
+          "vtable": 0,
+          "slot": 0,
+          "class_vtable": 6063336
+        },
+        {
+          "name": "Shotgun.Constructor",
+          "rva": 4356640,
+          "pattern": "56 8B F1 E8 ?? ?? ?? ?? C7 06 ?? ?? ?? ?? 8B C6 C6 86 C8 04 00 00 01 66 C7 86 6C 05 00 00 00 00 C6 86 6E 05 00 00 00 C7 86 B8 04 00 00 00 00 00 00 C7 86 C0 04 00 00 00 00 FA 43 C7 86 BC 04 00 00 00 00 00 00 C7 86 C4 04 00 00 00 00 48 43 5E C3",
+          "vtable": 0,
+          "slot": 0,
+          "class_vtable": 6094932
+        },
+        {
+          "name": "SMG1.Factory",
+          "rva": 4362144,
+          "pattern": "55 8B EC 56 68 8C 05 00 00 E8 ?? ?? ?? ?? 8B F0 83 C4 04 85 F6 74 3A 8B CE E8 ?? ?? ?? ?? FF 75 08 C7 06 ?? ?? ?? ?? 8B CE C7 86 B8 04 00 00 00 00 00 00 C7 86 C0 04 00 00 00 00 AF 44 C6 86 B5 04 00 00 00 8B 06 FF 50 68 8D 46 0C 5E 5D C2 04 00 FF 75 08 33 F6 8B CE 8B 06 FF 50 68 8D 46 0C 5E 5D C2 04 00",
+          "vtable": 0,
+          "slot": 0,
+          "class_vtable": 6096456
+        },
+        {
+          "name": "AR2.Constructor",
+          "rva": 4258080,
+          "pattern": "56 8B F1 E8 ?? ?? ?? ?? C7 06 ?? ?? ?? ?? 8B C6 C7 86 B8 04 00 00 00 00 82 42 C7 86 C0 04 00 00 00 00 00 45 C7 86 BC 04 00 00 00 00 80 43 C7 86 C4 04 00 00 00 00 80 44 C7 86 6C 05 00 00 00 00 00 00 C7 86 7C 05 00 00 FF FF FF FF C6 86 B5 04 00 00 00 5E C3",
+          "vtable": 0,
+          "slot": 0,
+          "class_vtable": 6068064
+        },
+        {
+          "name": "AR2.SecondaryAttack",
+          "rva": 4261376,
+          "pattern": "55 8B EC 51 56 8B F1 80 BE 78 05 00 00 00 0F 85 ?? ?? ?? ?? E8 ?? ?? ?? ?? 85 C0 74 59 8B CE E8 ?? ?? ?? ?? 80 B8 F7 01 00 00 03 75 49 8B 06 8B CE 68 B9 00 00 00 FF 90 AC 03 00 00 D9 EE 51 D9 1C 24 6A 00 8B CE E8 ?? ?? ?? ?? A1 ?? ?? ?? ?? 8D 8E 6C 04 00 00 F3 0F 10 40 0C 8D 45 FC",
+          "vtable": 6068064,
+          "slot": 273
+        },
+        {
+          "name": "SMG1.SecondaryAttack",
+          "rva": 4363552,
+          "pattern": "55 8B EC 83 EC 38 53 57 8B F9 E8 ?? ?? ?? ?? 8B D8 85 DB 0F 84 ?? ?? ?? ?? 8B 13 8B CB 8B 92 40 01 00 00 FF D2 84 C0 0F 84 ?? ?? ?? ?? 8B 03 8B CB FF B7 A8 04 00 00 FF 90 F8 03 00 00 85 C0 0F 8E ?? ?? ?? ?? 80 BB F7 01 00 00 03 0F 84 ?? ?? ?? ?? 80 BF 74 04 00 00 00 74 07",
+          "vtable": 6096456,
+          "slot": 273
+        },
+        {
+          "name": "AR2.DelayedAttack",
+          "rva": 4258464,
+          "pattern": "55 8B EC 83 EC 48 53 56 8B F1 C6 86 78 05 00 00 00 E8 ?? ?? ?? ?? 8B D8 89 5D F4 85 DB 0F 84 ?? ?? ?? ?? 8B 13 8B CB 8B 92 40 01 00 00 FF D2 84 C0 0F 84 ?? ?? ?? ?? 8B 06 8B CE 57 68 B5 00 00 00 FF 90 AC 03 00 00 80 BE 2D 03 00 00 00 8B BE 8C 03 00 00 75 2A 83 BE 4C 04 00 00 00 75 12",
+          "vtable": 0,
+          "slot": 0
+        },
+        {
+          "name": "Pickup.KeepSprint",
+          "rva": 4303568,
+          "pattern": "6A 00 8B CF E8 ?? ?? ?? ?? 8B 45 0C 83 B8 DC 01 00 00 01 75 09 6A 03",
+          "vtable": 0,
+          "slot": 0
+        },
+        {
+          "name": "Physcannon.SkipCarrySlowdown",
+          "rva": 4285583,
+          "pattern": "6A 00 E8 ?? ?? ?? ?? A1 ?? ?? ?? ?? 0F 57 DB F3 0F 10 86 24 06 00 00 51 8B 4D F8 F3 0F 5E 40 2C A1 ?? ?? ?? ?? F3 0F 10 50 2C A1 ?? ?? ?? ?? F3 0F 10 D8 F3 0F 10 05 ?? ?? ?? ?? F3 0F 5F D8 F3 0F 10 05 ?? ?? ?? ?? F3 0F 10 48 2C F3 0F 5C CA F3 0F 5D D8 F3 0F 5C C3 F3 0F 59 C8 F3 0F 58 CA F3 0F 11 0C 24 E8 ?? ?? ?? ??",
+          "vtable": 0,
+          "slot": 0
+        },
+        {
+          "name": "Physcannon.KeepDropSpeed",
+          "rva": 4289643,
+          "pattern": "6A 01 8B CE E8 ?? ?? ?? ?? A1 ?? ?? ?? ?? 8D 4D FC F3 0F 10 40 2C 8B 86 BC 0D 00 00 F3 0F 11 45 FC F3 0F 11 45 F8 3B 01 74 32 8B CE 80 79 54 00 74 06 80 49 58 01 EB 1C 8B 51 18 85 D2 74 15 8D 86 BC 0D 00 00 2B C1 8B CA 50 E8 ?? ?? ?? ?? F3 0F 10 45 F8 F3 0F 11 86 BC 0D 00 00",
+          "vtable": 0,
+          "slot": 0
+        },
+        {
+          "name": "Achievements.IgnoreCheatHistory",
+          "rva": 124659,
+          "pattern": "8B 47 14 8D 4F 14 8B 40 28 FF D0 84 C0 74 3E",
+          "vtable": 0,
+          "slot": 0
+        },
+        {
+          "name": "Commands.God",
+          "rva": 1295296,
+          "pattern": "A1 ?? ?? ?? ?? 8B 40 1C 83 78 30 00 74 6A 56 E8 ?? ?? ?? ?? 8B F0 85 F6 74 5D 8B 16 8B CE 8B 92 40 01 00 00 FF D2 84 C0 74 4D A1 ?? ?? ?? ?? 80 78 4D 00 75 42 68 00 40 00 00 8B CE E8 ?? ?? ?? ?? F7 86 04 01 00 00 00 40 00 00 6A 00 6A 00 6A 00 6A 00 75 12 68 ?? ?? ?? ?? 6A 02 56 E8 ?? ?? ?? ?? 83 C4 1C 5E C3 68 ?? ?? ?? ?? 6A 02 56 E8 ?? ?? ?? ?? 83 C4 1C 5E C3",
+          "vtable": 0,
+          "slot": 0
+        },
+        {
+          "name": "Commands.Noclip",
+          "rva": 1296016,
+          "pattern": "55 8B EC A1 ?? ?? ?? ?? 83 EC 30 8B 40 1C 83 78 30 00 0F 84 8D 01 00 00 56 E8 ?? ?? ?? ?? 8B F0 85 F6 0F 84 7C 01 00 00 8B 16 8B CE 8B 92 40 01 00 00 FF D2 84 C0 0F 84 68 01 00 00 80 BE 3A 01 00 00 08 74 0E 56 E8 ?? ?? ?? ??",
+          "vtable": 0,
+          "slot": 0
+        },
+        {
+          "name": "Commands.GetPlayer",
+          "rva": 1612240,
+          "pattern": "A1 ?? ?? ?? ?? 40 85 C0 7E 0A 50 E8 ?? ?? ?? ?? 83 C4 04 C3 33 C0 C3",
+          "vtable": 0,
+          "slot": 0
+        },
+        {
+          "name": "Commands.Dispatch",
+          "rva": 4604176,
+          "pattern": "55 8B EC 8A 41 20 A8 02 74 13 8B 41 18 85 C0 74 25 FF 75 08 FF D0 83 C4 04 5D C2 04 00 A8 04 74 0C 8B 49 18 85 C9 74 0E 8B 01 5D FF 20 8B 41 18 85 C0 74 02 FF D0 5D C2",
+          "vtable": 6137008,
+          "slot": 12
+        },
+        {
+          "name": "Sprint.PreThinkStickyDuck",
+          "rva": 3041917,
+          "pattern": "80 BF AC 08 00 00 00 74 0B 8B CF E8 ?? ?? ?? ?? 85 C0 75 66",
+          "vtable": 0,
+          "slot": 0
+        },
+        {
+          "name": "Sprint.PreThinkDuck",
+          "rva": 3041997,
+          "pattern": "80 BF 5C 11 00 00 00 74 28 8B 87 80 0A 00 00 C1 E8 02 A8 01 74 1B 80 BF AC 08 00 00 00 74 12 8B CF E8 ?? ?? ?? ?? 85 C0 74 07 8B CF E8 ?? ?? ?? ??",
+          "vtable": 0,
+          "slot": 0
+        }
+      ],
+      "patches": [
+        {
+          "rva": 4362738,
+          "kind": "Scalar",
+          "before": 1026730723,
+          "after": 1007618118
+        },
+        {
+          "rva": 7398468,
+          "kind": "Cone",
+          "before": 1026730723,
+          "after": 1007618118
+        },
+        {
+          "rva": 4362753,
+          "kind": "Scalar",
+          "before": 1026730723,
+          "after": 1007618118
+        },
+        {
+          "rva": 7398472,
+          "kind": "Cone",
+          "before": 1026730723,
+          "after": 1007618118
+        },
+        {
+          "rva": 4362763,
+          "kind": "Scalar",
+          "before": 1026730723,
+          "after": 1007618118
+        },
+        {
+          "rva": 7398476,
+          "kind": "Cone",
+          "before": 1026730723,
+          "after": 1007618118
+        },
+        {
+          "rva": 4260775,
+          "kind": "Scalar",
+          "before": 1020688240,
+          "after": 1007618118
+        },
+        {
+          "rva": 7392532,
+          "kind": "Cone",
+          "before": 1020688240,
+          "after": 1007618118
+        },
+        {
+          "rva": 4260790,
+          "kind": "Scalar",
+          "before": 1020688240,
+          "after": 1007618118
+        },
+        {
+          "rva": 7392536,
+          "kind": "Cone",
+          "before": 1020688240,
+          "after": 1007618118
+        },
+        {
+          "rva": 4260800,
+          "kind": "Scalar",
+          "before": 1020688240,
+          "after": 1007618118
+        },
+        {
+          "rva": 7392540,
+          "kind": "Cone",
+          "before": 1020688240,
+          "after": 1007618118
+        },
+        {
+          "rva": 4362081,
+          "kind": "Pointer",
+          "before": 4883792,
+          "after": 4883728
+        },
+        {
+          "rva": 4258305,
+          "kind": "Pointer",
+          "before": 4901328,
+          "after": 4883728
+        },
+        {
+          "rva": 4258325,
+          "kind": "Pointer",
+          "before": 4883832,
+          "after": 4883824
+        },
+        {
+          "rva": 4252835,
+          "kind": "Scalar",
+          "before": 4,
+          "after": 16777220
+        },
+        {
+          "rva": 4356719,
+          "kind": "Scalar",
+          "before": 3435971422,
+          "after": 78939846
+        },
+        {
+          "rva": 4356723,
+          "kind": "Scalar",
+          "before": 3435973836,
+          "after": 3321954304
+        },
+        {
+          "rva": 4356727,
+          "kind": "Scalar",
+          "before": 3435973836,
+          "after": 308614
+        },
+        {
+          "rva": 4356731,
+          "kind": "Scalar",
+          "before": 3435973836,
+          "after": 3277717760
+        },
+        {
+          "rva": 4362205,
+          "kind": "Scalar",
+          "before": 79005382,
+          "after": 78939846
+        },
+        {
+          "rva": 4362209,
+          "kind": "Scalar",
+          "before": 2332033024,
+          "after": 3321954304
+        },
+        {
+          "rva": 4362213,
+          "kind": "Scalar",
+          "before": 1750138630,
+          "after": 308614
+        },
+        {
+          "rva": 4362217,
+          "kind": "Scalar",
+          "before": 1577862797,
+          "after": 109773056
+        },
+        {
+          "rva": 4362221,
+          "kind": "Scalar",
+          "before": 311901,
+          "after": 2372423935
+        },
+        {
+          "rva": 4362225,
+          "kind": "Scalar",
+          "before": 856192511,
+          "after": 1566444614
+        },
+        {
+          "rva": 4362229,
+          "kind": "Scalar",
+          "before": 2345569270,
+          "after": 4278191298
+        },
+        {
+          "rva": 4362233,
+          "kind": "Scalar",
+          "before": 1750138630,
+          "after": 4130539637
+        },
+        {
+          "rva": 4362237,
+          "kind": "Scalar",
+          "before": 1577862797,
+          "after": 109825675
+        },
+        {
+          "rva": 4362241,
+          "kind": "Scalar",
+          "before": 311901,
+          "after": 2372423935
+        },
+        {
+          "rva": 4362245,
+          "kind": "Scalar",
+          "before": 3435973836,
+          "after": 1566444614
+        },
+        {
+          "rva": 4362249,
+          "kind": "Scalar",
+          "before": 3435973836,
+          "after": 3422553282
+        },
+        {
+          "rva": 4362166,
+          "kind": "Scalar",
+          "before": 3905850170,
+          "after": 3905850177
+        },
+        {
+          "rva": 4258156,
+          "kind": "Scalar",
+          "before": 79005382,
+          "after": 78939846
+        },
+        {
+          "rva": 4258160,
+          "kind": "Scalar",
+          "before": 1577058304,
+          "after": 3321954304
+        },
+        {
+          "rva": 4258164,
+          "kind": "Scalar",
+          "before": 3435973827,
+          "after": 308614
+        },
+        {
+          "rva": 4258168,
+          "kind": "Scalar",
+          "before": 3435973836,
+          "after": 3277717760
+        },
+        {
+          "rva": 4261415,
+          "kind": "Scalar",
+          "before": 50331649,
+          "after": 67108865
+        },
+        {
+          "rva": 4363624,
+          "kind": "Scalar",
+          "before": 50331649,
+          "after": 67108865
+        },
+        {
+          "rva": 4258846,
+          "kind": "Pointer",
+          "before": 4991792,
+          "after": 4901424
+        },
+        {
+          "rva": 7331676,
+          "kind": "Pointer",
+          "before": 5620040,
+          "after": 5620040
+        },
+        {
+          "rva": 7331692,
+          "kind": "Pointer",
+          "before": 7331664,
+          "after": 7331664
+        },
+        {
+          "rva": 7331684,
+          "kind": "ClearFlags",
+          "before": 16384,
+          "after": 0
+        },
+        {
+          "rva": 4303568,
+          "kind": "Scalar",
+          "before": 3481993322,
+          "after": 2425358315
+        },
+        {
+          "rva": 4285583,
+          "kind": "Scalar",
+          "before": 3404202090,
+          "after": 2425383147
+        },
+        {
+          "rva": 4289657,
+          "kind": "Scalar",
+          "before": 4093398413,
+          "after": 2425375979
+        },
+        {
+          "rva": 124670,
+          "kind": "Scalar",
+          "before": 1047838852,
+          "after": 1055637636
+        },
+        {
+          "rva": 3041917,
+          "kind": "Scalar",
+          "before": 145538944,
+          "after": 2425361131
+        },
+        {
+          "rva": 3041997,
+          "kind": "Scalar",
+          "before": 291291008,
+          "after": 2425368555
+        },
+        {
+          "rva": 7331172,
+          "kind": "Pointer",
+          "before": 5619840,
+          "after": 5619840
+        },
+        {
+          "rva": 7331188,
+          "kind": "Pointer",
+          "before": 7331160,
+          "after": 7331160
+        }
+      ],
+      "commands": {
+        "god": {
+          "object": 6961312,
+          "name": 5079436,
+          "callback": 1295296
+        },
+        "noclip": {
+          "object": 6961276,
+          "name": 5079360,
+          "callback": 1296016
+        },
+        "dispatch_table": 6137008,
+        "dispatch": 4604176,
+        "get_player": 1612240,
+        "player_flags": 260,
+        "player_movetype": 314
+      },
+      "movement": {
+        "server_crop": {
+          "name": "server.CrouchCrop",
+          "rva": 1636336,
+          "pattern": "56 8B F1 F6 86 88 06 00 00 01 75 57 8B 4E 04 F6 81 04 01 00 00 02 74 4B E8 ?? ?? ?? ?? 85 C0 74 42 8B 46 08 F3 0F 10 0D ?? ?? ?? ?? F3 0F 10 40 2C F3 0F 59 C1 F3 0F 11 40 2C 8B 46 08 F3 0F 10 40 30 F3 0F 59 C1 F3 0F 11 40 30 8B 46 08 F3 0F 10 40 34 F3 0F 59 C1 F3 0F 11 40 34 83 8E 88 06 00 00 01 5E C3",
+          "vtable": 5630052,
+          "slot": 47
+        },
+        "server_sprint_probe": {
+          "name": "server.MoveSprintField",
+          "rva": 1619650,
+          "pattern": "80 BF A4 00 00 00 00 75 0C 8B 46 04 80 B8 AC 08 00 00 00 74 0D",
+          "vtable": 0,
+          "slot": 0
+        },
+        "client_crop": {
+          "name": "client.CrouchCrop",
+          "rva": 1281328,
+          "pattern": "56 8B F1 F6 86 88 06 00 00 01 75 57 8B 4E 04 F6 81 4C 03 00 00 02 74 4B E8 ?? ?? ?? ?? 85 C0 74 42 8B 46 08 F3 0F 10 0D ?? ?? ?? ?? F3 0F 10 40 2C F3 0F 59 C1 F3 0F 11 40 2C 8B 46 08 F3 0F 10 40 30 F3 0F 59 C1 F3 0F 11 40 30 8B 46 08 F3 0F 10 40 34 F3 0F 59 C1 F3 0F 11 40 34 83 8E 88 06 00 00 01 5E C3",
+          "vtable": 4003888,
+          "slot": 47
+        },
+        "client_sprint_probe": {
+          "name": "client.MoveSprintField",
+          "rva": 1265074,
+          "pattern": "80 BF A4 00 00 00 00 75 0C 8B 46 04 80 B8 90 0E 00 00 00 74 0D",
+          "vtable": 0,
+          "slot": 0
+        },
+        "norm_speed": 7331160,
+        "norm_name": 5619840,
+        "movement_move": 8,
+        "movement_cropped": 1672,
+        "move_sprint": 164,
+        "move_inputs": 44,
+        "move_maxspeed": 60
+      },
+      "retail": {
+        "vstdlib_sha256": "30ccd4851c81e7919c8f38705dac6d3df862d267fd6b4b9350287d3b78497b2c",
+        "server_targets": [
+          {
+            "name": "Create",
+            "rva": 1775344,
+            "pattern": "55 8B EC 80 7D 10 00 56 57 74 3B E8 ?? ?? ?? ?? 84 C0 74 32 8B 75 08 68 ?? ?? ?? ?? 56 E8 ?? ?? ?? ?? 85 C0 BF ?? ?? ?? ?? 68 ?? ?? ?? ?? 0F 45",
+            "vtable": 0,
+            "slot": 0
+          },
+          {
+            "name": "Spawn",
+            "rva": 2584384,
+            "pattern": "55 8B EC 51 53 8B 5D 08 56 57 85 DB 0F 84 5E 01 00 00 8B 3D ?? ?? ?? ?? 8B CF 8B 07 FF 50 64 8B 03 8B CB FF 50 08 8B 0D ?? ?? ?? ?? 6A 00 6A 03",
+            "vtable": 0,
+            "slot": 0
+          },
+          {
+            "name": "Remove",
+            "rva": 2599264,
+            "pattern": "55 8B EC 8B 45 08 85 C0 74 0C 83 C0 0C 89 45 08 5D E9 ?? ?? ?? ?? 5D C3 CC CC CC CC CC CC CC CC 55 8B EC 56 8B 75 08 85 F6 74 5C 8B CE E8 ?? ??",
+            "vtable": 0,
+            "slot": 0
+          },
+          {
+            "name": "Next",
+            "rva": 1432016,
+            "pattern": "55 8B EC 56 8B F1 8B 4D 08 85 C9 75 11 8B 86 04 00 01 00 85 C0 74 2B 8B 00 5E 5D C2 04 00 8B 01 FF 50 08 8B 00 25 FF 0F 00 00 C1 E0 04 83 C0 04",
+            "vtable": 0,
+            "slot": 0
+          },
+          {
+            "name": "Trace",
+            "rva": 391856,
+            "pattern": "53 8B DC 83 EC 08 83 E4 F0 83 C4 04 55 8B 6B 04 89 6C 24 04 8B EC 83 EC 6C 8D 4D A0 56 FF 73 0C FF 73 08 E8 ?? ?? ?? ?? 6A 00 FF 73 18 8D 4D F0",
+            "vtable": 0,
+            "slot": 0
+          },
+          {
+            "name": "Origin",
+            "rva": 2601664,
+            "pattern": "55 8B EC FF 75 0C 8B 4D 08 E8 ?? ?? ?? ?? 80 7D 10 00 74 0A 8B 4D 08 6A 00 E8 ?? ?? ?? ?? 5D C3 55 8B EC 8B 55 0C 33 C9 56 8B 75 10 8B C6 2B D6",
+            "vtable": 0,
+            "slot": 0
+          },
+          {
+            "name": "Angles",
+            "rva": 1116896,
+            "pattern": "55 8B EC 83 EC 70 53 56 8B F1 E8 ?? ?? ?? ?? 8B 5D 08 F3 0F 10 03 0F 2E 86 F8 02 00 00 9F F6 C4 44 7A 28 F3 0F 10 43 04 0F 2E 86 FC 02 00 00 9F",
+            "vtable": 0,
+            "slot": 0
+          },
+          {
+            "name": "Velocity",
+            "rva": 1117904,
+            "pattern": "55 8B EC 83 EC 18 53 56 8B 75 08 8B D9 F3 0F 10 06 0F 2E 83 14 02 00 00 9F F6 C4 44 7A 28 F3 0F 10 46 04 0F 2E 83 18 02 00 00 9F F6 C4 44 7A 16",
+            "vtable": 0,
+            "slot": 0
+          },
+          {
+            "name": "Precache",
+            "rva": 2598640,
+            "pattern": "55 8B EC 83 EC 08 56 8B 75 08 8D 45 FC 56 50 B9 ?? ?? ?? ?? E8 ?? ?? ?? ?? B8 FF FF 00 00 66 39 45 FC 75 6D 56 8D 45 FA B9 ?? ?? ?? ?? 50 E8 ??",
+            "vtable": 0,
+            "slot": 0
+          },
+          {
+            "name": "AmmoDef",
+            "rva": 3008496,
+            "pattern": "A1 ?? ?? ?? ?? A8 01 75 1F 83 C8 01 B9 ?? ?? ?? ?? A3 ?? ?? ?? ?? E8 ?? ?? ?? ?? 68 ?? ?? ?? ?? E8 ?? ?? ?? ?? 83 C4 04 80 3D ?? ?? ?? ?? 00 0F",
+            "vtable": 0,
+            "slot": 0
+          },
+          {
+            "name": "AmmoIndex",
+            "rva": 921392,
+            "pattern": "55 8B EC 8B 45 08 53 8B D9 85 C0 75 08 83 C8 FF 5B 5D C2 04 00 56 BE 01 00 00 00 57 39 73 04 7E 1E 8D 7B 3C FF 37 50 E8 ?? ?? ?? ?? 83 C4 08 85",
+            "vtable": 0,
+            "slot": 0
+          },
+          {
+            "name": "Ball",
+            "rva": 4115648,
+            "pattern": "53 8B DC 83 EC 08 83 E4 F0 83 C4 04 55 8B 6B 04 89 6C 24 04 8B EC 83 EC 28 56 57 6A 01 6A FF 68 ?? ?? ?? ?? E8 ?? ?? ?? ?? F3 0F 10 43 10 8D 4D",
+            "vtable": 0,
+            "slot": 0
+          },
+          {
+            "name": "Grenade",
+            "rva": 2999584,
+            "pattern": "55 8B EC 56 57 8B 7D 18 57 FF 75 0C FF 75 08 68 ?? ?? ?? ?? E8 ?? ?? ?? ?? 8B 0D ?? ?? ?? ?? 8B F0 F3 0F 10 4D 1C 83 C4 10 D9 EE F3 0F 10 41 0C",
+            "vtable": 0,
+            "slot": 0
+          },
+          {
+            "name": "VectorAngles",
+            "rva": 4577568,
+            "pattern": "55 8B EC 8B 4D 08 F3 0F 10 0D ?? ?? ?? ?? F3 0F 10 41 04 0F 2E C1 F3 0F 11 45 08 9F F6 C4 44 7A 2B F3 0F 10 01 0F 2E C1 9F F6 C4 44 7A 1E F3 0F",
+            "vtable": 0,
+            "slot": 0
+          },
+          {
+            "name": "Punch",
+            "rva": 1197008,
+            "pattern": "55 8B EC A1 ?? ?? ?? ?? 83 EC 0C 83 78 30 00 56 8B F1 75 51 8B 06 8B 80 A8 04 00 00 FF D0 84 C0 75 43 8B 45 08 8D 8E D8 08 00 00 F3 0F 10 0D ??",
+            "vtable": 0,
+            "slot": 0
+          },
+          {
+            "name": "NetworkField",
+            "rva": 256608,
+            "pattern": "55 8B EC 56 8B F1 8B 06 A9 00 01 00 00 75 5F 83 C8 01 53 89 06 E8 ?? ?? ?? ?? 8B D8 A1 ?? ?? ?? ?? 66 8B 4B 02 66 3B 08 75 60 0F B7 0B 57 8D 0C",
+            "vtable": 0,
+            "slot": 0
+          },
+          {
+            "name": "Print",
+            "rva": 2584160,
+            "pattern": "55 8B EC 83 EC 20 83 7D 08 00 74 48 8D 4D E0 E8 ?? ?? ?? ?? FF 75 08 8D 4D E0 C7 45 E0 ?? ?? ?? ?? E8 ?? ?? ?? ?? 8D 4D E0 E8 ?? ?? ?? ?? FF 75",
+            "vtable": 0,
+            "slot": 0
+          },
+          {
+            "name": "BulletInit",
+            "rva": 282288,
+            "pattern": "C7 01 01 00 00 00 8B C1 C7 41 1C 00 00 00 00 C7 41 20 00 00 00 00 C7 41 24 00 00 00 00 C7 41 28 00 00 00 46 C7 41 30 04 00 00 00 C7 41 34 00 00",
+            "vtable": 0,
+            "slot": 0
+          },
+          {
+            "name": "GetOwner",
+            "rva": 1035712,
+            "pattern": "8B 91 60 04 00 00 83 FA FF 74 28 A1 ?? ?? ?? ?? 8B CA 81 E1 FF 0F 00 00 C1 EA 0C 03 C9 39 54 C8 08 75 10 8B 4C C8 04 85 C9 74 08 8B 01 FF A0 1C",
+            "vtable": 0,
+            "slot": 0
+          },
+          {
+            "name": "CommandCtor",
+            "rva": 4601824,
+            "pattern": "55 8B EC 8B 45 0C 8B 55 18 85 D2 56 8B F1 0F 95 C1 89 46 18 B8 ?? ?? ?? ?? 0F 45 C2 C7 46 04 00 00 00 00 89 46 1C 80 E1 01 8A 46 20 24 FA C7 06",
+            "vtable": 0,
+            "slot": 0
+          },
+          {
+            "name": "DefaultAccessor",
+            "rva": 4605040,
+            "pattern": "55 8B EC 8B 0D ?? ?? ?? ?? FF 75 08 8B 01 FF 50 18 B0 01 5D C2 04 00 CC CC CC CC CC CC CC CC CC 55 8B EC 8B 49 04 8B 01 5D FF 60 30 CC CC CC CC",
+            "vtable": 0,
+            "slot": 0
+          },
+          {
+            "name": "WeaponSpawn",
+            "rva": 1045696,
+            "pattern": "55 8B EC 83 EC 08 53 56 57 8B F9 8B 07 FF 50 5C 8B CF E8 ?? ?? ?? ?? 6A 02 8D 8F 48 01 00 00 E8 ?? ?? ?? ?? 81 A7 00 01 00 00 FF FF FB FF 8D 4D",
+            "vtable": 0,
+            "slot": 0
+          },
+          {
+            "name": "WeaponPrecache",
+            "rva": 1040848,
+            "pattern": "55 8B EC 51 53 56 57 8B F9 C7 45 FC FF FF FF FF 8B 87 A8 04 00 00 8D 9F A8 04 00 00 8D 4D FC 3B 01 74 2E 80 BB AC FB FF FF 00 8D 8B 58 FB FF FF",
+            "vtable": 0,
+            "slot": 0
+          },
+          {
+            "name": "WeaponFrame",
+            "rva": 1038848,
+            "pattern": "55 8B EC 83 EC 0C 56 8B F1 8B 8E 60 04 00 00 83 F9 FF 0F 84 55 03 00 00 8B 15 ?? ?? ?? ?? 8B C1 25 FF 0F 00 00 C1 E9 0C 03 C0 39 4C C2 08 0F 85",
+            "vtable": 0,
+            "slot": 0
+          },
+          {
+            "name": "EntityInput",
+            "rva": 1062944,
+            "pattern": "55 8B EC 81 EC 40 01 00 00 A1 ?? ?? ?? ?? 53 56 8B F1 83 78 30 00 57 8B 7D 08 89 75 FC 0F 84 60 01 00 00 8B 5D 10 85 DB 0F 84 C1 00 00 00 8B 86",
+            "vtable": 0,
+            "slot": 0
+          },
+          {
+            "name": "EntityKeyValue",
+            "rva": 1138928,
+            "pattern": "55 8B EC 83 EC 0C 53 56 8B 75 08 8B D9 6A 23 56 E8 ?? ?? ?? ?? 83 C4 08 85 C0 74 03 C6 00 00 81 FE ?? ?? ?? ?? 0F 84 B7 04 00 00 68 ?? ?? ?? ??",
+            "vtable": 0,
+            "slot": 0
+          },
+          {
+            "name": "EntityGetKeyValue",
+            "rva": 1136128,
+            "pattern": "55 8B EC 83 EC 0C 53 56 8B 75 08 8B D9 81 FE ?? ?? ?? ?? 0F 84 E3 02 00 00 68 ?? ?? ?? ?? 56 E8 ?? ?? ?? ?? 83 C4 08 85 C0 0F 84 CD 02 00 00 81",
+            "vtable": 0,
+            "slot": 0
+          },
+          {
+            "name": "EmitSound",
+            "rva": 2422656,
+            "pattern": "55 8B EC 83 EC 7C 8B 15 ?? ?? ?? ?? 53 57 33 FF 89 4D F8 33 DB 89 7D EC 89 5D F0 8B 42 08 85 C0 74 3B 68 ?? ?? ?? ?? 68 ?? ?? ?? ?? 68 ?? ?? ?? ?? 68 ?? ?? ?? ?? 68 92 04 00 00 68 ?? ?? ?? ??",
+            "vtable": 0,
+            "slot": 0
+          },
+          {
+            "name": "PrecacheSound",
+            "rva": 2426304,
+            "pattern": "55 8B EC FF 75 08 B9 ?? ?? ?? ?? E8 ?? ?? ?? ?? 5D C3 CC CC CC CC CC CC CC CC CC CC CC CC CC CC 55 8B EC 53 8B D9 8B 0D ?? ?? ?? ?? 56 8B 75 08 57 8B 01 56 FF 50 1C 8B 0D ?? ?? ?? ?? 8B F8 57 8B 11 8B 52 20 FF D2 84 C0 0F 85 C0 00 00 00 68 ?? ?? ?? ?? 56 E8 ?? ?? ?? ?? 83 C4 08 85 C0 0F",
+            "vtable": 0,
+            "slot": 0
+          },
+          {
+            "name": "GetOrigin",
+            "rva": 241488,
+            "pattern": "56 8B F1 8B 86 00 01 00 00 C1 E8 0B A8 01 74 05 E8 ?? ?? ?? ?? 8D 86 7C 02 00 00 5E C3 CC CC CC 56 8B F1 8B 86 00 01 00 00 C1 E8 0C A8 01 74 05",
+            "vtable": 0,
+            "slot": 0
+          },
+          {
+            "name": "PlayerByIndex",
+            "rva": 2597280,
+            "pattern": "55 8B EC 8B 55 08 85 D2 7E 31 A1 ?? ?? ?? ?? 3B 50 14 7F 27 8B 0D ?? ?? ?? ?? 52 8B 01 FF 50 4C 8B C8 85 C9 74 15 8B 01 D1 E8 A8 01 75 0D 8B 49 0C 85 C9 74 06 8B 01 5D FF 60 14 33 C0 5D C3",
+            "vtable": 0,
+            "slot": 0
+          },
+          {
+            "name": "WeaponTracer",
+            "rva": 1040096,
+            "pattern": "55 8B EC 83 EC 0C 56 8B F1 57 8B 8E 60 04 00 00 83 F9 FF 0F 84 C8 00 00 00 8B 15 ?? ?? ?? ?? 8B C1 25 FF 0F 00 00 C1 E9 0C 03 C0 39 4C C2 08 0F 85 AC 00 00 00 8B 4C C2 04 85 C9 0F 84 A0 00 00",
+            "vtable": 0,
+            "slot": 0
+          },
+          {
+            "name": "WeaponImpact",
+            "rva": 1132368,
+            "pattern": "55 8B EC 6A 00 FF 75 0C FF 75 08 E8 ?? ?? ?? ?? 83 C4 0C 5D C2 08 00",
+            "vtable": 0,
+            "slot": 0
+          },
+          {
+            "name": "Tracer",
+            "rva": 2607360,
+            "pattern": "55 8B EC 81 EC 8C 00 00 00 8D 8D 74 FF FF FF E8 ?? ?? ?? ?? 80 7D 1C 00 8B 45 08 F3 0F 10 00 F3 0F 11 45 80 F3 0F 10 40 04 F3 0F 11 45 84 F3 0F 10 40 08 8B 45 0C F3 0F 11 45 88 F3 0F 10 00 F3",
+            "vtable": 0,
+            "slot": 0
+          },
+          {
+            "name": "FireBullets",
+            "rva": 1132592,
+            "pattern": "53 8B DC 83 EC 08 83 E4 F0 83 C4 04 55 8B 6B 04 89 6C 24 04 8B EC 81 EC A8 02 00 00 56 8B F1 57 89 75 D0 E8 ?? ?? ?? ?? 8B 7B 08 8B C8 89 45 D4 FF 77 2C E8 ?? ?? ?? ?? FF 77 2C 8B 4D D4 89 45",
+            "vtable": 0,
+            "slot": 0
+          },
+          {
+            "name": "LookupAttachment",
+            "rva": 955808,
+            "pattern": "55 8B EC 56 8B F1 80 BE 2D 03 00 00 00 75 3A 83 BE 4C 04 00 00 00 75 10 E8 ?? ?? ?? ?? 85 C0 74 07 8B CE E8 ?? ?? ?? ?? 8B 86 4C 04 00 00 85 C0 74 17 83 38 00 74 12 FF 75 08 50 E8 ?? ?? ?? ??",
+            "vtable": 0,
+            "slot": 0
+          }
+        ],
+        "engine_targets": [
+          {
+            "name": "ClearDecals",
+            "rva": 1177072,
+            "pattern": "55 8B EC 51 A1 ?? ?? ?? ?? 85 C0 74 45 8B 4D 08 53 32 DB 88 5D FC 83 39 02 75 28 68 ?? ?? ?? ?? FF B1 0C 04 00 00 E8 ?? ?? ?? ?? 83 C4 08 0F B6",
+            "vtable": 0,
+            "slot": 0
+          },
+          {
+            "name": "ClearModelDecals",
+            "rva": 1251216,
+            "pattern": "53 56 57 8B F9 BB FF FF 00 00 0F B7 77 18 66 3B F3 74 21 8B 07 8B CF 56 FF 50 24 0F B7 C6 69 C8 08 01 00 00 8B 47 0C 0F B7 B4 01 06 01 00 00 66",
+            "vtable": 0,
+            "slot": 0
+          }
+        ],
+        "vstdlib_targets": [
+          {
+            "name": "Register",
+            "rva": 17200,
+            "pattern": "55 8B EC 53 57 8B 7D 08 8B D9 8B CF 8B 07 8B 40 18 FF D0 84 C0 0F 85 82 02 00 00 8B 07 8B CF C6 47 08 01 FF 50 10 85 C0 0F 84 85 02 00 00 80 38",
+            "vtable": 0,
+            "slot": 0
+          },
+          {
+            "name": "Unregister",
+            "rva": 18208,
+            "pattern": "55 8B EC 56 8B 75 08 57 8B F9 8B CE 8B 06 8B 40 18 FF D0 84 C0 74 3D C6 46 08 00 33 D2 8B 47 30 85 C0 74 30 3B C6 74 0F 8B D0 8B 40 04 85 C0 75",
+            "vtable": 0,
+            "slot": 0
+          },
+          {
+            "name": "Find",
+            "rva": 15472,
+            "pattern": "55 8B EC 8B 01 56 57 FF 50 40 8B F0 85 F6 74 25 8B 7D 08 8B 06 8B CE FF 50 10 50 57 E8 ?? ?? ?? ?? 83 C4 08 85 C0 74 15 8B CE E8 ?? ?? ?? ?? 8B",
+            "vtable": 0,
+            "slot": 0
+          }
+        ],
+        "cvar_table": 111844,
+        "model_table": 3391260,
+        "client_cleanup": {
+          "list_primary": 3726024,
+          "list_secondary": 3726040,
+          "list_offset": 65556,
+          "list_instance": 4911920,
+          "ragdoll_table": 3611868,
+          "release_field": 2180
+        },
+        "values": {
+          "EntityListPtr": 6474164,
+          "GlobalsPtr": 7063200,
+          "EnginePtr": 7064372,
+          "CvarPtr": 7503732
+        },
+        "maps": {
+          "CBaseEntity": {
+            "table": 5033820,
+            "map": 6429600
+          },
+          "CBaseHLCombatWeapon": {
+            "table": 5567400,
+            "map": 6681848
+          },
+          "CHL2_Player": {
+            "table": 5617960,
+            "map": 6700672
+          }
+        },
+        "fields": {
+          "m_iClassname": {
+            "type": 2,
+            "offset": 92
+          },
+          "m_iName": {
+            "type": 2,
+            "offset": 264
+          },
+          "m_ModelName": {
+            "type": 18,
+            "offset": 516
+          },
+          "m_iHammerID": {
+            "type": 5,
+            "offset": 104
+          },
+          "m_spawnflags": {
+            "type": 5,
+            "offset": 252
+          },
+          "m_iEFlags": {
+            "type": 5,
+            "offset": 256
+          },
+          "m_iClip1": {
+            "type": 5,
+            "offset": 1196
+          },
+          "m_iClip2": {
+            "type": 5,
+            "offset": 1200
+          },
+          "m_nButtons": {
+            "type": 5,
+            "offset": 2688
+          },
+          "m_afButtonPressed": {
+            "type": 5,
+            "offset": 2692
+          },
+          "m_hOwnerEntity": {
+            "type": 13,
+            "offset": 468
+          },
+          "m_hMoveParent": {
+            "type": 13,
+            "offset": 316
+          },
+          "m_hMoveChild": {
+            "type": 13,
+            "offset": 320
+          },
+          "m_hMovePeer": {
+            "type": 13,
+            "offset": 324
+          },
+          "m_flNextPrimaryAttack": {
+            "type": 16,
+            "offset": 1128
+          },
+          "m_flNextSecondaryAttack": {
+            "type": 16,
+            "offset": 1132
+          },
+          "m_pPhysicsObject": {
+            "type": 11,
+            "offset": 480
+          },
+          "m_bLowered": {
+            "type": 6,
+            "offset": 1376
+          },
+          "m_bFiresUnderwater": {
+            "type": 6,
+            "offset": 1204
+          },
+          "m_bAltFiresUnderwater": {
+            "type": 6,
+            "offset": 1205
+          },
+          "m_hActiveWeapon": {
+            "type": 13,
+            "offset": 2064
+          },
+          "m_hViewModel": {
+            "type": 13,
+            "offset": 3412
+          }
+        }
+      }
+    }
+  ]
+}
